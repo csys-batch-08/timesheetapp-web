@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app id="WebApp_ID" version="2.4" xmlns="http://jAVA.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<servlet>
+		<description>
+		</description>
+		<display-name>UpdateUserAdmin</display-name>
+		<servlet-name>UpdateUserAdmin</servlet-name>
+		<servlet-class>com.timesheet.controller.UpdateUserAdmin</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>UpdateUser</display-name>
+		<servlet-name>UpdateUser</servlet-name>
+		<servlet-class>com.timesheet.controller.UpdateUser</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>AddTaskAllUsers</display-name>
+		<servlet-name>AddTaskAllUsers</servlet-name>
+		<servlet-class>com.timesheet.controller.AddTaskAllUsers</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateUserAdmin</servlet-name>
+		<url-pattern>/UpdateUserAdmin</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateUser</servlet-name>
+		<url-pattern>/UpdateUser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddTaskAllUsers</servlet-name>
+		<url-pattern>/AddTaskAllUsers</url-pattern>
+	</servlet-mapping>
+
+</web-app>
