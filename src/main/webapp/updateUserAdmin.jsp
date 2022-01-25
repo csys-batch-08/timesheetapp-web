@@ -127,15 +127,7 @@
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 <input type="submit"value="Submit">
 </form><br>
-<%!
-String flag;
-%>
-<%
-if(request.getAttribute("updateuseradmin") != null){
-flag = request.getAttribute("updateuseradmin").toString();
-%>
-<h4><%= flag%></h4>
-<% }%> 
+
 </div>
 </body>
 </html>

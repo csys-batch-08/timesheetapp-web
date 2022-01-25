@@ -1,8 +1,7 @@
-<%@page import="com.timesheet.model.ViewTimesheets"%>
-<%@page import="java.util.*"%>
-<%@page import="com.timesheet.daoimpl.ViewTimesheetsDAOimpl"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,15 +97,10 @@
         <a href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav><br><br>
-<% ViewTimesheetsDAOimpl viewtimesheetdao=new ViewTimesheetsDAOimpl();
-   List<ViewTimesheets> timesheetlist=new ArrayList<ViewTimesheets>();
-   timesheetlist=viewtimesheetdao.showAllTimesheet();
-%>
 <table class="table table-hover table-striped">
 	<h2><b> Timesheet List</b></h2>
 	<thead>
 	<tr>
-  		<th >S.no</th>
 		<th>User Name</th>
 		<th>Comments</th>
 		<th>Spending Time Hrs</th>
@@ -117,28 +111,17 @@
 	</tr>
 	</thead>
 <tbody>
-<%
-int i = 0;
-for (ViewTimesheets viewtimesheet: timesheetlist ) {
-i++;
-
-%>
+ <c:forEach items="${viewTimesheet}" var="viewtimesheets">
 <tr>
-
-
-<td><%=i%></td>
-<td> <%=viewtimesheet.getUsername()%></td>
-<td> <%=viewtimesheet.getComments()%></td>
-<td> <%=viewtimesheet.getSpendtimehrs()%></td>
-<td> <%=viewtimesheet.getTimesheetid()%></td>
-<td> <%=viewtimesheet.getTimesheetdate()%></td>
-<td> <%=viewtimesheet.getTaskid()%></td>
-<td> <%=viewtimesheet.getStatus()%></td>
+<td>${viewtimesheets.getUsername()}</td>
+<td>${viewtimesheets.getComments()}</td>
+<td>${viewtimesheets.getSpendtimehrs()}</td>
+<td>${viewtimesheets.getTimesheetid()}</td>
+<td>${viewtimesheets.getTimesheetdate()}</td>
+<td>${viewtimesheets.getTaskid()}</td>
+<td>${viewtimesheets.getStatus()}</td>
 </tr>
-
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table><br><br>
 <div>
@@ -170,15 +153,6 @@ i++;
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" class="btn btn-primary btn-sm" value="Submit">
    &nbsp; &nbsp; <input type="reset" class="btn btn-secondary btn-sm" value="Clear">
 </form>
-</fieldset></div>
- <%!
-String flag;
-%>
-<%
-if(request.getAttribute("status") != null){
-flag = request.getAttribute("status").toString();
-%>
-<h4><%= flag%></h4>
-<% }%>  
+</fieldset></div>  
 </body>
 </html>

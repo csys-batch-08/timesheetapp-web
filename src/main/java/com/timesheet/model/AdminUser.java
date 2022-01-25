@@ -38,7 +38,7 @@ public class AdminUser {
 	}
 	public AdminUser() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 	@Override
 	public String toString() {

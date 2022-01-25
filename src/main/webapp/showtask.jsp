@@ -160,7 +160,7 @@ i++;
 <td> <%=viewtask.getEnddate()%></td>
 <td> <%=viewtask.getAssignedto()%></td>
 <td><%=viewtask.getTotalhrs()%></td>
-<td><a href="timesheetmain.jsp?taskName=<%=viewtask.getTask()%>&taskDate=<%=viewtask.getDateassigned() %>" ><button type="button" class="btn btn-primary btn-sm">ADD</button></a></td>
+<td><a href="timesheetmain.jsp?taskName=<%=viewtask.getTask()%>&taskDate=<%=viewtask.getDateassigned()%>"><button type="button" class="btn btn-primary btn-sm">ADD</button></a></td>
 </tr>
 
 <%

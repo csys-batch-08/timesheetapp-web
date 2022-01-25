@@ -17,15 +17,10 @@ public class UpdateUserAdmin extends HttpServlet {
         super();
         
     }
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		doGet(request, response);
+
 		String username=request.getParameter("username");
 		String role=request.getParameter("role");
 		AdminDAOimpl admindao=new AdminDAOimpl();
@@ -35,19 +30,16 @@ public class UpdateUserAdmin extends HttpServlet {
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('User Status updated Successfully');");
-			out.println("location='showalluser.jsp';");
+			out.println("location='ShowAllUser';");
 			out.println("</script>");
-//			request.setAttribute("updateuseradmin","User Details Updated Successfully");
 		}
 		else
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('User Status Not Updated');");
-			out.println("location='showalluser.jsp';");
+			out.println("location='ShowAllUser';");
 			out.println("</script>");
-//			request.setAttribute("updateuseradmin","User Details not Updated ");
 		}
-//		request.getRequestDispatcher("updateUserAdmin.jsp").forward(request, response);
 	}
 
 }

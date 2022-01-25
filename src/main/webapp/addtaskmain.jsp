@@ -149,15 +149,7 @@
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" class="btn btn-primary btn-sm" value="Submit">
    &nbsp; &nbsp; <input type="reset" class="btn btn-primary btn-sm" value="Clear">
     </form> 
-    <%!
-String flag;
-%>
-<%
-if(request.getAttribute("task") != null){
-flag = request.getAttribute("task").toString();
-%>
-<h4><%= flag%></h4>
-<% }%> 
+  
     </div>
 </body>
 </html>

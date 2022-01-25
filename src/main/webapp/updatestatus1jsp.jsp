@@ -123,7 +123,7 @@
     </div>
     <%! int timesheetid; %>
     <%timesheetid=Integer.parseInt(request.getParameter("timesheetid")); 
-    String query="select * from status where timesheet_id='"+timesheetid+"'";
+    String query="select timesheet_id,user_id,approved_by from status where timesheet_id='"+timesheetid+"'";
     Connectionutil conutil=new Connectionutil();
     Connection con=conutil.getDbConnection();
     Statement stmt=con.createStatement();
@@ -134,7 +134,7 @@
             <table>
             <tr>
        <th><label for="timesheetid">Enter Timesheet Id</label></th>
-       <td><input type="number" name="timesheetid" value="<%=rs.getInt(3)%>" readonly required></td>
+       <td><input type="number" name="timesheetid" value="<%=rs.getInt(1)%>" readonly required></td>
     </tr>
     <tr>
        <th><label for="userid">User Id</label></th>
@@ -150,7 +150,7 @@
     </tr>
     <tr>
        <th><label for="approvedby">Approvedb By</label></th>
-       <td><input type="text" name="approvedby" value="<%=rs.getString(5)%>" readonly required></td>
+       <td><input type="text" name="approvedby" value="<%=rs.getString(3)%>" readonly required></td>
     </tr>
     
     </table><br><br>
@@ -159,15 +159,6 @@
    
         <%} %>
         
-         <%!
-String flag;
-%>
-<%
-if(request.getAttribute("status") != null){
-flag = request.getAttribute("status").toString();
-%>
-<h4><%= flag%></h4>
-<% }%> 
     </form>
      </div>
     </body>

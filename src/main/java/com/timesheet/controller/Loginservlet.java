@@ -23,16 +23,16 @@ public class Loginservlet extends HttpServlet {
    
     public Loginservlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 //		doGet(request, response);
 		HttpSession session = request.getSession();
 		PrintWriter out=response.getWriter();
@@ -52,7 +52,7 @@ public class Loginservlet extends HttpServlet {
 		}
 		else if(validadmin!=null)
 		{
-//		  out.println("Login as "+validadmin.getFirstname()+" Admin");
+
 		  session.setAttribute("adminuser",validadmin.getFirstname());
 		    RequestDispatcher reqdis=request.getRequestDispatcher("adminindex.jsp");
 			reqdis.forward(request, response);

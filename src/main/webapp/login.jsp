@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,17 +52,12 @@
         <lable for="password">Password</lable><br>
         <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter valid password" title="Sample Xyz12@" required><br><br>
         &nbsp;&nbsp;<input type="submit" name="submit"> &nbsp;
-       <a href="Register.jsp"><input type="button" value="Sign Up"></a>  &nbsp;
-       <input type="reset" value="Reset"><br>
-       <%
-       String login=(String)session.getAttribute("login");
-       if(login!=null)
-       {
-       %>
-       <br>
-       <h4><%=login %></h4>
-       <%} %>
-       <%session.removeAttribute("login");%>
+       <a href="Register.jsp"><input type="button" value="Sign Up"></a>&nbsp;
+       <input type="reset" value="Reset"><br><br>
+       <c:if test="${sessionScope.login!=null}">
+       <h4>${sessionScope.login}</h4>
+       </c:if>
+       <c:remove var="login" scope="session"/>
     </fieldset>
 </form>  
 

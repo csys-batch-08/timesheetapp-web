@@ -17,11 +17,8 @@ public class Updatestatus extends HttpServlet {
     public Updatestatus() {
         super(); 
     }
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-//		doGet(request, response);
 		int timesheetid=Integer.parseInt(request.getParameter("timesheetid"));
 		String status=request.getParameter("status");
 		StatusDAOimpl statusdao=new StatusDAOimpl();
@@ -32,19 +29,16 @@ public class Updatestatus extends HttpServlet {
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Timesheet status updated Successfully');");
-			out.println("location='viewalltimesheet.jsp';");
+			out.println("location='ShowAllTimesheet';");
 			out.println("</script>");
-//			request.setAttribute("status","status updated Successfully");
 		}
 		else
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Timesheet status not updated');");
-			out.println("location='viewalltimesheet.jsp';");
+			out.println("location='ShowAllTimesheet';");
 			out.println("</script>");
-//			request.setAttribute("status","status not updated");
 		}
-//		request.getRequestDispatcher("updatestatus1jsp.jsp").forward(request, response);
 		
 	}
 		

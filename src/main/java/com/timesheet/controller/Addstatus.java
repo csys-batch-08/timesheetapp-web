@@ -23,20 +23,12 @@ public class Addstatus extends HttpServlet {
        
    
     public Addstatus() {
-        super();
-        // TODO Auto-generated constructor stub
+        super(); 
     }
-
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		doGet(request, response);
+
 	  StatusDAOimpl statusdao=new StatusDAOimpl();
 	  TimesheetDAOimpl timesheetdao=new TimesheetDAOimpl();
 	  UserDAOimpl userdao=new UserDAOimpl();
@@ -47,7 +39,7 @@ public class Addstatus extends HttpServlet {
 	  String status=request.getParameter("status");
 	  String approvedby=request.getParameter("approvedby");
       int id=userdao.findUserId(username);
-      int id1=timesheetdao.findTimesheetId(timesheetdate);
+      int id1=timesheetdao.findTimesheetId(timesheetdate,id);
 		Status statusobj=new Status(id,id1,status,approvedby);
 		boolean flag=statusdao.insertStatus(statusobj);
 		PrintWriter out=response.getWriter();
@@ -55,19 +47,19 @@ public class Addstatus extends HttpServlet {
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Timesheet status Added Successfully');");
-			out.println("location='viewalltimesheet.jsp';");
+			out.println("location='ShowAllTimesheet';");
 			out.println("</script>");
-//			request.setAttribute("status","status Added Successfully");
+
 		}
 		else
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Timesheet status not Added');");
-			out.println("location='viewalltimesheet.jsp';");
+			out.println("location='ShowAllTimesheet';");
 			out.println("</script>");
-//			request.setAttribute("status","status not Added");
+
 		}
-//		request.getRequestDispatcher("timesheetadmin.jsp").forward(request, response);
+
 		
 	}
 

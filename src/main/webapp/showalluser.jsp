@@ -1,8 +1,6 @@
-<%@page import="com.timesheet.model.AdminUser"%>
-<%@page import="com.timesheet.daoimpl.AdminDAOimpl"%>
-<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +47,12 @@
            float : right;
            margin-right: 20px;
        }
-     
+     .center
+     {
+      width: 90%;
+      padding:20px;
+      margin-left:50px;
+     }
         table{
           background-color:rgb(188, 210, 243);
       }
@@ -77,17 +80,12 @@
         <a href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
-    <br><br>
-   
-<% AdminDAOimpl admindao = new AdminDAOimpl();
-   List<AdminUser> userList = new ArrayList<AdminUser>();
-   userList = admindao.showalluser();
-%>
+    <div class="center">
+    <h2><b>All Users List</b></h2>
 <table class="table table-hover table-striped">
-	<h2><b>All Users List</b></h2>
+	
 	<thead>
 	<tr>
-  		<th >S.no</th>
 		<th>First Name</th>
 		<th>Last Name</th>
 		<th>User Name</th>
@@ -97,28 +95,18 @@
 	</thead>
 	<br><br>
 <tbody>
-<%
-int i = 0;
-for (AdminUser viewUser: userList ) {
-i++;
-
-%>
+ <c:forEach items="${showallusers}" var="viewUser">
 <tr>
-
-
-<td><%=i%></td>
-<td><%=viewUser.getFirstname()%></td>
-<td><%=viewUser.getLastname()%></td>
-<td> <%=viewUser.getUsername()%></td>
-<td><%=viewUser.getRole() %></td>
-<td><a href="updateUserAdmin.jsp?username=<%=viewUser.getUsername()%>"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
+<td>${viewUser.firstname}</td>
+<td>${viewUser.lastname}</td>
+<td>${viewUser.username}</td>
+<td>${viewUser.role}</td>
+<td><a href="updateUserAdmin.jsp?username=${viewUser.username}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
-
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
+</div>
 </body>
 </html>
 

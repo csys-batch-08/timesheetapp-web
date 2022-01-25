@@ -174,9 +174,9 @@ public class TimesheetDAOimpl implements TimesheetDAO
 //		}
 //	    return flag;
 //		}
-	public  int findTimesheetId(LocalDate timesheetfordate)
+	public  int findTimesheetId(LocalDate timesheetfordate,int userid)
 	{
-		String findUser="select timesheet_id from timesheets where to_char(timesheet_for_date,'yyyy-MM-dd')='"+timesheetfordate+"'";
+		String findUser="select timesheet_id from timesheets where to_char(timesheet_for_date,'yyyy-MM-dd')='"+timesheetfordate+"' and user_id='"+userid+"'";
 		Connection con=Connectionutil.getDbConnection();
 		Statement stmt;
 		int timesheetId=0;

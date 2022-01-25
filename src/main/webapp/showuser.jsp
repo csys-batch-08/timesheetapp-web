@@ -121,15 +121,5 @@ i++;
 %>
 </tbody>
 </table>
- <%!
-String flag;
-%>
-<%
-if(request.getAttribute("updateuser") != null){
-flag = request.getAttribute("updateuser").toString();
-%>
-<h4><%= flag%></h4>
-<% }%>
-<%session.removeAttribute("updateuser");%> 
 </body>
 </html>

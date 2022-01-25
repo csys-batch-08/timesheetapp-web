@@ -128,12 +128,9 @@
    if(rs.next())
    {
 	 Date=rs.getString(1);  
-	 System.out.println(Date);
    }
    String name=(String)request.getParameter("taskName");
    String date=(String)request.getParameter("taskDate");
-	 System.out.println("sys"+date);
-   
 %>
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
@@ -187,22 +184,7 @@
 
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
    &nbsp; &nbsp; <input type="reset"value="Reset">
-    </form>
-    <script type="text/javascript">
-    function name() {
-		
-	}
-    </script>
-      <%!
-String flag;
-%>
-<%
-if(request.getAttribute("timesheet") != null){
-flag = request.getAttribute("timesheet").toString();
-%>
-<h4><%= flag%></h4>
-<% }%>
-        
+    </form>      
     </div>
  
 </body>

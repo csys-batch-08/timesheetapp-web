@@ -126,20 +126,20 @@
 		String username=(String)session.getAttribute("username");
 		UserDAOimpl userdao=new UserDAOimpl();
 		int uid=userdao.findUserId(username);
-		String query="select * from timesheets where to_char(timesheet_for_date,'yyyy-MM-dd')='"+timesheetdate+"' and user_id='"+uid+"'";
+		String query="select timesheet_for_date,user_id,spend_time_hrs,comments,task_id from timesheets where to_char(timesheet_for_date,'yyyy-MM-dd')='"+timesheetdate+"' and user_id='"+uid+"'";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		Statement stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery(query);
 		if(rs.next()){
-			session.setAttribute("taskId", rs.getInt(3));
+			session.setAttribute("taskId", rs.getInt(5));
 		%>
     <div class="box">
     <form action="updateTime" method="POST">
     <table>
     <tr>
        <th><label for="timesheetdate">Enter Timesheet Date</label></th>
-       <td><input type="date" min="" max="" name="timesheetdate" value="<%=rs.getDate(6).toLocalDate()%>" readonly required></td>
+       <td><input type="date" min="" max="" name="timesheetdate" value="<%=rs.getDate(1).toLocalDate()%>" readonly required></td>
     </tr>
     <tr>
        <th> <label for="spendinghrs">User Id</label></th>
@@ -147,11 +147,11 @@
     </tr>
      <tr>
        <th> <label for="spendinghrs">Enter Spending Hrs</label></th>
-        <td><input type="number" pattern="[1-9]{1+}" maxlength="2" name="spendinghrs" value="<%=rs.getInt(4)%>" required></td>
+        <td><input type="number" pattern="[1-9]{1+}" maxlength="2" name="spendinghrs" value="<%=rs.getInt(3)%>" required></td>
     </tr>
     <tr>
        <th><label for="comments">Enter Comments</label></th>
-       <td><input type="text" name="comments" value="<%=rs.getString(5)%>" required></td>
+       <td><input type="text" name="comments" value="<%=rs.getString(4)%>" required></td>
     </tr>
     <tr>
        <th><label for="status" >Status</label></th>
@@ -160,15 +160,7 @@
     </table><br><br>
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
    <%} %>
-   <%!
-String flag;
-%>
-<%
-if(request.getAttribute("timesheet") != null){
-flag = request.getAttribute("timesheet").toString();
-%>
-<h4><%= flag%></h4>
-<% }%>
+
     </form>  
     </div>
  

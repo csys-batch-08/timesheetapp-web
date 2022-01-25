@@ -16,10 +16,10 @@ public class Connectionutil {
 			con = DriverManager.getConnection(url, "system", "oracle");
 		} catch (ClassNotFoundException e) {
 			e.getMessage();
-			System.out.println("Driver jar doesn't there");
+//			System.out.println("Driver jar doesn't there");
 		} catch (SQLException e) {
 			e.getMessage();
-			System.out.println("url or username or password may wrong");
+//			System.out.println("url or username or password may wrong");
 		}
 		return con;
 	}

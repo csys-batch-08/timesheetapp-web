@@ -116,8 +116,8 @@ i++;
 <td><%=reject.getTask()%></td>
 <td><%=reject.getTimesheetdate()%></td>
 <td><%=reject.getSpendtimehrs()%></td>
-<td> <%=reject.getComments()%></td>
-<td> <%=reject.getApprovedby()%></td>
+<td><%=reject.getComments()%></td>
+<td><%=reject.getApprovedby()%></td>
 <td><%=reject.getStatus()%></td>
 <td><a href="Updatetimesheet.jsp"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>

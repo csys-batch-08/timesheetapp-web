@@ -121,7 +121,7 @@
     <%!String taskName; %>
 <% 
  taskName=request.getParameter("taskname");
-String query="select * from task_details where task_name like '"+taskName+"%'";
+String query="select task_name,assigned_to_date,end_date,task_priority,assigned_to from task_details where task_name like '"+taskName+"%'";
 Connectionutil conutil=new Connectionutil();
 Connection con=conutil.getDbConnection();
 Statement stmt=con.createStatement();
@@ -133,24 +133,24 @@ if(rs.next()){
             <table>
             <tr>
        <th><label for="taskname">Enter Task Name</label></th>
-       <td><input type="text" name="taskname" value="<%=rs.getString(3) %>" readonly required></td>
+       <td><input type="text" name="taskname" value="<%=rs.getString(1) %>" readonly required></td>
     </tr>
            
     <tr>
        <th> <label for="assigningdate">Enter Task Assigning Date</label></th>
-        <td><input type="date" name="assigningdate" value="<%=rs.getDate(4) %>" required></td>
+        <td><input type="date" name="assigningdate" value="<%=rs.getDate(2) %>" required></td>
     </tr>
     <tr>
        <th><label for="endingdate">Enter Task Ending Date</label></th>
-       <td><input type="date" name="endingdate" value="<%=rs.getDate(5)%>" required></td>
+       <td><input type="date" name="endingdate" value="<%=rs.getDate(3)%>" required></td>
     </tr>
      <tr>
        <th><label for="priority">Enter Task Priority</label></th>
-       <td><input type="text" name="priority" value="<%=rs.getString(6)%>" required></td>
+       <td><input type="text" name="priority" value="<%=rs.getString(4)%>" required></td>
     </tr>
      <tr>
        <th><label for="assignedto">Task Assigned To</label></th>
-       <td><input type="email" name="username" value="<%=rs.getString(7)%>" required></td>
+       <td><input type="email" name="username" value="<%=rs.getString(5)%>" required></td>
     </tr>
     </table><br><br>
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
@@ -158,15 +158,6 @@ if(rs.next()){
    
         <%} %>
         
-         <%!
-String flag;
-%>
-<%
-if(request.getAttribute("task") != null){
-flag = request.getAttribute("task").toString();
-%>
-<h4><%= flag%></h4>
-<% }%> 
         </form> 
     </div>
 </body>
