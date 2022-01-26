@@ -1,9 +1,7 @@
 
-<%@page import="com.timesheet.model.Task"%>
-<%@page import="java.util.*"%>
-<%@page import="com.timesheet.daoimpl.TaskDAOimpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,6 +76,12 @@
        {
           background-color:rgb(107, 173, 235);
        }
+       .center
+     {
+      width: 90%;
+      padding:20px;
+      margin-left:50px;
+     }
 </style>
 </head>
 <body>
@@ -90,18 +94,12 @@
         <a href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
-    <br><br>
-<% TaskDAOimpl taskdao = new TaskDAOimpl();
-   List<Task> taskList = new ArrayList<Task>();
-   taskList = taskdao.showallTask();
-%>
-
-
+    <div class="center">
+    <h2><b> Tasks List</b></h2>
 <table class="table table-hover table-striped">
-	<h2><b> Tasks List</b></h2>
+	
 	<thead>
 	<tr>
-  		<th >S.no</th>
 		<th>Task Name</th>
 		<th>Priority</th>
 		<th>Task Starting Date</th>
@@ -112,29 +110,19 @@
 	</tr>
 	</thead>
 <tbody>
-<%
-int i = 0;
-for (Task viewtask: taskList ) {
-i++;
-%>
+<c:forEach items="${showalltask}" var="viewtask">
 <tr>
-
-
-<td><%=i%></td>
-<td><%=viewtask.getTask()%></td>
-<td><%=viewtask.getTaskpriority()%></td>
-<td><%=viewtask.getDateassigned()%></td>
-<td><%=viewtask.getEnddate()%></td>
-<td><%=viewtask.getAssignedto()%></td>
-<td><%=viewtask.getTotalhrs() %></td>
-<td><a href="updatetask.jsp?taskname=<%=viewtask.getTask()%>"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
+<td>${viewtask.getTask()}</td>
+<td>${viewtask.getTaskpriority()}</td>
+<td>${viewtask.getDateassigned()}</td>
+<td>${viewtask.getEnddate()}</td>
+<td>${viewtask.getAssignedto()}</td>
+<td>${viewtask.getTotalhrs()}</td>
+<td><a href="updatetask.jsp?taskname=${viewtask.getTask()}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
-
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
-
+</div>
 </body>
 </html>

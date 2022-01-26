@@ -1,13 +1,7 @@
-<%@page import="java.time.LocalDate"%>
-<%@page import="java.time.format.DateTimeFormatter"%>
-<%@page import="com.timesheet.daoimpl.ReportDAOimpl"%>
-<%@page import="com.timesheet.model.Report"%>
-<%@page import="java.util.*"%>
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.text.DateFormat"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,64 +85,43 @@
         <a href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a href="ShowUser"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
-    <br><br>
-<%
-DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
-String timedate=request.getParameter("timesheetdate");
-LocalDate timesheetdate=LocalDate.parse(timedate);
-String username=(String)session.getAttribute("username");
-ReportDAOimpl reportdao=new ReportDAOimpl();
-List<Report> showReport=reportdao.findreport(timesheetdate, username);
-
-%>
 <fieldset>
 <h3 align="center">Report</h3>
 <table class="table table-borderless">
 <tbody>
-<%
-
-for (int i=0; i<showReport.size(); i++ ) {
-
-Report view = showReport.get(i);
-//System.out.println("jsp page "+view.getTimesheetid());
-%>
+<c:forEach items="${report}" var="view">
 <tr>
-<td><b>Timesheet Date</b> </td><td><%=view.getTimesheetdate()%></td>
+<td><b>Timesheet Date</b> </td><td>${view.getTimesheetdate()}</td>
 </tr> 
 <tr>
-<td><b>Timesheet Id</b> </td><td><%=view.getTimesheetid()%></td>
+<td><b>Timesheet Id</b> </td><td>${view.getTimesheetid()}</td>
 </tr>
 <tr>
-<td><b>User Name</b> </td><td><%=view.getUsername()%></td>
+<td><b>User Name</b> </td><td>${view.getUsername()}</td>
 </tr>
 <tr>
-<td><b>User Role </b></td><td><%=view.getRole()%></td>
+<td><b>User Role </b></td><td>${view.getRole()}</td>
 </tr>
 <tr>
 <td><b>Task Name</b> </td><td>
-<%=view.getTask()%></td>
+${view.getTask()}</td>
 </tr>
 <tr>
-<td><b>User Name</b> </td><td><%=view.getUsername()%></td>
+<td><b>Spending Hrs</b> </td><td>${view.getSpendhrs()}</td>
 </tr>
 <tr>
-<td><b>Spending Hrs</b> </td><td><%=view.getSpendhrs()%></td>
+<td><b>Timesheet Status</b> </td><td>${view.getStatus()}</td>
 </tr>
 <tr>
-<td><b>Timesheet Status</b> </td><td><%=view.getStatus()%></td>
+<td><b>Approved By</b> </td><td>${view.getApprovedby()}</td>
 </tr>
 <tr>
-<td><b>Approved By</b> </td><td><%=view.getApprovedby()%></td>
+<td><b>Approved On</b> </td><td>${view.getApprovedon()}</td>
 </tr>
-<tr>
-<td><b>Approved On</b> </td><td><%=view.getApprovedon()%></td>
-</tr>
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
 </fieldset>

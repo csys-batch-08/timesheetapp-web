@@ -107,7 +107,7 @@
     </nav>
     <div class="sidebar"> 
         <ul>
-        <li><a href="showalluser.jsp">View Users</a><br><br></li>
+        <li><a href="ShowAllUser">View Users</a><br><br></li>
         </ul>
     </div>
     <div class="box">

@@ -24,28 +24,18 @@ public class Loginservlet extends HttpServlet {
     public Loginservlet() {
         super();
     }
-    @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		doGet(request, response);
 		HttpSession session = request.getSession();
-		PrintWriter out=response.getWriter();
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
 		UserDAOimpl userdao=new UserDAOimpl();
 		AdminDAOimpl admindao=new AdminDAOimpl();
 		User validuser=userdao.validateUser(username, password);
 		User validadmin=admindao.validateAdmin(username, password);
-//		System.out.println(validuser.getUsername());
 		if(validuser!=null)
 		{
-			//out.println("Login as "+validuser.getFirstname());
 			session.setAttribute("username",validuser.getUsername());
 		RequestDispatcher reqdis=request.getRequestDispatcher("index.jsp");
 		reqdis.forward(request, response);
@@ -74,5 +64,4 @@ public class Loginservlet extends HttpServlet {
 	}
 
 }
-//HttpSession session=request.getSession();
-//session.setAttribute("adminuser",validadmin.getUsername());
+

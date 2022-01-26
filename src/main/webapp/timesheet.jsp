@@ -95,16 +95,16 @@
         <a class="a" href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a class="a" href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a class="a" href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a class="a" href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a class="a" href="ShowUser"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a class="a" href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
      <div class="sidebar"> 
         <ul>
-        <li><a href="showtask.jsp">Add Timesheet</a><br><br></li>
+        <li><a href="ShowTask">Add Timesheet</a><br><br></li>
         <li><a href="Updatetimesheet.jsp">Edit Timesheet</a><br><br></li>
-         <li><a href="rejectedtimesheet.jsp">Rejected Timesheet</a><br><br></li>
+         <li><a href="RejectedTimesheet">Rejected Timesheet</a><br><br></li>
          <li><a href="showuserstatus1.jsp">View Timesheet Status</a><br><br></li>
-        <li><a href="viewtimesheet.jsp">View Timesheet</a><br><br></li>
+        <li><a href="ViewTimesheet">View Timesheet</a><br><br></li>
         </ul>
     </div>
 </body>

@@ -1,8 +1,6 @@
-<%@page import="com.timesheet.model.Task"%>
-<%@page import="java.util.*"%>
-<%@page import="com.timesheet.daoimpl.TaskDAOimpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,27 +102,22 @@
 </style>
 </head>
 <body>
-<% TaskDAOimpl taskdao = new TaskDAOimpl();
-   List<Task> taskList = new ArrayList<Task>();
-   String username=(String)session.getAttribute("username");
-   taskList = taskdao.showTask(username);
-%>
  <h1 class="h1" align="center">TRACK YOUR TIME</h1>
     <nav>
         <a class="a" href="index.jsp"><img class="home" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
         <a class="a" href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a class="a" href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a class="a" href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a class="a" href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a class="a" href="ShowUser"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
      <div class="sidebar"> 
         <ul>
-        <li><a href="showtask.jsp">Add Timesheet</a><br><br></li>
+        <li><a href="ShowTask">Add Timesheet</a><br><br></li>
         <li><a href="Updatetimesheet.jsp">Edit Timesheet</a><br><br></li>
-        <li><a href="rejectedtimesheet.jsp">Rejected Timesheet</a><br><br></li>
-        <li><a href="showuserstatus1.jsp">View Timesheet Status</a><br><br></li>
-        <li><a href="viewtimesheet.jsp">View Timesheet</a><br><br></li>
+         <li><a href="RejectedTimesheet">Rejected Timesheet</a><br><br></li>
+         <li><a href="showuserstatus1.jsp">View Timesheet Status</a><br><br></li>
+        <li><a href="ViewTimesheet">View Timesheet</a><br><br></li>
         </ul>
     </div>
     <div class="box">
@@ -132,7 +125,6 @@
 	<h2><b> Tasks List</b></h2>
 	<thead>
 	<tr>
-  		<th >S.no</th>
 		<th>Task Name</th>
 		<th>Priority</th>
 		<th>Task Starting Date</th>
@@ -143,29 +135,17 @@
 	</tr>
 	</thead>
 <tbody>
-<%
-int i = 0;
-for (Task viewtask: taskList ) {
-i++;
-%>
-
-
+<c:forEach items="${showtask}" var="showtask">
 <tr>
-
-
-<td><%=i%></td>
-<td><%=viewtask.getTask()%></td>
-<td><%=viewtask.getTaskpriority()%></td>
-<td> <%=viewtask.getDateassigned()%></td>
-<td> <%=viewtask.getEnddate()%></td>
-<td> <%=viewtask.getAssignedto()%></td>
-<td><%=viewtask.getTotalhrs()%></td>
-<td><a href="timesheetmain.jsp?taskName=<%=viewtask.getTask()%>&taskDate=<%=viewtask.getDateassigned()%>"><button type="button" class="btn btn-primary btn-sm">ADD</button></a></td>
+<td>${showtask.getTask()}</td>
+<td>${showtask.getTaskpriority()}</td>
+<td>${showtask.getDateassigned()}</td>
+<td>${showtask.getEnddate()}</td>
+<td>${showtask.getAssignedto()}</td>
+<td>${showtask.getTotalhrs()}</td>
+<td><a href="timesheetmain.jsp?taskName=${showtask.getTask()}&taskDate=${showtask.getDateassigned()}"><button type="button" class="btn btn-primary btn-sm">ADD</button></a></td>
 </tr>
-
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
 </div>

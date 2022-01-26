@@ -84,9 +84,14 @@
        {
           background-color:rgb(107, 173, 235);
        }
+        .center
+     {
+      width: 90%;
+      padding:20px;
+      margin-left:50px;
+     }
 </style>
 </head>
-<%String adminuser=(String)session.getAttribute("adminuser"); %>
 <body>
 <h1 align="center">TRACK YOUR TIME</h1>
     <nav> 
@@ -96,9 +101,14 @@
         <a href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
         <a href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
-    </nav><br><br>
+        <c:if test="${sessionScope.adminuser!=null}">
+      <h4 class="signout">login as : &nbsp;${sessionScope.adminuser}</h4>
+       </c:if>
+    </nav>
+    <div class="center">
+    <h2><b> Timesheet List</b></h2>
 <table class="table table-hover table-striped">
-	<h2><b> Timesheet List</b></h2>
+	
 	<thead>
 	<tr>
 		<th>User Name</th>
@@ -123,7 +133,7 @@
 </tr>
 </c:forEach>
 </tbody>
-</table><br><br>
+</table></div><br><br>
 <div>
 <fieldset>
 <form action="addstatus" method="post">
@@ -146,7 +156,7 @@
   </tr>
   <tr>
  <td><label for="approvedby">Approved By</label></td>
-  <td><input type="text" name="approvedby" value="<%=adminuser%>" readonly required></td>
+  <td><input type="text" name="approvedby" value="${sessionScope.adminuser}" readonly required></td>
   </tr>
   </table>
   <br>

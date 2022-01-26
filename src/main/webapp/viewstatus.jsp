@@ -1,8 +1,7 @@
-<%@page import="com.timesheet.model.Status"%>
-<%@page import="java.util.*"%>
-<%@page import="com.timesheet.daoimpl.StatusDAOimpl"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +75,12 @@
        {
           background-color:rgb(107, 173, 235);
        }
+       .center
+     {
+      width: 90%;
+      padding:20px;
+      margin-left:50px;
+     }
 </style>
 </head>
 <body>
@@ -87,17 +92,12 @@
         <a href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
         <a href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
-    </nav><br><br>
-<% StatusDAOimpl statusdao = new StatusDAOimpl();
-   List<Status> statusList = new ArrayList<Status>();
-   statusList = statusdao.showallStatus();
-%>
-
+    </nav>
+    <div class="center">
 <table class="table table-hover table-striped">
 	<h2><b>Status List</b></h2>
 	<thead>
 	<tr>
-  		<th >S.no</th>
 		<th>User Id</th>
 		<th>Timesheet Id</th>
 		<th>Status</th>
@@ -106,27 +106,16 @@
 	</thead>
 	<br><br>
 <tbody>
-<%
-int i = 0;
-for (Status viewstatus: statusList ) {
-i++;
-
-%>
+<c:forEach items="${showstatus}" var="viewstatus">
 <tr>
-
-
-<td><%=i%></td>
-<td><%=viewstatus.getUserid()%></td>
-<td><%=viewstatus.getTimesheetid()%></td>
-<td><%=viewstatus.getStatus()%></td>
-<td><%=viewstatus.getApprovedby()%></td>
+<td>${viewstatus.getUserid()}</td>
+<td>${viewstatus.getTimesheetid()}</td>
+<td>${viewstatus.getStatus()}</td>
+<td>${viewstatus.getApprovedby()}</td>
 </tr>
-
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
-
+</div>
 </body>
 </html>

@@ -1,11 +1,7 @@
 
-<%@page import="com.timesheet.model.User"%>
-<%@page import="com.timesheet.daoimpl.UserDAOimpl"%>
-<%@page import="com.timesheet.model.Timesheet"%>
-<%@page import="com.timesheet.daoimpl.TimesheetDAOimpl"%>
-<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,6 +62,12 @@
        {
           background-color:rgb(107, 173, 235);
        }
+        .center
+     {
+      width: 90%;
+      padding:20px;
+      margin-left:50px;
+     }
 </style>
 </head>
 <body>
@@ -75,54 +77,32 @@
         <a href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a href="ShowUser"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
-<% 
-TimesheetDAOimpl timesheetdao=new TimesheetDAOimpl();
-UserDAOimpl userdao = new UserDAOimpl();
-User user=new User();
-String username=(String)session.getAttribute("username");
-int userid=userdao.findUserId(username);
-List<Timesheet> timesheetlist=new ArrayList<Timesheet>();
-timesheetlist=timesheetdao.showTimesheet(userid);
-%>
-<br><br>
+    <div class="center">
 <h2><b>Timesheet List</b></h2>
-	<h5>User name :<%=username%></h4>
+	<h5>User name :${sessionScope.username}</h5>
 <table class="table table-hover table-striped">
-	
 	<thead>
 	<tr>
-  		<th >S.no</th>
 		<th>User Id</th>
 		<th>Task Id</th>
 		<th>Spending Hrs</th>
 		<th>Timesheet Date</th>
 	</tr>
 	</thead>
-	<br><br>
 <tbody>
-<%
-int i = 0;
-for (Timesheet timesheet: timesheetlist) {
-i++;
-
-%>
+<c:forEach items="${showtimesheet}" var="timesheet">
 <tr>
-
-
-<td><%=i%></td>
-<td><%=timesheet.getUserid()%></td>
-<td><%=timesheet.getTaskid()%></td>
-<td><%=timesheet.getSpendtime()%></td>
-<td><%=timesheet.getTimesheetfordate()%></td>
+<td>${timesheet.getUserid()}</td>
+<td>${timesheet.getTaskid()}</td>
+<td>${timesheet.getSpendtime()}</td>
+<td>${timesheet.getTimesheetfordate()}</td>
 </tr>
-
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
+</div>
 </body>
 </html>

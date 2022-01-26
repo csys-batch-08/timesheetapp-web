@@ -61,6 +61,12 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }
+       .center
+     {
+      width: 90%;
+      padding:20px;
+      margin-left:50px;
+     }
          table{
           background-color:rgb(188, 210, 243);
       }
@@ -86,7 +92,11 @@
         <a href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
         <a href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
+        <c:if test="${sessionScope.adminuser!=null}">
+      <h4 class="signout">login as : &nbsp;${sessionScope.adminuser}</h4>
+       </c:if>
     </nav><br><br>
+    <div class="center">
 <h2><b> Timesheet Status</b></h2><br>
 <a href="TimesheetStatus"><button type="button" class="btn btn-primary btn-lg">Add Status</button></a><br><br>
 <table class="table table-hover table-striped">
@@ -119,6 +129,6 @@
 </tbody>
 </table>
 
-
+</div>
 </body>
 </html>

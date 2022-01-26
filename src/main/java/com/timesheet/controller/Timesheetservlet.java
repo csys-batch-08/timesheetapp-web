@@ -17,25 +17,13 @@ import com.timesheet.daoimpl.UserDAOimpl;
 import com.timesheet.model.Timesheet;
 
 @WebServlet("/timesheet")
-/**
- * Servlet implementation class Timesheet
- */
+
 public class Timesheetservlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		doGet(request, response);
 		TimesheetDAOimpl timesheetdao = new TimesheetDAOimpl();
 //		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		int id = Integer.parseInt(request.getParameter("userid"));
@@ -61,27 +49,20 @@ public class Timesheetservlet extends HttpServlet {
 				if (flag) {
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Timesheet Added Successfully');");
-					out.println("location='showtask.jsp';");
+					out.println("location='ShowTask';");
 					out.println("</script>");
-//			int taskid=taskdao.findtaskId(taskname);
-//			request.setAttribute("taskid", taskid);
-//			request.setAttribute("timesheet","Timesheet Added Successfully");
-//			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
-//			request.setAttribute("taskname",taskname);
 				} else {
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Timesheet Not Added');");
-					out.println("location='showtask.jsp';");
+					out.println("location='ShowTask';");
 					out.println("</script>");
-//			request.setAttribute("timesheet","Timesheet not Added");
-//			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
 				}
 				}
 				else
 				{
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Not updated');");
-				out.println("location='showtask.jsp';");
+				out.println("location='ShowTask';");
 				out.println("</script>");
 					
 				}
@@ -89,18 +70,15 @@ public class Timesheetservlet extends HttpServlet {
 			} else {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Timesheet already Exist');");
-				out.println("location='showtask.jsp';");
+				out.println("location='ShowTask';");
 				out.println("</script>");
-//			request.setAttribute("timesheet", "Timesheet already Exist");
-//			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
-//		 	System.out.println("not available");
 			}
 		}
 		else
 		{
 		out.println("<script type=\"text/javascript\">");
 		out.println("alert('Timesheet Hrs Not Available');");
-		out.println("location='showtask.jsp';");
+		out.println("location='ShowTask';");
 		out.println("</script>");
 			
 		}

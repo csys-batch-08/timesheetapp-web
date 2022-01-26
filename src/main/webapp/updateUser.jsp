@@ -90,22 +90,18 @@
         <a href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a href="ShowUser"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
     <br><br>
-<% String firstname=request.getParameter("firstname");
-   String username=request.getParameter("username");
-   String lastname=request.getParameter("lastname");
-%>
 <form action="updateuser" method="post">
 <fieldset>
 <label for="firstname">First Name</label><br>
-            <input type="text" id="First_Name" name="firstname" value="<%=firstname %>" pattern="[A-Za-z]{3,}" required autofocus><br><br>
+            <input type="text" id="First_Name" name="firstname" value="${firstname}" pattern="[A-Za-z]{3,}" required autofocus><br><br>
             <label for="lastname">Last Name</label><br>
-            <input type="text" id="Last_Name" name="lastname" value="<%=lastname %>" pattern="[A-Za-z]{3,}" required><br><br>
+            <input type="text" id="Last_Name" name="lastname" value="${lastname}" pattern="[A-Za-z]{3,}" required><br><br>
             <label for="username">User Name</label><br>
-            <input type="email" id="User_Name" name="username" value="<%=username %>" pattern="[a-z][a-z0-9_.]+@[a-z0-9.]+[.][a-z]+"  title="Sample xyz12@gmail.com" readonly required><br><br>
+            <input type="email" id="User_Name" name="username" value="${username}" pattern="[a-z][a-z0-9_.]+@[a-z0-9.]+[.][a-z]+"  title="Sample xyz12@gmail.com" readonly required><br><br>
             <label for="password">New Password</label><br>
             <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Sample Xyz12@" required><br><br>
             <label for="password">Confirm Password</label><br>

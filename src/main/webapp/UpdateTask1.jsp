@@ -114,8 +114,7 @@
     <div class="sidebar"> 
         <ul>
         <li><a href="addtaskmain.jsp">Add Task</a><br><br></li>
-        <li><a href="showalltask.jsp">View Task</a><br><br></li>
-        <li><a href="updatetask.jsp">Edit Task</a><br><br></li>
+        <li><a href="Showalltask">View & Edit Task</a><br><br></li>
         </ul>
     </div>
     <%!String taskName; %>

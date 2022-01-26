@@ -19,19 +19,9 @@ public class UpdateUser extends HttpServlet {
    
     public UpdateUser() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		doGet(request, response);
 		String firstname=request.getParameter("firstname");
 		String lastname=request.getParameter("lastname");
 		String username=request.getParameter("username");
@@ -44,19 +34,16 @@ public class UpdateUser extends HttpServlet {
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('User Details Updated Successfully');");
-			out.println("location='showuser.jsp';");
+			out.println("location='ShowUser';");
 			out.println("</script>");
-//			request.setAttribute("updateuser","User Details Updated Successfully");
 		}
 		else
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('User Details not Updated');");
-			out.println("location='showuser.jsp';");
+			out.println("location='ShowUser';");
 			out.println("</script>");
-//			request.setAttribute("updateuser","User Details not Updated ");
 		}
-//		request.getRequestDispatcher("showuser.jsp").forward(request, response);
 	}
 
 }

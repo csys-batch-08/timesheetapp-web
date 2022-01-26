@@ -79,6 +79,9 @@
         <a href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
         <a href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
+         <c:if test="${sessionScope.adminuser!=null}">
+      <h4 class="signout">login as : &nbsp;${sessionScope.adminuser}</h4>
+       </c:if>
     </nav>
     <div class="center">
     <h2><b>All Users List</b></h2>

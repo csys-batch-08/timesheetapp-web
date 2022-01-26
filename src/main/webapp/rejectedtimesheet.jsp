@@ -1,8 +1,7 @@
-<%@page import="com.timesheet.model.Rejecttimesheet"%>
-<%@page import="com.timesheet.daoimpl.RejecttimesheetDAOimpl"%>
-<%@page import="java.util.*"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,33 +62,32 @@
         body
        {
           background-color:rgb(107, 173, 235);
-       } 
+       }
+        .center
+     {
+      width: 90%;
+      padding:20px;
+      margin-left:50px;
+     } 
       
 </style>
 </head>
 <body>
 <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
-        
         <a href="index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
         <a href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a href="ShowUser"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
-    </nav><br><br>
-<% 
-RejecttimesheetDAOimpl rejecttimesheetdao=new RejecttimesheetDAOimpl();
-String username=(String)session.getAttribute("username");
-List<Rejecttimesheet> rejectlist=new ArrayList<Rejecttimesheet>();
-rejectlist=rejecttimesheetdao.showRejecttimesheet(username);
-%>
-
+    </nav>
+    <div class="center">
+    <h2><b>Rejected Timesheets</b></h2>
 <table class="table table-hover table-striped">
-	<h2><b>Rejected Timesheets</b></h2>
+	
 	<thead>
 	<tr>
-  		<th >S.no</th>
 		<th>Timesheet Id</th>
 		<th>Task Name</th>
 		<th>Timesheet Date</th>
@@ -102,32 +100,20 @@ rejectlist=rejecttimesheetdao.showRejecttimesheet(username);
 	</thead>
 	<br><br>
 <tbody>
-<%
-int i = 0;
-for (Rejecttimesheet reject: rejectlist) {
-i++;
-
-%>
+<c:forEach items="${rejectedtimesheet}" var="reject">
 <tr>
-
-
-<td><%=i%></td>
-<td><%=reject.getTimesheetid()%></td>
-<td><%=reject.getTask()%></td>
-<td><%=reject.getTimesheetdate()%></td>
-<td><%=reject.getSpendtimehrs()%></td>
-<td><%=reject.getComments()%></td>
-<td><%=reject.getApprovedby()%></td>
-<td><%=reject.getStatus()%></td>
+<td>${reject.getTimesheetid()}</td>
+<td>${reject.getTask()}</td>
+<td>${reject.getTimesheetdate()}</td>
+<td>${reject.getSpendtimehrs()}</td>
+<td>${reject.getComments()}</td>
+<td>${reject.getApprovedby()}</td>
+<td>${reject.getStatus()}</td>
 <td><a href="Updatetimesheet.jsp"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
-
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
-
-
+</div>
 </body>
 </html>

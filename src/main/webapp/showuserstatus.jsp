@@ -1,8 +1,7 @@
-<%@page import="com.timesheet.model.ViewTimesheets"%>
-<%@page import="java.util.*"%>
-<%@page import="com.timesheet.daoimpl.ViewTimesheetsDAOimpl"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +48,12 @@
            float : right;
            margin-right: 20px;
        }
+        .center
+     {
+      width: 90%;
+      padding:20px;
+      margin-left:50px;
+     }
        /* a:link {
         font-size: 20px;
         color: rgb(250, 252, 250);
@@ -82,51 +87,34 @@
 <body>
 <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
-        <a href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
-        <a href="timesheetstatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
-        <a href="addtask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
-        <a href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a href="showalluser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
-        <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
-    </nav><br><br>
-<% ViewTimesheetsDAOimpl viewtimesheetdao=new ViewTimesheetsDAOimpl();
-   List<ViewTimesheets> timesheetlist=new ArrayList<ViewTimesheets>();
-   String username=(String)session.getAttribute("username");
-   String startdate=(String)request.getParameter("startdate");
-   String enddate=(String)request.getParameter("enddate");
-   timesheetlist=viewtimesheetdao.showTimesheet(username,startdate,enddate);
-%>
+        <a class="a" href="index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a class="a" href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
+        <a class="a" href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
+        <a class="a" href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
+        <a class="a" href="ShowUser"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a class="a" href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
+    </nav>
+    <div class="center">
 <h2><b> Timesheet Status</b></h2><br>
+<h5>User name :${sessionScope.username}</h5><br>
 <table class="table table-hover table-striped">
-	
 	<thead>
 	<tr>
-  		<th >S.no</th>
   		<th>Timesheet Date</th>
 		<th>Spending Time Hrs</th>
 		<th>Status</th>
 	</tr>
 	</thead>
 <tbody>
-<%
-int i = 0;
-for (ViewTimesheets viewtimesheet: timesheetlist ) {
-i++;
-
-%>
+<c:forEach items="${showuserstatus}" var="viewtimesheet">
 <tr>
-
-
-<td><%=i%></td>
-<td> <%=viewtimesheet.getTimesheetdate()%></td>
-<td> <%=viewtimesheet.getSpendtimehrs()%></td>
-<td> <%=viewtimesheet.getStatus()%></td>
+<td>${viewtimesheet.getTimesheetdate()}</td>
+<td>${viewtimesheet.getSpendtimehrs()}</td>
+<td>${viewtimesheet.getStatus()}</td>
 </tr>
-
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
+</div>
 </body>
 </html>

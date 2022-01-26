@@ -1,8 +1,7 @@
-<%@page import="com.timesheet.model.User"%>
-<%@page import="java.util.*"%>
-<%@page import="com.timesheet.daoimpl.UserDAOimpl"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +62,24 @@
        {
           background-color:rgb(107, 173, 235);
        }
+       h3 {
+         background:lightslategray;
+         color: rgb(248, 245, 245);
+         padding: 5px 15px;
+         }
+         fieldset
+          {
+              position:absolute;
+              border-radius: 5px;
+              top: 180px;
+              left: 450px;
+              background:rgb(188, 210, 243);
+              padding: 30px 80px;
+          }
+          .table
+          {
+          margin-left:20px;
+          }
 </style>
 </head>
 <body>
@@ -73,53 +90,35 @@
         <a href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a href="ShowUser"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
-    <br><br>
-<% UserDAOimpl userdao = new UserDAOimpl();
-   List<User> userList = new ArrayList<User>();
-   User user=new User();
-   String username=(String)session.getAttribute("username");
-   userList = userdao.showuser(username);
-%>
-
-
-<table class="table table-hover table-striped">
-	<h2><b>User Profile</b></h2>
-	<thead>
-	<tr>
-  		<th >S.no</th>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>User Name</th>
-		<th>Password</th>
-		<th>Edit</th>
-	</tr>
-	</thead>
-	<br><br>
+ <fieldset>
+<h3 align="center">User Profile</h3>
+<c:forEach items="${showuser}" var="viewUser">
+<table class="table table-borderless">
 <tbody>
-<%
-int i = 0;
-for (User viewUser: userList ) {
-i++;
 
-%>
 <tr>
-
-
-<td><%=i%></td>
-<td><%=viewUser.getFirstname()%></td>
-<td><%=viewUser.getLastname()%></td>
-<td> <%=viewUser.getUsername()%></td>
-<td><%=viewUser.getPassword()%></td>
-<td><a href="updateUser.jsp?firstname=<%=viewUser.getFirstname()%>&lastname=<%=viewUser.getLastname()%>&username=<%=viewUser.getUsername()%>"><button  type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
+<td><b>First Name</b> </td>
+<td>${viewUser.getFirstname()}</td>
 </tr>
-
-<%
-}
-%>
+<tr>
+<td><b>Last Name</b> </td>
+<td>${viewUser.getLastname()}</td>
+</tr>
+<tr>
+<td><b>User Name</b> </td>
+<td>${viewUser.getUsername()}</td>
+</tr>
+<tr>
+<td><b>Password</b> </td>
+<td>${viewUser.getPassword()}</td>
+</tr>
 </tbody>
 </table>
+<p align="center"><a href="updateUser.jsp?firstname=${viewUser.getFirstname()}&lastname=${viewUser.getLastname()}&username=${viewUser.getUsername()}"><button  type="button" class="btn btn-primary btn-lg">Edit</button></a></p>
+</c:forEach>
+</fieldset>
 </body>
 </html>
