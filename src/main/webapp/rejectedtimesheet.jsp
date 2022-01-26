@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,17 +99,17 @@
 		<th>Update Timesheet</th>
 	</tr>
 	</thead>
-	<br><br>
 <tbody>
 <c:forEach items="${rejectedtimesheet}" var="reject">
 <tr>
-<td>${reject.getTimesheetid()}</td>
-<td>${reject.getTask()}</td>
-<td>${reject.getTimesheetdate()}</td>
-<td>${reject.getSpendtimehrs()}</td>
-<td>${reject.getComments()}</td>
-<td>${reject.getApprovedby()}</td>
-<td>${reject.getStatus()}</td>
+<td>${reject.timesheetid}</td>
+<td>${reject.task}</td>
+<td><fmt:parseDate value="${reject.timesheetdate}" pattern="yyyy-MM-dd" var="timesheetDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${timesheetDate}"/></td>
+<td>${reject.spendtimehrs}</td>
+<td>${reject.comments}</td>
+<td>${reject.approvedby}</td>
+<td>${reject.status}</td>
 <td><a href="Updatetimesheet.jsp"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 </c:forEach>

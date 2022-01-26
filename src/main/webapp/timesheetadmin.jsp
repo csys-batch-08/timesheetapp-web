@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,15 +122,17 @@
 	</tr>
 	</thead>
 <tbody>
+
  <c:forEach items="${viewTimesheet}" var="viewtimesheets">
 <tr>
-<td>${viewtimesheets.getUsername()}</td>
-<td>${viewtimesheets.getComments()}</td>
-<td>${viewtimesheets.getSpendtimehrs()}</td>
-<td>${viewtimesheets.getTimesheetid()}</td>
-<td>${viewtimesheets.getTimesheetdate()}</td>
-<td>${viewtimesheets.getTaskid()}</td>
-<td>${viewtimesheets.getStatus()}</td>
+<td>${viewtimesheets.username}</td>
+<td>${viewtimesheets.comments}</td>
+<td>${viewtimesheets.spendtimehrs}</td>
+<td>${viewtimesheets.timesheetid}</td>
+<td><fmt:parseDate value="${viewtimesheets.timesheetdate}" pattern="yyyy-MM-dd" var="timesheetDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${timesheetDate}"/></td>
+<td>${viewtimesheets.taskid}</td>
+<td>${viewtimesheets.status}</td>
 </tr>
 </c:forEach>
 </tbody>

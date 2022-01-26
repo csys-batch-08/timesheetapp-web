@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,13 +138,15 @@
 <tbody>
 <c:forEach items="${showtask}" var="showtask">
 <tr>
-<td>${showtask.getTask()}</td>
-<td>${showtask.getTaskpriority()}</td>
-<td>${showtask.getDateassigned()}</td>
-<td>${showtask.getEnddate()}</td>
-<td>${showtask.getAssignedto()}</td>
-<td>${showtask.getTotalhrs()}</td>
-<td><a href="timesheetmain.jsp?taskName=${showtask.getTask()}&taskDate=${showtask.getDateassigned()}"><button type="button" class="btn btn-primary btn-sm">ADD</button></a></td>
+<td>${showtask.task}</td>
+<td>${showtask.taskpriority}</td>
+<td><fmt:parseDate value="${showtask.dateassigned}" pattern="yyyy-MM-dd" var="assignDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${assignDate}"/></td>
+<td><fmt:parseDate value="${showtask.enddate}" pattern="yyyy-MM-dd" var="endDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${endDate}"/></td>
+<td>${showtask.assignedto}</td>
+<td>${showtask.totalhrs}</td>
+<td><a href="timesheetmain.jsp?taskName=${showtask.task}&taskDate=${showtask.dateassigned}"><button type="button" class="btn btn-primary btn-sm">ADD</button></a></td>
 </tr>
 </c:forEach>
 </tbody>

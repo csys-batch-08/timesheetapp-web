@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,13 +113,15 @@
 <tbody>
 <c:forEach items="${showalltask}" var="viewtask">
 <tr>
-<td>${viewtask.getTask()}</td>
-<td>${viewtask.getTaskpriority()}</td>
-<td>${viewtask.getDateassigned()}</td>
-<td>${viewtask.getEnddate()}</td>
-<td>${viewtask.getAssignedto()}</td>
-<td>${viewtask.getTotalhrs()}</td>
-<td><a href="updatetask.jsp?taskname=${viewtask.getTask()}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
+<td>${viewtask.task}</td>
+<td>${viewtask.taskpriority}</td>
+<td><fmt:parseDate value="${viewtask.dateassigned}" pattern="yyyy-MM-dd" var="assignDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${assignDate}"/></td>
+<td><fmt:parseDate value="${viewtask.enddate}" pattern="yyyy-MM-dd" var="endDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${endDate}"/></td>
+<td>${viewtask.assignedto}</td>
+<td>${viewtask.totalhrs}</td>
+<td><a href="updatetask.jsp?taskname=${viewtask.task}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 </c:forEach>
 </tbody>

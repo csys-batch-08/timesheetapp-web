@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,14 +117,16 @@
 <tbody>
  <c:forEach items="${showalltimesheet}" var="viewtimesheet">
 <tr>
-<td>${viewtimesheet.getUsername()}</td>
-<td>${viewtimesheet.getComments()}</td>
-<td>${viewtimesheet.getSpendtimehrs()}</td>
-<td>${viewtimesheet.getTimesheetid()}</td>
-<td>${viewtimesheet.getTimesheetdate()}</td>
-<td>${viewtimesheet.getTaskid()}</td>
-<td>${viewtimesheet.getStatus()}</td>
-<td><a href="updatestatus.jsp?timesheetid=${viewtimesheet.getTimesheetid()}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
+
+<td>${viewtimesheet.username}</td>
+<td>${viewtimesheet.comments}</td>
+<td>${viewtimesheet.spendtimehrs}</td>
+<td>${viewtimesheet.timesheetid}</td>
+<td><fmt:parseDate value="${viewtimesheet.timesheetdate}" pattern="yyyy-MM-dd" var="timesheetDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${timesheetDate}"/></td>
+<td>${viewtimesheet.taskid}</td>
+<td>${viewtimesheet.status}</td>
+<td><a href="updatestatus.jsp?timesheetid=${viewtimesheet.timesheetid}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 </c:forEach>
 </tbody>

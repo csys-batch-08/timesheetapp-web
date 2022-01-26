@@ -108,10 +108,10 @@
 <tbody>
 <c:forEach items="${showstatus}" var="viewstatus">
 <tr>
-<td>${viewstatus.getUserid()}</td>
-<td>${viewstatus.getTimesheetid()}</td>
-<td>${viewstatus.getStatus()}</td>
-<td>${viewstatus.getApprovedby()}</td>
+<td>${viewstatus.userid}</td>
+<td>${viewstatus.timesheetid}</td>
+<td>${viewstatus.status}</td>
+<td>${viewstatus.approvedby}</td>
 </tr>
 </c:forEach>
 </tbody>

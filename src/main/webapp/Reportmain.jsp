@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,32 +95,34 @@
 <tbody>
 <c:forEach items="${report}" var="view">
 <tr>
-<td><b>Timesheet Date</b> </td><td>${view.getTimesheetdate()}</td>
+<td><b>Timesheet Date</b> </td><td><fmt:parseDate value="${view.timesheetdate}" pattern="yyyy-MM-dd" var="timesheetDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${timesheetDate}"/></td>
 </tr> 
 <tr>
-<td><b>Timesheet Id</b> </td><td>${view.getTimesheetid()}</td>
+<td><b>Timesheet Id</b> </td><td>${view.timesheetid}</td>
 </tr>
 <tr>
-<td><b>User Name</b> </td><td>${view.getUsername()}</td>
+<td><b>User Name</b> </td><td>${view.username}</td>
 </tr>
 <tr>
-<td><b>User Role </b></td><td>${view.getRole()}</td>
+<td><b>User Role </b></td><td>${view.role}</td>
 </tr>
 <tr>
 <td><b>Task Name</b> </td><td>
-${view.getTask()}</td>
+${view.task}</td>
 </tr>
 <tr>
-<td><b>Spending Hrs</b> </td><td>${view.getSpendhrs()}</td>
+<td><b>Spending Hrs</b> </td><td>${view.spendhrs}</td>
 </tr>
 <tr>
-<td><b>Timesheet Status</b> </td><td>${view.getStatus()}</td>
+<td><b>Timesheet Status</b> </td><td>${view.status}</td>
 </tr>
 <tr>
-<td><b>Approved By</b> </td><td>${view.getApprovedby()}</td>
+<td><b>Approved By</b> </td><td>${view.approvedby}</td>
 </tr>
 <tr>
-<td><b>Approved On</b> </td><td>${view.getApprovedon()}</td>
+<td><b>Approved On</b> </td><td><fmt:parseDate value="${view.approvedon}" pattern="yyyy-MM-dd" var="approveDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${approveDate}"/></td>
 </tr>
 </c:forEach>
 </tbody>

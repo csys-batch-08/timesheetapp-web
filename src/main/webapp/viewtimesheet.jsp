@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,10 +96,11 @@
 <tbody>
 <c:forEach items="${showtimesheet}" var="timesheet">
 <tr>
-<td>${timesheet.getUserid()}</td>
-<td>${timesheet.getTaskid()}</td>
-<td>${timesheet.getSpendtime()}</td>
-<td>${timesheet.getTimesheetfordate()}</td>
+<td>${timesheet.userid}</td>
+<td>${timesheet.taskid}</td>
+<td>${timesheet.spendtime}</td>
+<td><fmt:parseDate value="${timesheet.timesheetfordate}" pattern="yyyy-MM-dd" var="timesheetDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${timesheetDate}"/></td>
 </tr>
 </c:forEach>
 </tbody>
