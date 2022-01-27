@@ -174,6 +174,35 @@ public class TimesheetDAOimpl implements TimesheetDAO
 //		}
 //	    return flag;
 //		}
+	public List<Timesheet> searchTimesheet(LocalDate timesheetdate,int userid)
+	{
+		List<Timesheet> timesheets=new ArrayList<Timesheet>();
+		String selectquery="select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where timesheet_for_date=? and user_id=?";
+		Connectionutil conutil=new Connectionutil();
+		Connection con=conutil.getDbConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try
+		{
+			pstmt=con.prepareStatement(selectquery);
+			pstmt.setDate(1,java.sql.Date.valueOf(timesheetdate));
+			pstmt.setInt(2, userid);
+			rs=pstmt.executeQuery();
+		while(rs.next())
+		{
+			Timesheet timesheet=new Timesheet(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getDate(5).toLocalDate());
+			timesheets.add(timesheet);
+		}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			System.out.println("somthing went wrong");
+		}
+		
+		return timesheets;
+	}
+	
 	public  int findTimesheetId(LocalDate timesheetfordate,int userid)
 	{
 		String findUser="select timesheet_id from timesheets where to_char(timesheet_for_date,'yyyy-MM-dd')='"+timesheetfordate+"' and user_id='"+userid+"'";
@@ -192,6 +221,26 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			e.printStackTrace();
 		}
 		return timesheetId;
+		
+	}
+	public String getDate()
+	{
+		String query="select to_char(sysdate,'yyyy-MM-dd') from dual";
+		 Connection con=Connectionutil.getDbConnection();
+		 String date=null;
+		 try {
+			 Statement st=con.createStatement();
+			 ResultSet rs=st.executeQuery(query);
+			 if(rs.next())
+				   {
+					 date=rs.getString(1);  
+				   }
+		 }
+		 catch(SQLException e)
+		 {
+			e.printStackTrace(); 
+		 }
+		return date;
 		
 	}
 	}

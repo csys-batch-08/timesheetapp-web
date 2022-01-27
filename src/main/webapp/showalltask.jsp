@@ -116,12 +116,12 @@
 <td>${viewtask.task}</td>
 <td>${viewtask.taskpriority}</td>
 <td><fmt:parseDate value="${viewtask.dateassigned}" pattern="yyyy-MM-dd" var="assignDate" type="date"/>
-<fmt:formatDate pattern="dd-MM-yyyy" value="${assignDate}"/></td>
+  <fmt:formatDate pattern="dd-MM-yyyy" value="${assignDate}"/></td>
 <td><fmt:parseDate value="${viewtask.enddate}" pattern="yyyy-MM-dd" var="endDate" type="date"/>
 <fmt:formatDate pattern="dd-MM-yyyy" value="${endDate}"/></td>
 <td>${viewtask.assignedto}</td>
 <td>${viewtask.totalhrs}</td>
-<td><a href="updatetask.jsp?taskname=${viewtask.task}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
+<td><a href="GetTask?taskname=${viewtask.task}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 </c:forEach>
 </tbody>

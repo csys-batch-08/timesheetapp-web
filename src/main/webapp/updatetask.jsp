@@ -120,12 +120,11 @@
         </ul>
     </div>
     <div class="box">
-    <%String taskname=(request.getParameter("taskname")); %>
        <form method="post" action="UpdateTask1.jsp"> 
        <table>
        <tr>  
        <th><label for="taskname">Task Name</label></th>
-       <td><input type="text" name="taskname" value="<%=taskname%>" required></td>
+       <td><input type="text" name="taskname" value="${taskname}" required></td>
        <td><input type="submit"value="Search"></td>
     </tr>
     </table>

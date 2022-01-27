@@ -104,7 +104,7 @@
 <td>${viewUser.lastname}</td>
 <td>${viewUser.username}</td>
 <td>${viewUser.role}</td>
-<td><a href="updateUserAdmin.jsp?username=${viewUser.username}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
+<td><a href="AdminUserUpdate?username=${viewUser.username}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 </c:forEach>
 </tbody>

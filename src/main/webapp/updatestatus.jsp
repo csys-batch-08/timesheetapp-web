@@ -120,12 +120,11 @@
     </div>
     
      <div class="box">
-     <%int timesheetid=Integer.parseInt(request.getParameter("timesheetid")); %>
         <form method="post" action="updatestatus1jsp.jsp">
             <table>
             <tr>
        <th><label for="timesheetid">Timesheet Id</label></th>
-       <td><input type="number" name="timesheetid" value="<%=timesheetid%>" required></td>
+       <td><input type="number" name="timesheetid" value="${timesheetid}" required></td>
        <td><input type="submit"value="Search"></td>
     </tr>
     </table>

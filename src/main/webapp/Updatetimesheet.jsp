@@ -119,7 +119,7 @@
         </ul>
     </div>
      <div class="box">
-        <form method="post" action="updatetimesheet1.jsp">
+        <form method="post" action="SearchTimesheet">
             <table>
             <tr>
        <th><label for="timesheetdate">Enter Timesheet Date</label></th>

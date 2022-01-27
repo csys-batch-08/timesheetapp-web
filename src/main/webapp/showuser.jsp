@@ -117,7 +117,7 @@
 </tr>
 </tbody>
 </table>
-<p align="center"><a href="updateUser.jsp?firstname=${viewUser.getFirstname()}&lastname=${viewUser.getLastname()}&username=${viewUser.getUsername()}"><button  type="button" class="btn btn-primary btn-lg">Edit</button></a></p>
+<p align="center"><a href="UpdateUserProfile?firstname=${viewUser.getFirstname()}&lastname=${viewUser.getLastname()}&username=${viewUser.getUsername()}"><button  type="button" class="btn btn-primary btn-lg">Edit</button></a></p>
 </c:forEach>
 </fieldset>
 </body>

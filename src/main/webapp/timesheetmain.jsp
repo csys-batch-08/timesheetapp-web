@@ -1,12 +1,4 @@
 
-<%@page import="java.sql.*"%>
-<%@page import="com.timesheet.util.Connectionutil"%>
-<%@page import="java.time.LocalDate"%>
-<%@page import="com.timesheet.model.Task"%>
-<%@page import="java.util.*"%>
-<%@page import="com.timesheet.daoimpl.TaskDAOimpl"%>
-<%@page import="com.timesheet.model.User"%>
-<%@page import="com.timesheet.daoimpl.UserDAOimpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -113,25 +105,6 @@
     </style>
 </head>
 <body>
-   <% UserDAOimpl userdao = new UserDAOimpl();
-   User user=new User();
-   String username=(String)session.getAttribute("username");
-   int uid=userdao.findUserId(username);
-  // TaskDAOimpl taskdao=new TaskDAOimpl();
-   //List<Task> taskList = new ArrayList<Task>();
-   //taskList = taskdao.showTask(username);
-   String query="select to_char(sysdate,'yyyy-MM-dd') from dual";
-   Connection con=Connectionutil.getDbConnection();
-   Statement st=con.createStatement();
-   ResultSet rs=st.executeQuery(query);
-   String Date=null;
-   if(rs.next())
-   {
-	 Date=rs.getString(1);  
-   }
-   String name=(String)request.getParameter("taskName");
-   String date=(String)request.getParameter("taskDate");
-%>
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         
@@ -158,15 +131,15 @@
             <table>
             <tr>
        <th><label for="timesheetdate">Enter Timesheet Date</label></th>
-       <td><input type="date" min="<%=date%>" max="<%=Date%>" name="timesheetdate" required></td>
+       <td><input type="date" min="${taskdate}" max="${sysdate}" name="timesheetdate" required></td>
     </tr>
     <tr>
        <th> <label for="taskname">Enter Task Name</label></th>
-        <td><input type="text" name="taskname" value="<%=name%>" readonly required></td>
+        <td><input type="text" name="taskname" value="${taskname}" readonly required></td>
     </tr>
      <tr>
        <th> <label for="spendinghrs">User Id</label></th>
-        <td><input type="number" name="userid" value="<%=uid %>"readonly></td>
+        <td><input type="number" name="userid" value="${userid}"readonly></td>
     </tr>
      <tr>
        <th> <label for="spendinghrs">Enter Spending Hrs</label></th>

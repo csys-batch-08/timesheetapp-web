@@ -111,11 +111,10 @@
         </ul>
     </div>
     <div class="box">
-<% String username=(String)request.getParameter("username");%>
 <form action="updateuseradmin" method="post">
 <table cellspacing="15px">
 <tr><th><label for="username">User Name</label></th>
-<td><input type="text" name="username" value="<%=username%>" required readonly></td></tr>
+<td><input type="text" name="username" value="${username}" required readonly></td></tr>
 <tr><th><label for="role">Role</label></th>
 <td><select  name="role" required>
        <option>TEAM MEMBER</option>

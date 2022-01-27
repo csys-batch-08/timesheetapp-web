@@ -146,7 +146,7 @@
 <fmt:formatDate pattern="dd-MM-yyyy" value="${endDate}"/></td>
 <td>${showtask.assignedto}</td>
 <td>${showtask.totalhrs}</td>
-<td><a href="timesheetmain.jsp?taskName=${showtask.task}&taskDate=${showtask.dateassigned}"><button type="button" class="btn btn-primary btn-sm">ADD</button></a></td>
+<td><a href="TimesheetMain?taskName=${showtask.task}&taskDate=${showtask.dateassigned}"><button type="button" class="btn btn-primary btn-sm">ADD</button></a></td>
 </tr>
 </c:forEach>
 </tbody>

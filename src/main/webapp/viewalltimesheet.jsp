@@ -126,12 +126,11 @@
 <fmt:formatDate pattern="dd-MM-yyyy" value="${timesheetDate}"/></td>
 <td>${viewtimesheet.taskid}</td>
 <td>${viewtimesheet.status}</td>
-<td><a href="updatestatus.jsp?timesheetid=${viewtimesheet.timesheetid}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
+<td><a href="GetTimesheetid?timesheetid=${viewtimesheet.timesheetid}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 </c:forEach>
 </tbody>
 </table>
-
 </div>
 </body>
 </html>

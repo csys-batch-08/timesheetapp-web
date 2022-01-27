@@ -1,10 +1,7 @@
-<%@page import="com.timesheet.daoimpl.UserDAOimpl"%>
-<%@page import="java.sql.*"%>
-<%@page import="com.timesheet.util.Connectionutil"%>
-<%@page import="java.time.format.DateTimeFormatter"%>
-<%@page import="java.time.LocalDate"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,38 +118,29 @@
         <li><a href="ViewTimesheet">View Timesheet</a><br><br></li>
         </ul>
     </div>
-     <%DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		String timedate=request.getParameter("timesheetdate");
-		LocalDate timesheetdate=LocalDate.parse(timedate);
-		String username=(String)session.getAttribute("username");
-		UserDAOimpl userdao=new UserDAOimpl();
-		int uid=userdao.findUserId(username);
-		String query="select timesheet_for_date,user_id,spend_time_hrs,comments,task_id from timesheets where to_char(timesheet_for_date,'yyyy-MM-dd')='"+timesheetdate+"' and user_id='"+uid+"'";
-		Connectionutil conutil=new Connectionutil();
-		Connection con=conutil.getDbConnection();
-		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery(query);
-		if(rs.next()){
-			session.setAttribute("taskId", rs.getInt(5));
-		%>
     <div class="box">
-    <form action="updateTime" method="POST">
+    <form action="updateTime" method="post">
+    <c:forEach items="${showtimesheet}" var="showtimesheet">
     <table>
     <tr>
        <th><label for="timesheetdate">Enter Timesheet Date</label></th>
-       <td><input type="date" min="" max="" name="timesheetdate" value="<%=rs.getDate(1).toLocalDate()%>" readonly required></td>
+       <td><input type="date" min="" max="" name="timesheetdate" value="${showtimesheet.timesheetfordate}" readonly required></td>
     </tr>
     <tr>
        <th> <label for="spendinghrs">User Id</label></th>
-        <td><input type="number" name="userid" value="<%=rs.getInt(2)%>"readonly></td>
+        <td><input type="number" name="userid" value="${showtimesheet.userid}"readonly></td>
+    </tr>
+    <tr>
+       <th> <label for="spendinghrs">Task Id</label></th>
+        <td><input type="number" name="taskid" value="${showtimesheet.taskid}"readonly></td>
     </tr>
      <tr>
        <th> <label for="spendinghrs">Enter Spending Hrs</label></th>
-        <td><input type="number" pattern="[1-9]{1+}" maxlength="2" name="spendinghrs" value="<%=rs.getInt(3)%>" required></td>
+        <td><input type="number" pattern="[1-9]{1+}" maxlength="2" name="spendinghrs" value="${showtimesheet.spendtime}" required></td>
     </tr>
     <tr>
        <th><label for="comments">Enter Comments</label></th>
-       <td><input type="text" name="comments" value="<%=rs.getString(4)%>" required></td>
+       <td><input type="text" name="comments" value="${showtimesheet.comments}" required></td>
     </tr>
     <tr>
        <th><label for="status" >Status</label></th>
@@ -160,7 +148,7 @@
     </tr>
     </table><br><br>
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
-   <%} %>
+   </c:forEach>
 
     </form>  
     </div>
