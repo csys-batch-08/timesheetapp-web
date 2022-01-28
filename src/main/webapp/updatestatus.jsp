@@ -120,7 +120,7 @@
     </div>
     
      <div class="box">
-        <form method="post" action="updatestatus1jsp.jsp">
+        <form method="post" action="SearchStatus">
             <table>
             <tr>
        <th><label for="timesheetid">Timesheet Id</label></th>

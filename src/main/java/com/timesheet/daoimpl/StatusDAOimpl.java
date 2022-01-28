@@ -65,8 +65,8 @@ public class StatusDAOimpl implements StatusDAO
     }
 	 public List<Status> showStatus(int timesheetid)
 	 {
-		List<Status> statuslist =new ArrayList<Status>();
-		String selectquery="select user_id,timesheet_id,status,approved_by from status where timesheet_id='"+timesheetid+"'";
+		List<Status> statuslist =new ArrayList<>();
+		String selectquery="select user_id,timesheet_id,status,approved_by from status where timesheet_id=?";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -74,6 +74,7 @@ public class StatusDAOimpl implements StatusDAO
 		try
 		{
 			pstmt=con.prepareStatement(selectquery);	
+			pstmt.setInt(1,timesheetid);
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
@@ -84,7 +85,6 @@ public class StatusDAOimpl implements StatusDAO
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("somthing went wrong");
 		}
 		return statuslist; 
 	 }
@@ -98,7 +98,7 @@ public class StatusDAOimpl implements StatusDAO
 		ResultSet rs=null;
 		try
 		{
-			pstmt=con.prepareStatement(selectquery);	
+			pstmt=con.prepareStatement(selectquery);
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{

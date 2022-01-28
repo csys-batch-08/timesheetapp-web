@@ -12,6 +12,10 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/Logout")
 
 public class Logout extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+
+	@Override
 	public void service(HttpServletRequest request,HttpServletResponse response)
 	{
 		HttpSession session=request.getSession();

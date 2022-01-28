@@ -1,7 +1,7 @@
-<%@page import="java.sql.*"%>
-<%@page import="com.timesheet.util.Connectionutil"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,24 +121,17 @@
         <li><a href="timesheetadmin.jsp">Add Timesheet status</a><br><br></li>
         </ul>
     </div>
-    <%! int timesheetid; %>
-    <%timesheetid=Integer.parseInt(request.getParameter("timesheetid")); 
-    String query="select timesheet_id,user_id,approved_by from status where timesheet_id='"+timesheetid+"'";
-    Connectionutil conutil=new Connectionutil();
-    Connection con=conutil.getDbConnection();
-    Statement stmt=con.createStatement();
-    ResultSet rs=stmt.executeQuery(query);
-    if(rs.next()){%>
      <div class="box">
         <form method="post" action="updateStatus">
             <table>
+            <c:forEach items="${viewstatus}" var="viewStatus">
             <tr>
        <th><label for="timesheetid">Enter Timesheet Id</label></th>
-       <td><input type="number" name="timesheetid" value="<%=rs.getInt(1)%>" readonly required></td>
+       <td><input type="number" name="timesheetid" value="${viewStatus.timesheetid}" readonly required></td>
     </tr>
     <tr>
        <th><label for="userid">User Id</label></th>
-       <td><input type="number" name="userid" value="<%=rs.getInt(2)%>" readonly required></td>
+       <td><input type="number" name="userid" value="${viewStatus.userid}" readonly required></td>
     </tr>
     <tr>
        <th><label for="status">Enter Status</label></th>
@@ -150,14 +143,14 @@
     </tr>
     <tr>
        <th><label for="approvedby">Approvedb By</label></th>
-       <td><input type="text" name="approvedby" value="<%=rs.getString(3)%>" readonly required></td>
+       <td><input type="text" name="approvedby" value="${viewStatus.approvedby}" readonly required></td>
     </tr>
-    
+     </c:forEach>
     </table><br><br>
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
    <input type="submit"value="Submit">
    
-        <%} %>
+    
         
     </form>
      </div>
