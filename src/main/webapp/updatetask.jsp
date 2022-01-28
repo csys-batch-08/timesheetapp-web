@@ -120,7 +120,7 @@
         </ul>
     </div>
     <div class="box">
-       <form method="post" action="UpdateTask1.jsp"> 
+       <form method="post" action="SearchTask"> 
        <table>
        <tr>  
        <th><label for="taskname">Task Name</label></th>

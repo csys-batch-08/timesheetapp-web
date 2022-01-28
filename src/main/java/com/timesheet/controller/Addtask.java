@@ -3,9 +3,7 @@ package com.timesheet.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,11 +17,8 @@ import com.timesheet.model.Task;
 
 public class Addtask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
     public Addtask() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	

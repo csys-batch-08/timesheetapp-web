@@ -14,26 +14,49 @@ public class RejecttimesheetDAOimpl implements RejecttimesheetDAO
 {
 	public List<Rejecttimesheet> showRejecttimesheet(String username)
 	 {
-		List<Rejecttimesheet> statuslist =new ArrayList<Rejecttimesheet>();
+		List<Rejecttimesheet> statuslist =new ArrayList<>();
 		String selectquery="select td.task_name,s.timesheet_id,ts.timesheet_for_date,ts.spend_time_hrs,ts.comments,s.status,s.approved_by from (status s inner join timesheets ts on s.timesheet_id=ts.timesheet_id inner join task_details td on td.task_id=ts.task_id) where status='Rejected' and td.assigned_to='"+username+"'";
-		Connectionutil conutil=new Connectionutil();
-		Connection con=conutil.getDbConnection();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+		Connection con=null;
+		PreparedStatement preparestatement=null;
+		ResultSet resultset=null;
 		try
 		{
-			pstmt=con.prepareStatement(selectquery);	
-			rs=pstmt.executeQuery();
-		while(rs.next())
+			con=Connectionutil.getDbConnection();
+			preparestatement=con.prepareStatement(selectquery);	
+			resultset=preparestatement.executeQuery();
+		while(resultset.next())
 		{
-			Rejecttimesheet rejectTimesheet=new Rejecttimesheet(rs.getString(1),rs.getInt(2),rs.getDate(3),rs.getInt(4),rs.getString(5),rs.getString(7),rs.getString(6));
+			Rejecttimesheet rejectTimesheet=new Rejecttimesheet(resultset.getString(1),resultset.getInt(2),resultset.getDate(3),resultset.getInt(4),resultset.getString(5),resultset.getString(7),resultset.getString(6));
 			statuslist.add(rejectTimesheet);
 		}
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("somthing went wrong");
+		}
+		finally
+		{
+			if (resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (preparestatement != null) {
+				try {
+					preparestatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return statuslist; 
 	 }

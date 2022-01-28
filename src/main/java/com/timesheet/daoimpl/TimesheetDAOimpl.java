@@ -19,8 +19,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 	{
 		boolean flag=false;
 		String insertquery="insert into timesheets(user_id,task_id,spend_time_hrs,comments,timesheet_for_date)values(?,?,?,?,?)";
-		Connectionutil conutil=new Connectionutil();
-		Connection con=conutil.getDbConnection();
+		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
 		try
 		{
@@ -35,13 +34,10 @@ public class TimesheetDAOimpl implements TimesheetDAO
 				flag=true;
 			}
 			
-//			System.out.println("Timesheet Entered successfully");
-			
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("somthing went wrong");
 		}
 		return flag;
 	}
@@ -60,18 +56,14 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			pstmt.setInt(2, timesheet.getSpendtime());
 			pstmt.setString(3,timesheet.getComments());
 			pstmt.setDate(4,java.sql.Date.valueOf(timesheet.getTimesheetfordate()));
-//			System.out.println("dao"+java.sql.Date.valueOf(timesheet.getTimesheetfordate()));
 			if(pstmt.executeUpdate()>0)
 			{
 				flag=true;
 			}
-//			int i=pstmt.executeUpdate();
-//			System.out.println(i+" Timesheet updated");
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("something went wrong");
 		}
 		return flag;
 	}
@@ -88,7 +80,6 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			if(rs.next())
 			{
 				Timesheet timesheet=new Timesheet(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getDate(5).toLocalDate());
-//				System.out.println(timesheet);
 			}
 			else
 			{
@@ -105,8 +96,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 	{
 		List<Timesheet> timesheetlist=new ArrayList<Timesheet>();
 		String selectquery="select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where user_id='"+userid+"'";
-		Connectionutil conutil=new Connectionutil();
-		Connection con=conutil.getDbConnection();
+		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try
@@ -122,7 +112,6 @@ public class TimesheetDAOimpl implements TimesheetDAO
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("somthing went wrong");
 		}
 		
 		return timesheetlist;
@@ -140,7 +129,6 @@ public class TimesheetDAOimpl implements TimesheetDAO
 		if(rs.next())
 		{
 			result= rs.getInt(1);
-//			System.out.println("spendinghour "+result);
 		}
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -178,8 +166,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 	{
 		List<Timesheet> timesheets=new ArrayList<Timesheet>();
 		String selectquery="select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where timesheet_for_date=? and user_id=?";
-		Connectionutil conutil=new Connectionutil();
-		Connection con=conutil.getDbConnection();
+		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try
@@ -197,7 +184,6 @@ public class TimesheetDAOimpl implements TimesheetDAO
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("somthing went wrong");
 		}
 		
 		return timesheets;

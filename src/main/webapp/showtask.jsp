@@ -122,8 +122,9 @@
         </ul>
     </div>
     <div class="box">
+    <h2><b> Tasks List</b></h2>
 <table class="table table-hover table-striped">
-	<h2><b> Tasks List</b></h2>
+	
 	<thead>
 	<tr>
 		<th>Task Name</th>

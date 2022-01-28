@@ -9,6 +9,7 @@ public interface TaskDAO {
 	public boolean updateTask(Task task);
 	public List<Task> showallTask();
 	public List<Task> showTask(String username);
+	public List<Task> searchTask(String taskname);
 	public  int findtaskId(String task);
 	public boolean validateTask(String taskname,String username);
 	public int getTotalhrs(int userid,String taskname);

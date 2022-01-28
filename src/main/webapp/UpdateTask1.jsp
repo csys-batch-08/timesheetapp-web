@@ -1,7 +1,7 @@
-<%@page import="java.sql.*"%>
-<%@page import="com.timesheet.util.Connectionutil"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,46 +117,35 @@
         <li><a href="Showalltask">View & Edit Task</a><br><br></li>
         </ul>
     </div>
-    <%!String taskName; %>
-<% 
- taskName=request.getParameter("taskname");
-String query="select task_name,assigned_to_date,end_date,task_priority,assigned_to from task_details where task_name like '"+taskName+"%'";
-Connectionutil conutil=new Connectionutil();
-Connection con=conutil.getDbConnection();
-Statement stmt=con.createStatement();
-ResultSet rs=stmt.executeQuery(query);
-if(rs.next()){
-%>
     <div class="box">
         <form method="post" action="UpdateTask">
             <table>
+            <c:forEach items="${showTask}" var="showtask">
             <tr>
        <th><label for="taskname">Enter Task Name</label></th>
-       <td><input type="text" name="taskname" value="<%=rs.getString(1) %>" readonly required></td>
+       <td><input type="text" name="taskname" value="${showtask.task}" readonly required></td>
     </tr>
            
     <tr>
        <th> <label for="assigningdate">Enter Task Assigning Date</label></th>
-        <td><input type="date" name="assigningdate" value="<%=rs.getDate(2) %>" required></td>
+        <td><input type="date" name="assigningdate" value="${showtask.dateassigned}" required></td>
     </tr>
     <tr>
        <th><label for="endingdate">Enter Task Ending Date</label></th>
-       <td><input type="date" name="endingdate" value="<%=rs.getDate(3)%>" required></td>
+       <td><input type="date" name="endingdate" value="${showtask.enddate}" required></td>
     </tr>
      <tr>
        <th><label for="priority">Enter Task Priority</label></th>
-       <td><input type="text" name="priority" value="<%=rs.getString(4)%>" required></td>
+       <td><input type="text" name="priority" value="${showtask.taskpriority}" required></td>
     </tr>
      <tr>
        <th><label for="assignedto">Task Assigned To</label></th>
-       <td><input type="email" name="username" value="<%=rs.getString(5)%>" required></td>
+       <td><input type="email" name="username" value="${showtask.assignedto}" required></td>
     </tr>
+    </c:forEach>
     </table><br><br>
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-   <input type="submit" class="btn btn-primary btn-sm" value="Submit">
-   
-        <%} %>
-        
+   <input type="submit" class="btn btn-primary btn-sm" value="Submit">     
         </form> 
     </div>
 </body>

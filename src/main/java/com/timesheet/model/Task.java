@@ -1,6 +1,5 @@
 package com.timesheet.model;
 import java.time.LocalDate;
-import java.util.Objects;
 public class Task {
 	private int userid;
 	private String task;
@@ -68,18 +67,6 @@ public class Task {
 	public Task() {
 		super();
 	}
-	
-//	public Task(int userid, String task, LocalDate dateassigned, LocalDate enddate, String taskpriority,
-//			String assignedto) {
-//		super();
-//		this.userid = userid;
-//		this.task = task;
-//		this.dateassigned = dateassigned;
-//		this.enddate = enddate;
-//		this.taskpriority = taskpriority;
-//		this.assignedto = assignedto;
-//	}
-
 	public Task(int userid, String task, LocalDate dateassigned, LocalDate enddate, String taskpriority, String assignedto,long totalhrs) {
 		super();
 		this.userid = userid;

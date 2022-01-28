@@ -118,7 +118,7 @@
     </nav>
      <div class="sidebar"> 
         <ul>
-        <li><a href="timesheetadmin.jsp">Add Timesheet status</a><br><br></li>
+        <li><a href="TimesheetStatus">Add Timesheet status</a><br><br></li>
         </ul>
     </div>
      <div class="box">

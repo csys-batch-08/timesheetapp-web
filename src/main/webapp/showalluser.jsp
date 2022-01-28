@@ -96,7 +96,6 @@
 		<th>Role Update</th>
 	</tr>
 	</thead>
-	<br><br>
 <tbody>
  <c:forEach items="${showallusers}" var="viewUser">
 <tr>

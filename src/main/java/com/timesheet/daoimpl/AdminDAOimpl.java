@@ -17,21 +17,46 @@ public class AdminDAOimpl implements AdminDAO
 	public User validateAdmin(String username,String password)
 	{
 		String checkquery="select first_name,last_name,user_name,password from user_details where role='ADMIN'and user_name='"+username+"'and password='"+password+"'";
-//		System.out.println(checkquery);
-		Connection con=Connectionutil.getDbConnection();
+		Connection con=null;
 		 User user=null;
+		 Statement statement=null;
+		 ResultSet resultset=null;
 		try {
-			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(checkquery);
-			if(rs.next())
+			con=Connectionutil.getDbConnection();
+			 statement=con.createStatement();
+			resultset=statement.executeQuery(checkquery);
+			if(resultset.next())
 			{
-				user=new User(rs.getString(1),rs.getString(2), username,password);
+				user=new User(resultset.getString(1),resultset.getString(2), username,password);
 			}
 			
 		} catch (SQLException e) {
 		
 			e.printStackTrace();
-			System.out.println("Statement error");
+		}
+		finally
+		{
+			if (resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		
 	return user;
@@ -39,26 +64,49 @@ public class AdminDAOimpl implements AdminDAO
 	}
 	public List<AdminUser> showalluser()
 	{
-		List<AdminUser> userlist=new ArrayList<AdminUser>();
+		List<AdminUser> userlist=new ArrayList<>();
 		String selectquery="select first_name,last_name,user_name,role from user_details where role not in('ADMIN')";
-		Connectionutil conutil=new Connectionutil();
-		Connection con=conutil.getDbConnection();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+		Connection con=null;
+		PreparedStatement preparestatement=null;
+		ResultSet resultset=null;
 		try
 		{
-			pstmt=con.prepareStatement(selectquery);	
-			rs=pstmt.executeQuery();
-		while(rs.next())
+			con=Connectionutil.getDbConnection();
+			preparestatement=con.prepareStatement(selectquery);	
+			resultset=preparestatement.executeQuery();
+		while(resultset.next())
 		{
-			AdminUser user=new AdminUser(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+			AdminUser user=new AdminUser(resultset.getString(1),resultset.getString(2),resultset.getString(3),resultset.getString(4));
 			userlist.add(user);
 		}
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("somthing went wrong");
+		}
+		finally
+		{
+			if (resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (preparestatement != null) {
+				try {
+					preparestatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		return userlist;
@@ -66,28 +114,50 @@ public class AdminDAOimpl implements AdminDAO
 	}
 	public List<AdminUser> showusers()
 	{
-		List<AdminUser> userlist=new ArrayList<AdminUser>();
+		List<AdminUser> userlist=new ArrayList<>();
 		String selectquery="select first_name,last_name,user_name,role from user_details where role not in('ADMIN','IN ACTIVE')";
-		Connectionutil conutil=new Connectionutil();
-		Connection con=conutil.getDbConnection();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+		Connection con=null;
+		PreparedStatement preparestatement=null;
+		ResultSet resultset=null;
 		try
 		{
-			pstmt=con.prepareStatement(selectquery);	
-			rs=pstmt.executeQuery();
-		while(rs.next())
+			con=Connectionutil.getDbConnection();
+			preparestatement=con.prepareStatement(selectquery);	
+			resultset=preparestatement.executeQuery();
+		while(resultset.next())
 		{
-			AdminUser user=new AdminUser(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+			AdminUser user=new AdminUser(resultset.getString(1),resultset.getString(2),resultset.getString(3),resultset.getString(4));
 			userlist.add(user);
 		}
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("somthing went wrong");
 		}
-		
+		finally
+		{
+			if (resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (preparestatement != null) {
+				try {
+					preparestatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return userlist;
 		
 	}
@@ -95,26 +165,42 @@ public class AdminDAOimpl implements AdminDAO
 	{
 		boolean flag=false;
 		String removequery="update user_details set role=? where user_name=?";
-		Connection con=Connectionutil.getDbConnection();
-		PreparedStatement pstmt=null;
+		Connection con=null;
+		PreparedStatement preparestatement=null;
 		try
 		{
-			pstmt=con.prepareStatement(removequery);
-			pstmt.setString(1,role);
-			pstmt.setString(2,username);
-			if(pstmt.executeUpdate()>0)
+			con=Connectionutil.getDbConnection();
+			preparestatement=con.prepareStatement(removequery);
+			preparestatement.setString(1,role);
+			preparestatement.setString(2,username);
+			if(preparestatement.executeUpdate()>0)
 			{
 				flag=true;
 			}
-//			int i=pstmt.executeUpdate();
-//			System.out.println(i+" User details Remove ");
 			
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("something went wrong");
 		}
+		finally
+		{
+			if (preparestatement != null) {
+				try {
+					preparestatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		return flag;
 	}
 	}

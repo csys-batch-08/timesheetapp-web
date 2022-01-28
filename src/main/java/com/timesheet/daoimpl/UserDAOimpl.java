@@ -18,8 +18,8 @@ public class UserDAOimpl implements UserDAO
 	{
 		boolean flag=false;
 		String insertquery="insert into user_details(first_name,last_name,user_name,password)values(?,?,?,?)";
-		Connectionutil conutil=new Connectionutil();
-		Connection con=conutil.getDbConnection();
+		
+		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
 		try
 		{
@@ -98,8 +98,8 @@ public class UserDAOimpl implements UserDAO
 	{
 		List<User> userlist=new ArrayList<User>();
 		String selectquery="select first_name,last_name,user_name,password from user_details where user_name='"+username+"'";
-		Connectionutil conutil=new Connectionutil();
-		Connection con=conutil.getDbConnection();
+		
+		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try
