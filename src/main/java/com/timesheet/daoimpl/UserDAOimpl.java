@@ -19,26 +19,42 @@ public class UserDAOimpl implements UserDAO
 		boolean flag=false;
 		String insertquery="insert into user_details(first_name,last_name,user_name,password)values(?,?,?,?)";
 		
-		Connection con=Connectionutil.getDbConnection();
-		PreparedStatement pstmt=null;
+		Connection con=null;
+		PreparedStatement preparestatement=null;
 		try
 		{
-			pstmt=con.prepareStatement(insertquery);
-			pstmt.setString(1, user.getFirstname());
-			pstmt.setString(2, user.getLastname());
-			pstmt.setString(3, user.getUsername());
-			pstmt.setString(4, user.getPassword());
-			if(pstmt.executeUpdate()>0)
+			con=Connectionutil.getDbConnection();
+			preparestatement=con.prepareStatement(insertquery);
+			preparestatement.setString(1, user.getFirstname());
+			preparestatement.setString(2, user.getLastname());
+			preparestatement.setString(3, user.getUsername());
+			preparestatement.setString(4, user.getPassword());
+			if(preparestatement.executeUpdate()>0)
 			{
 				flag=true;
 			}
-//			System.out.println("value insert successfully");
 			
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("somthing went wrong");
+		}
+		finally
+		{
+			if (preparestatement != null) {
+				try {
+					preparestatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return flag;
 	}
@@ -46,20 +62,46 @@ public class UserDAOimpl implements UserDAO
 	public User validateUser(String username,String password)
 	{
 		String validatequery="select first_name,last_name,user_name,password from user_details where role='TEAM MEMBER'and user_name='"+username+"'and password='"+password+"'";
-		Connection con=Connectionutil.getDbConnection();
+		Connection con=null;
+		Statement statement=null;
+		ResultSet resultset=null;
 		User user=null;
 		try {
-			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(validatequery);
-			if(rs.next())
+			con=Connectionutil.getDbConnection();
+			 statement=con.createStatement();
+			 resultset=statement.executeQuery(validatequery);
+			if(resultset.next())
 			{
-				user=new User(rs.getString(1),rs.getString(2), username,password );
+				user=new User(resultset.getString(1),resultset.getString(2), username,password );
 			}
 			
 		} catch (SQLException e) {
 		
 			e.printStackTrace();
-			System.out.println("Statement error");
+		}
+		finally
+		{
+			if (resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return user;
 		
@@ -68,26 +110,41 @@ public class UserDAOimpl implements UserDAO
 	{
 		boolean flag=false;
 		String updatequery="update user_details set first_name=?,last_name=?,password=? where user_name=?";
-		Connection con=Connectionutil.getDbConnection();
-		PreparedStatement pstmt=null;
+		Connection con=null;
+		PreparedStatement preparestatement=null;
 		try
 		{
-			pstmt=con.prepareStatement(updatequery);
-			pstmt.setString(1, user.getFirstname());
-			pstmt.setString(2, user.getLastname());
-			pstmt.setString(3, user.getPassword());
-			pstmt.setString(4, user.getUsername());
-			if(pstmt.executeUpdate()>0)
+			con=Connectionutil.getDbConnection();
+			preparestatement=con.prepareStatement(updatequery);
+			preparestatement.setString(1, user.getFirstname());
+			preparestatement.setString(2, user.getLastname());
+			preparestatement.setString(3, user.getPassword());
+			preparestatement.setString(4, user.getUsername());
+			if(preparestatement.executeUpdate()>0)
 			{
 				flag=true;
 			}
-//			int i=pstmt.executeUpdate();
-//			System.out.println(i+" user profile updated");
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("something went wrong");
+		}
+		finally
+		{
+			if (preparestatement != null) {
+				try {
+					preparestatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return flag;
 	}
@@ -96,28 +153,51 @@ public class UserDAOimpl implements UserDAO
 	
 	public List<User> showuser(String username)
 	{
-		List<User> userlist=new ArrayList<User>();
+		List<User> userlist=new ArrayList<>();
 		String selectquery="select first_name,last_name,user_name,password from user_details where user_name='"+username+"'";
 		
-		Connection con=Connectionutil.getDbConnection();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+		Connection con=null;
+		PreparedStatement preparestatement=null;
+		ResultSet resultset=null;
 		try
 		{
-			pstmt=con.prepareStatement(selectquery);	
-			rs=pstmt.executeQuery();
-		while(rs.next())
+			con=Connectionutil.getDbConnection();
+			preparestatement=con.prepareStatement(selectquery);	
+			resultset=preparestatement.executeQuery();
+		while(resultset.next())
 		{
-			User user=new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+			User user=new User(resultset.getString(1),resultset.getString(2),resultset.getString(3),resultset.getString(4));
 			userlist.add(user);
 		}
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("somthing went wrong");
 		}
-		
+		finally
+		{
+			if (resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (preparestatement != null) {
+				try {
+					preparestatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return userlist;
 		
 	}
@@ -125,21 +205,46 @@ public class UserDAOimpl implements UserDAO
 	public int findUserId(String username)
 	{
 		String findUser="select user_id from user_details where user_name= '"+username+"'";
-		Connection con=Connectionutil.getDbConnection();
-		Statement stmt;
+		Connection con=null;
+		Statement statement=null;
+		ResultSet resultset=null;
 		int userId=0;
 		try {
-			stmt = con.createStatement();
-			ResultSet rs=stmt.executeQuery(findUser);
-			if(rs.next())
+			con=Connectionutil.getDbConnection();
+			statement = con.createStatement();
+			 resultset=statement.executeQuery(findUser);
+			if(resultset.next())
 			{
-			userId=rs.getInt(1);
+			userId=resultset.getInt(1);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		finally
+		{
+			if (resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return userId;
-		
 	}
 }
