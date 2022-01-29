@@ -3,7 +3,6 @@ package com.timesheet.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,11 +13,12 @@ import com.timesheet.model.Timesheet;
 
 @WebServlet("/updateTime")
 public class UpdateTimeSheet extends HttpServlet {
-	
-	
+
+	private static final long serialVersionUID = 1L;
+
 	@Override
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		
+	public void doPost(HttpServletRequest request,HttpServletResponse response) {
+		try {
 		String timedate=request.getParameter("timesheetdate");
 		LocalDate timesheetdate=LocalDate.parse(timedate);
 		int userid=Integer.parseInt(request.getParameter("userid"));
@@ -34,7 +34,8 @@ public class UpdateTimeSheet extends HttpServlet {
 		TaskDAOimpl taskdao=new TaskDAOimpl();
 		taskdao.updatehrs(hours, userid,taskId);
 		boolean flag=timesheetdao.updateTimesheet(timesheet);
-		PrintWriter out=response.getWriter();
+		PrintWriter out;
+			out = response.getWriter();
 		if(flag)
 		{
 			out.println("<script type=\"text/javascript\">");
@@ -48,6 +49,9 @@ public class UpdateTimeSheet extends HttpServlet {
 			out.println("alert('Timesheet not updated');");
 			out.println("location='Updatetimesheet.jsp';");
 			out.println("</script>");
+		}
+		} catch (IOException | NumberFormatException e) {
+			e.printStackTrace();
 		}
      }
 	}

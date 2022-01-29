@@ -2,8 +2,6 @@ package com.timesheet.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,13 +17,14 @@ public class UpdateUserAdmin extends HttpServlet {
     }
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response){
+		try {
 		String username=request.getParameter("username");
 		String role=request.getParameter("role");
 		AdminDAOimpl admindao=new AdminDAOimpl();
 		boolean flag=admindao.removeUser(username, role);
-		PrintWriter out=response.getWriter();
+		PrintWriter out;
+			out = response.getWriter();
 		if(flag)
 		{
 			out.println("<script type=\"text/javascript\">");
@@ -39,6 +38,9 @@ public class UpdateUserAdmin extends HttpServlet {
 			out.println("alert('User Status Not Updated');");
 			out.println("location='ShowAllUser';");
 			out.println("</script>");
+		}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

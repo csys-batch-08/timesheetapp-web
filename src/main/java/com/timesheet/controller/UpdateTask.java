@@ -3,24 +3,23 @@ package com.timesheet.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.timesheet.daoimpl.TaskDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
 import com.timesheet.model.Task;
 
 @WebServlet("/UpdateTask")
 public class UpdateTask extends HttpServlet {
-	
+
+	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response){
+		try {
 		String taskname=request.getParameter("taskname");
 		String assigningdate=request.getParameter("assigningdate");
 		LocalDate assdate=LocalDate.parse(assigningdate);
@@ -35,7 +34,8 @@ public class UpdateTask extends HttpServlet {
 
 		Task task=new Task(id,taskname,assdate,enddate,priority,username,totalhrs);
 		boolean flag=taskdao.updateTask(task);
-		PrintWriter out=response.getWriter();
+		PrintWriter out;
+			out = response.getWriter();
 		if(flag)
 		{
 			out.println("<script type=\"text/javascript\">");
@@ -52,7 +52,9 @@ public class UpdateTask extends HttpServlet {
 			out.println("</script>");
 			
 		}
-		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

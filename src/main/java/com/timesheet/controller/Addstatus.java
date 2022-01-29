@@ -3,15 +3,10 @@ package com.timesheet.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-//import java.time.format.DateTimeFormatter;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-//import com.timesheet.dao.StatusDAO;
 import com.timesheet.daoimpl.StatusDAOimpl;
 import com.timesheet.daoimpl.TimesheetDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
@@ -20,20 +15,17 @@ import com.timesheet.model.Status;
 
 public class Addstatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
     public Addstatus() {
         super(); 
     }
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+	try {
 	  StatusDAOimpl statusdao=new StatusDAOimpl();
 	  TimesheetDAOimpl timesheetdao=new TimesheetDAOimpl();
 	  UserDAOimpl userdao=new UserDAOimpl();
 	  String username=request.getParameter("username");
-//	  DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	  String timedate=request.getParameter("timesheetdate");
 	  LocalDate timesheetdate=LocalDate.parse(timedate);
 	  String status=request.getParameter("status");
@@ -42,7 +34,8 @@ public class Addstatus extends HttpServlet {
       int id1=timesheetdao.findTimesheetId(timesheetdate,id);
 		Status statusobj=new Status(id,id1,status,approvedby);
 		boolean flag=statusdao.insertStatus(statusobj);
-		PrintWriter out=response.getWriter();
+		PrintWriter out;
+			out = response.getWriter();
 		if(flag)
 		{
 			out.println("<script type=\"text/javascript\">");
@@ -59,7 +52,10 @@ public class Addstatus extends HttpServlet {
 			out.println("</script>");
 
 		}
-
+        } catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		
 	}
 

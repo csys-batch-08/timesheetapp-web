@@ -2,8 +2,6 @@ package com.timesheet.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +16,15 @@ public class Updatestatus extends HttpServlet {
         super(); 
     }
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {	
+		try {
 		int timesheetid=Integer.parseInt(request.getParameter("timesheetid"));
 		String status=request.getParameter("status");
 		StatusDAOimpl statusdao=new StatusDAOimpl();
 		Status statusobj=new Status(0,timesheetid,status,null);
 		boolean flag=statusdao.updateStatus(statusobj);
-		PrintWriter out=response.getWriter();
+		PrintWriter out;
+			out = response.getWriter();
 		if(flag)
 		{
 			out.println("<script type=\"text/javascript\">");
@@ -38,6 +38,9 @@ public class Updatestatus extends HttpServlet {
 			out.println("alert('Timesheet status not updated');");
 			out.println("location='ShowAllTimesheet';");
 			out.println("</script>");
+		}
+		} catch (IOException | NumberFormatException e) {
+			e.printStackTrace();
 		}
 		
 	}

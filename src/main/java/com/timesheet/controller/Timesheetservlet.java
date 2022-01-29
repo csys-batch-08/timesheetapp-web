@@ -3,29 +3,24 @@ package com.timesheet.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.timesheet.daoimpl.TaskDAOimpl;
 import com.timesheet.daoimpl.TimesheetDAOimpl;
-import com.timesheet.daoimpl.UserDAOimpl;
 import com.timesheet.model.Timesheet;
 
 @WebServlet("/timesheet")
 
 public class Timesheetservlet extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+		try {
 		TimesheetDAOimpl timesheetdao = new TimesheetDAOimpl();
-//		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		int id = Integer.parseInt(request.getParameter("userid"));
 		String timedate = request.getParameter("timesheetdate");
 		LocalDate timesheetdate = LocalDate.parse(timedate);
@@ -36,12 +31,12 @@ public class Timesheetservlet extends HttpServlet {
 		String comments = request.getParameter("comments");
 		int hours = taskdao.getTotalhrs(id, taskname);
 		int result = 0;
-		PrintWriter out = response.getWriter();
-		Timesheet timesheet=new Timesheet();
+		PrintWriter out;
+			out = response.getWriter();
 		if (hours > spendinghrs) {
-			 timesheet = new Timesheet(id, id1, spendinghrs, comments, timesheetdate);
+			Timesheet timesheet = new Timesheet(id, id1, spendinghrs, comments, timesheetdate);
 			boolean flag1 = timesheetdao.checkDate(id, timesheetdate);
-			if (flag1 == false) {
+			if (!flag1) {
 				result = taskdao.updatehrs(spendinghrs, id, id1);
 				if (result > 0) {
 
@@ -81,6 +76,9 @@ public class Timesheetservlet extends HttpServlet {
 		out.println("location='ShowTask';");
 		out.println("</script>");
 			
+		}
+		} catch (IOException | NumberFormatException e) {
+			e.printStackTrace();
 		}
 	}
 }
