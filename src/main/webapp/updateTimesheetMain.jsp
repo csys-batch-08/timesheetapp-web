@@ -3,7 +3,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +31,7 @@
             background-size:cover;
         }
         h1{
+         text-align: center;
             margin:0px;
             padding: 20px;
             background-color: rgb(127, 202, 231);
@@ -99,12 +100,12 @@
     </style>
 </head>
 <body>
-    <h1 align="center">TRACK YOUR TIME</h1>
+    <h1>TRACK YOUR TIME</h1>
     <nav>
         
-        <a class="a" href="index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a class="a" href="userIndex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
         <a class="a" href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
-        <a class="a" href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
+        <a class="a" href="#addTask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a class="a" href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
         <a class="a" href="ShowUser"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a class="a" href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
@@ -112,9 +113,9 @@
      <div class="sidebar"> 
         <ul>
         <li><a href="ShowTask">Add Timesheet</a><br><br></li>
-        <li><a href="Updatetimesheet.jsp">Edit Timesheet</a><br><br></li>
+        <li><a href="updateTimesheet.jsp">Edit Timesheet</a><br><br></li>
         <li><a href="RejectedTimesheet">Rejected Timesheet</a><br><br></li>
-        <li><a href="showuserstatus1.jsp">View Timesheet Status</a><br><br></li>
+        <li><a href="showUserStatusMain.jsp">View Timesheet Status</a><br><br></li>
         <li><a href="ViewTimesheet">View Timesheet</a><br><br></li>
         </ul>
     </div>
@@ -122,34 +123,34 @@
     <form action="updateTime" method="post">
     <c:forEach items="${showtimesheet}" var="showtimesheet">
     <table>
+    <caption></caption>
     <tr>
-       <th><label for="timesheetdate">Enter Timesheet Date</label></th>
+       <th id="tblhead"><label for="timesheetdate">Enter Timesheet Date</label></th>
        <td><input type="date" min="" max="" name="timesheetdate" value="${showtimesheet.timesheetfordate}" readonly required></td>
     </tr>
     <tr>
-       <th> <label for="spendinghrs">User Id</label></th>
+       <th id="tblhead"> <label for="spendinghrs">User Id</label></th>
         <td><input type="number" name="userid" value="${showtimesheet.userid}"readonly></td>
     </tr>
     <tr>
-       <th> <label for="spendinghrs">Task Id</label></th>
+       <th id="tblhead"> <label for="spendinghrs">Task Id</label></th>
         <td><input type="number" name="taskid" value="${showtimesheet.taskid}"readonly></td>
     </tr>
      <tr>
-       <th> <label for="spendinghrs">Enter Spending Hrs</label></th>
+       <th id="tblhead"> <label for="spendinghrs">Enter Spending Hrs</label></th>
         <td><input type="number" pattern="[1-9]{1+}" maxlength="2" name="spendinghrs" value="${showtimesheet.spendtime}" required></td>
     </tr>
     <tr>
-       <th><label for="comments">Enter Comments</label></th>
+       <th id="tblhead"><label for="comments">Enter Comments</label></th>
        <td><input type="text" name="comments" value="${showtimesheet.comments}" required></td>
     </tr>
     <tr>
-       <th><label for="status" >Status</label></th>
+       <th id="tblhead"><label for="status" >Status</label></th>
        <td><input type="text" name="status" placeholder="not approved" readonly></td>
     </tr>
     </table><br><br>
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
    </c:forEach>
-
     </form>  
     </div>
  

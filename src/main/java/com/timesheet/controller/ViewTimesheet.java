@@ -34,7 +34,7 @@ public class ViewTimesheet extends HttpServlet {
 		List<Timesheet> timesheetlist=timesheetdao.showTimesheet(userid);
 		request.setAttribute("showtimesheet", timesheetlist);
 		   
-		RequestDispatcher rd=request.getRequestDispatcher("viewtimesheet.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("viewTimesheet.jsp");
 	    rd.forward(request, response);
 	    
 			} catch (ServletException | IOException e) {

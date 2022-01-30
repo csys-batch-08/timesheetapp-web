@@ -29,7 +29,7 @@ public class AddTimesheetStatus extends HttpServlet {
 		   List<ViewTimesheets> timesheetlist=viewtimesheetdao.showAllTimesheet();
 		   request.setAttribute("viewTimesheet", timesheetlist);
 		   
-			RequestDispatcher rd=request.getRequestDispatcher("timesheetadmin.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("timesheetAdmin.jsp");
 		    rd.forward(request, response);
 		    
 				} catch (ServletException | IOException e) {

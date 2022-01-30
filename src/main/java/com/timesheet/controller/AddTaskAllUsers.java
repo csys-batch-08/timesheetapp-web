@@ -48,14 +48,14 @@ public class AddTaskAllUsers extends HttpServlet {
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Task Added Successfully');");
-			out.println("location='addtaskmain.jsp';");
+			out.println("location='addTaskMain.jsp';");
 			out.println("</script>");
 		}
 		else
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Task Not Added');");
-			out.println("location='addtaskmain.jsp';");
+			out.println("location='addTaskMain.jsp';");
 			out.println("</script>");
 		}
 		} catch (IOException e) {

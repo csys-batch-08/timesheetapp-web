@@ -26,7 +26,7 @@ public class ViewStatus extends HttpServlet {
 		 StatusDAOimpl statusdao = new StatusDAOimpl();
 		   List<Status> statusList = statusdao.showallStatus();
 		   request.setAttribute("showstatus", statusList);
-		   RequestDispatcher rd=request.getRequestDispatcher("viewstatus.jsp");
+		   RequestDispatcher rd=request.getRequestDispatcher("viewStatus.jsp");
 		    rd.forward(request, response);
 		    
 				} catch (ServletException | IOException e) {

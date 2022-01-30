@@ -2,8 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Users</title>
 <style>
- *
+    *
     {
     margin:0px;
     padding:0px;
@@ -35,7 +36,8 @@
         body{
             background-size:cover;
         }
-        .h1{
+        h1{
+        text-align: center;
             margin:0px;
             padding: 20px;
             background-color: rgb(127, 202, 231);
@@ -48,7 +50,8 @@
            float : right;
            margin-right: 20px;
        }
-        table{
+    
+         table{
           background-color:rgb(188, 210, 243);
       }
        thead{
@@ -58,67 +61,61 @@
       { color:honeydew;
 
       }
-       body
+        body
        {
           background-color:rgb(107, 173, 235);
        }
-       h3 {
-         background:lightslategray;
-         color: rgb(248, 245, 245);
-         padding: 5px 15px;
-         }
-         fieldset
-          {
-              position:absolute;
-              border-radius: 5px;
-              top: 180px;
-              left: 450px;
-              background:rgb(188, 210, 243);
-              padding: 30px 80px;
-          }
-          .table
-          {
-          margin-left:20px;
-          }
+        .center
+     {
+      width: 90%;
+      padding:20px;
+      margin-left:50px;
+     } 
+      
 </style>
 </head>
 <body>
-<h1 class="h1" align="center">TRACK YOUR TIME</h1>
+<h1 style="color:#0a3549;">TRACK YOUR TIME</h1>
     <nav>
-        
-        <a href="index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a href="userIndex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
         <a href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
         <a href="ShowUser"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
- <fieldset>
-<h3 align="center">User Profile</h3>
-<c:forEach items="${showuser}" var="viewUser">
-<table class="table table-borderless">
+    <div class="center">
+    <h2><strong>Rejected Timesheets</strong></h2>
+<table class="table table-hover table-striped">
+	<caption></caption>
+	<thead>
+	<tr>
+		<th id="tblhead">Timesheet Id</th>
+		<th id="tblhead">Task Name</th>
+		<th id="tblhead">Timesheet Date</th>
+		<th id="tblhead">Spending Hrs</th>
+		<th id="tblhead">Comments</th>
+		<th id="tblhead">Approved By</th>
+		<th id="tblhead">Status</th>
+		<th id="tblhead">Update Timesheet</th>
+	</tr>
+	</thead>
 <tbody>
-
+<c:forEach items="${rejectedtimesheet}" var="reject">
 <tr>
-<td><b>First Name</b> </td>
-<td>${viewUser.getFirstname()}</td>
+<td>${reject.timesheetid}</td>
+<td>${reject.task}</td>
+<td><fmt:parseDate value="${reject.timesheetdate}" pattern="yyyy-MM-dd" var="timesheetDate" type="date"/>
+<fmt:formatDate pattern="dd-MM-yyyy" value="${timesheetDate}"/></td>
+<td>${reject.spendtimehrs}</td>
+<td>${reject.comments}</td>
+<td>${reject.approvedby}</td>
+<td>${reject.status}</td>
+<td><a href="updateTimesheet.jsp"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
-<tr>
-<td><b>Last Name</b> </td>
-<td>${viewUser.getLastname()}</td>
-</tr>
-<tr>
-<td><b>User Name</b> </td>
-<td>${viewUser.getUsername()}</td>
-</tr>
-<tr>
-<td><b>Password</b> </td>
-<td>${viewUser.getPassword()}</td>
-</tr>
+</c:forEach>
 </tbody>
 </table>
-<p align="center"><a href="UpdateUserProfile?firstname=${viewUser.getFirstname()}&lastname=${viewUser.getLastname()}&username=${viewUser.getUsername()}"><button  type="button" class="btn btn-primary btn-lg">Edit</button></a></p>
-</c:forEach>
-</fieldset>
+</div>
 </body>
 </html>

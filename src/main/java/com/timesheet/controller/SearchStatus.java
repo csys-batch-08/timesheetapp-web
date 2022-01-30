@@ -24,7 +24,7 @@ public class SearchStatus extends HttpServlet {
 			 StatusDAOimpl statusdao = new StatusDAOimpl();
 			   List<Status> statusList = statusdao.showStatus(timesheetid);
 			   request.setAttribute("viewstatus", statusList);
-			   RequestDispatcher rd=request.getRequestDispatcher("updatestatus1jsp.jsp");
+			   RequestDispatcher rd=request.getRequestDispatcher("updateStatusMain.jsp");
 			    rd.forward(request, response);
 			    
 					} catch (ServletException | IOException e) {

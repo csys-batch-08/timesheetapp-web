@@ -35,7 +35,7 @@ public class TimesheetMain extends HttpServlet {
 		   session.setAttribute("userid", uid);
 		   session.setAttribute("taskdate", taskdate);
 		   session.setAttribute("sysdate", sysDate);
-			 RequestDispatcher rd=request.getRequestDispatcher("timesheetmain.jsp");
+			 RequestDispatcher rd=request.getRequestDispatcher("timesheetMain.jsp");
 			    rd.forward(request, response);
 		   
 	}

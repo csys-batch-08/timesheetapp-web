@@ -4,7 +4,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,6 +37,7 @@
             background-size:cover;
         }
         h1{
+        text-align: center;
             margin:0px;
             padding: 20px;
             background-color: rgb(127, 202, 231);
@@ -68,7 +69,7 @@
        thead{
         background-color:rgb(14, 32, 56);
       }
-       th
+       .th
       { color:honeydew;
 
       }
@@ -94,31 +95,31 @@
 </style>
 </head>
 <body>
-<h1 align="center">TRACK YOUR TIME</h1>
+<h1>TRACK YOUR TIME</h1>
     <nav> 
-        <a href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
-        <a href="timesheetstatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
-        <a href="addtask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
+        <a href="adminIndex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a href="timesheetStatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
+        <a href="addTask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a href="adminUser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
         <c:if test="${sessionScope.adminuser!=null}">
       <h4 class="signout">login as : &nbsp;${sessionScope.adminuser}</h4>
        </c:if>
     </nav>
     <div class="center">
-    <h2><b> Timesheet List</b></h2>
+    <h2><strong> Timesheet List</strong></h2>
 <table class="table table-hover table-striped">
-	
+	<caption></caption>
 	<thead>
 	<tr>
-		<th>User Name</th>
-		<th>Comments</th>
-		<th>Spending Time Hrs</th>
-		<th>Timesheet Id</th>
-		<th>Timesheet Date</th>
-		<th>Task Id</th>
-		<th>Status</th>
+		<th class="th" id="tblhead">User Name</th>
+		<th class="th" id="tblhead">Comments</th>
+		<th class="th" id="tblhead">Spending Time Hrs</th>
+		<th class="th" id="tblhead">Timesheet Id</th>
+		<th class="th" id="tblhead">Timesheet Date</th>
+		<th class="th" id="tblhead">Task Id</th>
+		<th class="th" id="tblhead">Status</th>
 	</tr>
 	</thead>
 <tbody>
@@ -139,18 +140,20 @@
 </table></div><br><br>
 <div>
 <fieldset>
+<legend></legend>
 <form action="addstatus" method="post">
 <table>
+<caption></caption>
   <tr>
- <td><label for="username">Enter User Name</label></td>
+ <th id="tblhd"><label for="username">Enter User Name</label></th>
   <td><input type="email" name="username" required></td>
   </tr>
 <tr>
- <td><label for="timesheetdate">Enter Timesheet Date</label></td>
+ <th id="tblhd"><label for="timesheetdate">Enter Timesheet Date</label></th>
   <td><input type="date" name="timesheetdate" required></td>
   </tr>
   <tr>
- <td><label for="status">Enter Status</label></td>
+ <th id="tblhd"><label for="status">Enter Status</label></th>
   <td><select name="status" required>
        <option>Approved</option>
        <option>Rejected</option>
@@ -158,7 +161,7 @@
        </select></td>
   </tr>
   <tr>
- <td><label for="approvedby">Approved By</label></td>
+ <th id="tblhd"><label for="approvedby">Approved By</label></th>
   <td><input type="text" name="approvedby" value="${sessionScope.adminuser}" readonly required></td>
   </tr>
   </table>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,6 +34,7 @@
             background-size:cover;
         }
         h1{
+        text-align: center;
             margin:0px;
             padding: 20px;
             background-color: rgb(127, 202, 231);
@@ -91,18 +92,22 @@
             background: transparent;
             padding:5px;
             color: #070202;
-        }  
+        } 
+        table
+        {
+         border-spacing: 15px;
+        } 
     </style>
 </head>
 <body>
- <h1 align="center">TRACK YOUR TIME</h1>
+ <h1>TRACK YOUR TIME</h1>
     <nav>
         
-        <a class="a" href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
-        <a class="a" href="timesheetstatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
-        <a class="a" href="addtask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
+        <a class="a" href="adminIndex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a class="a" href="timesheetStatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
+        <a class="a" href="addTask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a class="a" href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a class="a" href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a class="a" href="adminUser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a class="a" href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
     <div class="sidebar"> 
@@ -112,10 +117,11 @@
     </div>
     <div class="box">
 <form action="updateuseradmin" method="post">
-<table cellspacing="15px">
-<tr><th><label for="username">User Name</label></th>
+<table>
+<caption></caption>
+<tr><th id="tblhead"><label for="username">User Name</label></th>
 <td><input type="text" name="username" value="${username}" required readonly></td></tr>
-<tr><th><label for="role">Role</label></th>
+<tr><th id="tblhead"><label for="role">Role</label></th>
 <td><select  name="role" required>
        <option>TEAM MEMBER</option>
        <option>IN ACTIVE</option>
@@ -126,7 +132,6 @@
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 <input type="submit"value="Submit">
 </form><br>
-
 </div>
 </body>
 </html>

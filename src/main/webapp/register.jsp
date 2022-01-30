@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>SignUp</title>
@@ -54,7 +54,7 @@
 <body style="background-image:url(images/Time1.jpg)">   
     <form action="Registerservlet" method="post" id="regForm">
         <fieldset>
-            <legend ><b>Sign Up</b></legend>
+            <legend ><strong>Sign Up</strong></legend>
             <label for="firstname">First Name</label><br>
             <input type="text" id="First_Name" name="firstname" pattern="[A-Za-z]{3,}" required autofocus><br><br>
             <label for="lastname">Last Name</label><br>
@@ -67,7 +67,7 @@
             <input type="password" id="Confirm_password" name="Confirm_password" pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Enter confirm password same as password " required><br><br>
             &nbsp;&nbsp;<button type="submit" onclick="myfunction()">Submit</button>&nbsp; &nbsp;
            <input type="reset" value="Reset"><br><br>
-           Have already an account?<a href="login.jsp">Login here</a> 
+           Have already an account?<a href="index.jsp">Login here</a> 
         </fieldset>
     </form>  
     

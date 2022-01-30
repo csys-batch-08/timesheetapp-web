@@ -1,21 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<title>add task</title>
-    <style>
-     *
+<title>View Users</title>
+<style>
+  *
     {
     margin:0px;
     padding:0px;
     }
-       
         .a
         {
             
@@ -30,6 +29,7 @@
             background-size:cover;
         }
         h1{
+        text-align: center;
             margin:0px;
             padding: 20px;
             background-color: rgb(127, 202, 231);
@@ -42,10 +42,23 @@
            float : right;
            margin-right: 20px;
        }
-        body
+       a:link {
+        font-size: 20px;
+        color: rgb(250, 252, 250);
+        text-decoration: none;
+          }
+       a:hover {
+         color: rgb(158, 250, 96);
+         text-decoration: none;
+         }
+       a:active {
+         color: rgb(245, 245, 91);
+        text-decoration: underline;
+        }   
+         body
        {
           background-color:rgb(107, 173, 235);
-       }
+       } 
        a{
        text-decoration:none
        }
@@ -56,7 +69,6 @@
        background:#0f6a94;
        color:white;
        }
-       
        .sidebar ul a{
     display:block;
     height:100%;
@@ -73,25 +85,22 @@
        ul li:hover a{
         color: #070808;
         }
-        
     </style>
-    
 </head>
 <body>
-    <h1 align="center" style="color:#0a3549;">TRACK YOUR TIME</h1>
+    <h1 style="color:#0a3549;">TRACK YOUR TIME</h1>
     <nav>
         
-        <a class="a" href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
-        <a class="a" href="timesheetstatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
-        <a class="a" href="addtask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
-        <a class="a" href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report only user can access"></a>
-        <a class="a" href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a class="a" href="adminIndex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a class="a" href="timesheetStatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
+        <a class="a" href="addTask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
+        <a class="a" href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
+        <a class="a" href="adminUser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a class="a" href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
-    <div class="sidebar"> 
+     <div class="sidebar"> 
         <ul>
-        <li><a href="addtaskmain.jsp">Add Task</a><br><br></li>
-        <li><a href="Showalltask">View & Edit Task</a><br><br></li>
+        <li><a href="ShowAllUser">View Users</a><br><br></li>
         </ul>
     </div>
 </body>

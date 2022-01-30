@@ -21,7 +21,7 @@ public class GetTask extends HttpServlet {
 		HttpSession session = request.getSession();
 		String taskname=(request.getParameter("taskname"));
 		session.setAttribute("taskname", taskname);
-		 RequestDispatcher rd=request.getRequestDispatcher("updatetask.jsp");
+		 RequestDispatcher rd=request.getRequestDispatcher("updateTask.jsp");
 		    rd.forward(request, response);
 	}
 

@@ -25,7 +25,7 @@ public class ShowAllTask extends HttpServlet {
 			   List<Task> taskList = taskdao.showallTask();
 			   request.setAttribute("showalltask", taskList);
 			   
-				RequestDispatcher rd=request.getRequestDispatcher("showalltask.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("showAllTask.jsp");
 			    rd.forward(request, response);
 			    
 					} catch (ServletException | IOException e) {

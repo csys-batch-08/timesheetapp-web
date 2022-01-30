@@ -33,7 +33,7 @@ public class SearchTimesheet extends HttpServlet {
 		TimesheetDAOimpl timesheetdao=new TimesheetDAOimpl();
 		List<Timesheet> timesheets=timesheetdao.searchTimesheet(timesheetdate, uid);
 		request.setAttribute("showtimesheet", timesheets);
-		RequestDispatcher rd=request.getRequestDispatcher("updatetimesheet1.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("updateTimesheetMain.jsp");
 	    rd.forward(request, response);
 	    
 			} catch (ServletException | IOException e) {

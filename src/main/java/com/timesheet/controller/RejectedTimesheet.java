@@ -17,8 +17,6 @@ import com.timesheet.model.Rejecttimesheet;
 @WebServlet("/RejectedTimesheet")
 public class RejectedTimesheet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
- 
     public RejectedTimesheet() {
         super();
  
@@ -33,7 +31,7 @@ public class RejectedTimesheet extends HttpServlet {
 		List<Rejecttimesheet> rejectlist=rejecttimesheetdao.showRejecttimesheet(username);
 		request.setAttribute("rejectedtimesheet", rejectlist);
 		   
-		RequestDispatcher rd=request.getRequestDispatcher("rejectedtimesheet.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("rejectedTimesheet.jsp");
 	    rd.forward(request, response);
 	    
 			} catch (ServletException | IOException e) {

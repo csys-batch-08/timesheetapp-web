@@ -34,14 +34,14 @@ public class Loginservlet extends HttpServlet {
 		if(validuser!=null)
 		{
 			session.setAttribute("username",validuser.getUsername());
-		RequestDispatcher reqdis=request.getRequestDispatcher("index.jsp");
+		RequestDispatcher reqdis=request.getRequestDispatcher("userIndex.jsp");
 		reqdis.forward(request, response);
 		}
 		else if(validadmin!=null)
 		{
 
 		  session.setAttribute("adminuser",validadmin.getFirstname());
-		    RequestDispatcher reqdis=request.getRequestDispatcher("adminindex.jsp");
+		    RequestDispatcher reqdis=request.getRequestDispatcher("adminIndex.jsp");
 			reqdis.forward(request, response);
 		}
 		else

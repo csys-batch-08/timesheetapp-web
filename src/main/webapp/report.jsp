@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +29,8 @@
         body{
             background-size:cover;
         }
-        .h1{
+        h1{
+        text-align: center;
             margin:0px;
             padding: 20px;
             background-color: rgb(127, 202, 231);
@@ -58,10 +59,10 @@
 </style>
 </head>
 <body>
-<h1 class="h1" align="center">TRACK YOUR TIME</h1>
+<h1 style="color:#0a3549;">TRACK YOUR TIME</h1>
     <nav>
         
-        <a class="a" href="index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a class="a" href="userIndex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
         <a class="a" href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a class="a" href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a class="a" href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
@@ -71,7 +72,7 @@
     <br><br><br>
     <div>
 <form action="Report">
-<label style="font-size:20px;"><b>Enter Date</b></label>
+<label style="font-size:20px;"><strong>Enter Date</strong></label>
 <input type="date" name="timesheetdate" required>
 <input type="submit" class="btn btn-primary btn-sm" value="search">
 </form>

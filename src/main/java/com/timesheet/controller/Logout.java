@@ -21,7 +21,7 @@ public class Logout extends HttpServlet {
 		HttpSession session=request.getSession();
 		session.invalidate();
 		try {
-			RequestDispatcher reqdis=request.getRequestDispatcher("login.jsp");
+			RequestDispatcher reqdis=request.getRequestDispatcher("index.jsp");
 			reqdis.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();

@@ -4,7 +4,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,6 +37,7 @@
             background-size:cover;
         }
         h1{
+        text-align: center;
             margin:0px;
             padding: 20px;
             background-color: rgb(127, 202, 231);
@@ -86,24 +87,25 @@
 
 </head>
 <body>
-<h1 align="center">TRACK YOUR TIME</h1>
+<h1>TRACK YOUR TIME</h1>
     <nav>
-        <a class="a" href="index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a class="a" href="userIndex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
         <a class="a" href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
-        <a class="a" href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
+        <a class="a" href="#addTask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a class="a" href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
         <a class="a" href="ShowUser"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a class="a" href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
     <div class="center">
-<h2><b> Timesheet Status</b></h2><br>
+<h2><strong> Timesheet Status</strong></h2><br>
 <h5>User name :${sessionScope.username}</h5><br>
 <table class="table table-hover table-striped">
+<caption></caption>
 	<thead>
 	<tr>
-  		<th>Timesheet Date</th>
-		<th>Spending Time Hrs</th>
-		<th>Status</th>
+  		<th id="tblhead">Timesheet Date</th>
+		<th id="tblhead">Spending Time Hrs</th>
+		<th id="tblhead">Status</th>
 	</tr>
 	</thead>
 <tbody>

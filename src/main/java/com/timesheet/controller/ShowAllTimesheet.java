@@ -28,7 +28,7 @@ public class ShowAllTimesheet extends HttpServlet {
 		   List<ViewTimesheets> timesheetlist=viewtimesheetdao.showAllTimesheet();
 		   request.setAttribute("showalltimesheet", timesheetlist);
 		   
-			RequestDispatcher rd=request.getRequestDispatcher("viewalltimesheet.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("viewAllTimesheet.jsp");
 		    rd.forward(request, response);
 		    
 				} catch (ServletException | IOException e) {

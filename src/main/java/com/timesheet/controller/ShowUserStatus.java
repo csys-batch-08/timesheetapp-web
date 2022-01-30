@@ -31,7 +31,7 @@ public class ShowUserStatus extends HttpServlet {
 		   List<ViewTimesheets> timesheetlist=viewtimesheetdao.showTimesheet(username,startdate,enddate);
 		   request.setAttribute("showuserstatus", timesheetlist);
 		   
-			RequestDispatcher rd=request.getRequestDispatcher("showuserstatus.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("showUserStatus.jsp");
 		    rd.forward(request, response);
 		    
 				} catch (ServletException | IOException e) {

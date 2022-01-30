@@ -1,9 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +29,7 @@
             background-size:cover;
         }
         h1{
+        text-align: center;
             margin:0px;
             padding: 20px;
             background-color: rgb(127, 202, 231);
@@ -103,56 +102,35 @@
         }
        
     </style>
-
 </head>
 <body>
-    <h1 align="center">TRACK YOUR TIME</h1>
+    <h1>TRACK YOUR TIME</h1>
     <nav>
         
-        <a class="a" href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
-        <a class="a" href="timesheetstatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
-        <a class="a" href="addtask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
+        <a class="a" href="adminIndex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a class="a" href="timesheetStatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
+        <a class="a" href="addTask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a class="a" href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a class="a" href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
-        <a class="a" href="login.jsp"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
+        <a class="a" href="adminUser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a class="a" href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
      <div class="sidebar"> 
         <ul>
-        <li><a href="TimesheetStatus">Add Timesheet status</a><br><br></li>
+        <li><a href="ShowAllTimesheet">Add Timesheet status</a><br><br></li>
         </ul>
     </div>
-     <div class="box">
-        <form method="post" action="updateStatus">
-            <table>
-            <c:forEach items="${viewstatus}" var="viewStatus">
-            <tr>
-       <th><label for="timesheetid">Enter Timesheet Id</label></th>
-       <td><input type="number" name="timesheetid" value="${viewStatus.timesheetid}" readonly required></td>
-    </tr>
-    <tr>
-       <th><label for="userid">User Id</label></th>
-       <td><input type="number" name="userid" value="${viewStatus.userid}" readonly required></td>
-    </tr>
-    <tr>
-       <th><label for="status">Enter Status</label></th>
-       <td><select name="status" required>
-       <option>Approved</option>
-       <option>Rejected</option>
-       <option>Not Approved</option>
-       </select></td>
-    </tr>
-    <tr>
-       <th><label for="approvedby">Approvedb By</label></th>
-       <td><input type="text" name="approvedby" value="${viewStatus.approvedby}" readonly required></td>
-    </tr>
-     </c:forEach>
-    </table><br><br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-   <input type="submit"value="Submit">
-   
     
-        
+     <div class="box">
+        <form method="post" action="SearchStatus">
+            <table>
+            <caption></caption>
+            <tr>
+       <th id="tblhead"><label for="timesheetid">Timesheet Id</label></th>
+       <td><input type="number" name="timesheetid" value="${timesheetid}" required></td>
+       <td><input type="submit"value="Search"></td>
+    </tr>
+    </table>
     </form>
      </div>
     </body>
-</html>
+    </html>

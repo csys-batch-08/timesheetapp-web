@@ -25,7 +25,7 @@ public class ShowAllUser extends HttpServlet {
 		AdminDAOimpl admindao = new AdminDAOimpl();
 		   List<AdminUser> userList = admindao.showalluser();
 		request.setAttribute("showallusers", userList);
-		RequestDispatcher rd=request.getRequestDispatcher("showalluser.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("showAllUser.jsp");
 		
 			rd.forward(request, response);
 		} catch (ServletException | IOException e) {

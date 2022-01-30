@@ -28,7 +28,7 @@ public class ShowUser extends HttpServlet {
 		   List<User> userList =userdao.showuser(username);
 		   request.setAttribute("showuser", userList);
 		   
-			RequestDispatcher rd=request.getRequestDispatcher("showuser.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("showUser.jsp");
 		    rd.forward(request, response);
 		    
 				} catch (ServletException | IOException e) {

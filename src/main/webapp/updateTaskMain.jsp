@@ -1,21 +1,23 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<title>Add Task to All Users</title>
+<title>Update Task</title>
 <style>
-     *
+ *
     {
     margin:0px;
     padding:0px;
-    }  
-      .a
+    }
+        .a
         {
             
             margin-left: 30px;
@@ -29,6 +31,7 @@
             background-size:cover;
         }
         h1{
+         text-align: center;
             margin:0px;
             padding: 20px;
             background-color: rgb(127, 202, 231);
@@ -96,56 +99,56 @@
         }
        
     </style>
-    
 </head>
 <body>
- 
-    <h1 align="center">TRACK YOUR TIME</h1>
+
+    <h1>TRACK YOUR TIME</h1>
     <nav>
         
-        <a class="a" href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
-        <a class="a" href="timesheetstatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
-        <a class="a" href="addtask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
+        <a class="a" href="adminIndex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a class="a" href="timesheetStatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
+        <a class="a" href="addTask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a class="a" href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a class="a" href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
-        <a class="a" href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
+        <a class="a" href="adminUser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a class="a" href="login.jsp"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
-    <div class="sidebar">
+    <div class="sidebar"> 
         <ul>
-        <li><a href="addtaskmain.jsp">Add Task</a><br><br></li>
-         <li><a href="Showalltask">View & Edit Task</a><br><br></li>
+        <li><a href="addTaskMain.jsp">Add Task</a><br><br></li>
+        <li><a href="Showalltask">View &amp; Edit Task</a><br><br></li>
         </ul>
     </div>
     <div class="box">
-        <form  action="addtaskalluser" method="post">
+        <form method="post" action="UpdateTask">
             <table>
-             <tr>
-       <th><label for="taskname">Enter Task Name</label></th>
-       <td><input type="text" name="taskname"  required></td>
+            <caption></caption>
+            <c:forEach items="${showTask}" var="showtask">
+            <tr>
+       <th id="tblhead"><label for="taskname">Enter Task Name</label></th>
+       <td><input type="text" name="taskname" value="${showtask.task}" readonly required></td>
+    </tr>
+           
+    <tr>
+       <th id="tblhead"> <label for="assigningdate">Enter Task Assigning Date</label></th>
+        <td><input type="date" name="assigningdate" value="${showtask.dateassigned}" required></td>
     </tr>
     <tr>
-       <th> <label for="assigningdate">Enter Task Assigning Date</label></th>
-        <td><input type="date" name="assigningdate" required></td>
-    </tr>
-    <tr>
-       <th><label for="endingdate">Enter Task Ending Date</label></th>
-       <td><input type="date" name="endingdate" required></td>
+       <th id="tblhead"><label for="endingdate">Enter Task Ending Date</label></th>
+       <td><input type="date" name="endingdate" value="${showtask.enddate}" required></td>
     </tr>
      <tr>
-       <th><label for="priority">Enter Task Priority</label></th>
-       <td><select  name="priority" required>
-       <option>Low</option>
-       <option>Medium</option>
-       <option>High</option>
-       </select>
-       </td>
+       <th id="tblhead"><label for="priority">Enter Task Priority</label></th>
+       <td><input type="text" name="priority" value="${showtask.taskpriority}" required></td>
     </tr>
+     <tr>
+       <th id="tblhead"><label for="assignedto">Task Assigned To</label></th>
+       <td><input type="email" name="username" value="${showtask.assignedto}" required></td>
+    </tr>
+    </c:forEach>
     </table><br><br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" class="btn btn-primary btn-sm" value="Submit">
-   &nbsp; &nbsp; <input type="reset" class="btn btn-primary btn-sm" value="Clear">
-    </form> 
-  
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+   <input type="submit" class="btn btn-primary btn-sm" value="Submit">     
+        </form> 
     </div>
-
 </body>
 </html>

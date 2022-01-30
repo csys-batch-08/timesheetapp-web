@@ -24,7 +24,7 @@ public class SearchTask extends HttpServlet {
 		TaskDAOimpl taskdao=new TaskDAOimpl();
 		List<Task> tasklist=taskdao.searchTask(task);
 		request.setAttribute("showTask", tasklist);
-		RequestDispatcher rd=request.getRequestDispatcher("UpdateTask1.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("updateTaskMain.jsp");
 			rd.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();

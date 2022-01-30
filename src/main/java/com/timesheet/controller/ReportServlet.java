@@ -31,7 +31,7 @@ public class ReportServlet extends HttpServlet {
 			List<Report> showReport=reportdao.findreport(timesheetdate, username);
 			request.setAttribute("report", showReport);
 			   
-			RequestDispatcher rd=request.getRequestDispatcher("Reportmain.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("reportMain.jsp");
 		    rd.forward(request, response);
 		    
 				} catch (ServletException | IOException e) {

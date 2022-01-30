@@ -25,7 +25,7 @@ public class Registerservlet extends HttpServlet {
 		User user=new User(firstname,lastname,username,password);
 		UserDAOimpl userdao=new UserDAOimpl();
 		userdao.insertUser(user);
-		RequestDispatcher reqdis=request.getRequestDispatcher("login.jsp");
+		RequestDispatcher reqdis=request.getRequestDispatcher("index.jsp");
 			reqdis.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();

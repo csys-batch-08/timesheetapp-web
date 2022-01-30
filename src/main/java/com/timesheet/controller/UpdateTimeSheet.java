@@ -40,14 +40,14 @@ public class UpdateTimeSheet extends HttpServlet {
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Timesheet updated Successfully');");
-			out.println("location='Updatetimesheet.jsp';");
+			out.println("location='updateTimesheet.jsp';");
 			out.println("</script>");
 		}
 		else
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Timesheet not updated');");
-			out.println("location='Updatetimesheet.jsp';");
+			out.println("location='updateTimesheet.jsp';");
 			out.println("</script>");
 		}
 		} catch (IOException | NumberFormatException e) {

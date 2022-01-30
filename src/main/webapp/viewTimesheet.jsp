@@ -4,16 +4,16 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<title>Users</title>
+<title>View Timesheet</title>
 <style>
-    *
+*
     {
     margin:0px;
     padding:0px;
@@ -37,6 +37,7 @@
             background-size:cover;
         }
         h1{
+        text-align: center;
             margin:0px;
             padding: 20px;
             background-color: rgb(127, 202, 231);
@@ -49,8 +50,7 @@
            float : right;
            margin-right: 20px;
        }
-    
-         table{
+        table{
           background-color:rgb(188, 210, 243);
       }
        thead{
@@ -60,7 +60,7 @@
       { color:honeydew;
 
       }
-        body
+      body
        {
           background-color:rgb(107, 173, 235);
        }
@@ -69,14 +69,13 @@
       width: 90%;
       padding:20px;
       margin-left:50px;
-     } 
-      
+     }
 </style>
 </head>
 <body>
-<h1 align="center">TRACK YOUR TIME</h1>
+<h1>TRACK YOUR TIME</h1>
     <nav>
-        <a href="index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a href="userIndex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
         <a href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
@@ -84,33 +83,26 @@
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
     <div class="center">
-    <h2><b>Rejected Timesheets</b></h2>
+<h2><strong>Timesheet List</strong></h2>
+	<h5>User name :${sessionScope.username}</h5>
 <table class="table table-hover table-striped">
-	
+<caption></caption>
 	<thead>
 	<tr>
-		<th>Timesheet Id</th>
-		<th>Task Name</th>
-		<th>Timesheet Date</th>
-		<th>Spending Hrs</th>
-		<th>Comments</th>
-		<th>Approved By</th>
-		<th>Status</th>
-		<th>Update Timesheet</th>
+		<th id="tblhead">User Id</th>
+		<th id="tblhead">Task Id</th>
+		<th id="tblhead">Spending Hrs</th>
+		<th id="tblhead">Timesheet Date</th>
 	</tr>
 	</thead>
 <tbody>
-<c:forEach items="${rejectedtimesheet}" var="reject">
+<c:forEach items="${showtimesheet}" var="timesheet">
 <tr>
-<td>${reject.timesheetid}</td>
-<td>${reject.task}</td>
-<td><fmt:parseDate value="${reject.timesheetdate}" pattern="yyyy-MM-dd" var="timesheetDate" type="date"/>
+<td>${timesheet.userid}</td>
+<td>${timesheet.taskid}</td>
+<td>${timesheet.spendtime}</td>
+<td><fmt:parseDate value="${timesheet.timesheetfordate}" pattern="yyyy-MM-dd" var="timesheetDate" type="date"/>
 <fmt:formatDate pattern="dd-MM-yyyy" value="${timesheetDate}"/></td>
-<td>${reject.spendtimehrs}</td>
-<td>${reject.comments}</td>
-<td>${reject.approvedby}</td>
-<td>${reject.status}</td>
-<td><a href="Updatetimesheet.jsp"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 </c:forEach>
 </tbody>

@@ -21,7 +21,7 @@ public class GetTimesheetId extends HttpServlet {
 		HttpSession session = request.getSession();
 		int timesheetid=Integer.parseInt(request.getParameter("timesheetid"));
 		 session.setAttribute("timesheetid",timesheetid);
-		   RequestDispatcher rd=request.getRequestDispatcher("updatestatus.jsp");
+		   RequestDispatcher rd=request.getRequestDispatcher("updateStatus.jsp");
 		    rd.forward(request, response);
 	}
 
