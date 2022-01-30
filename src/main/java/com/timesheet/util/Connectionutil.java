@@ -13,11 +13,9 @@ public class Connectionutil {
 		Connection con = null;
 
 		try {
-			String userName="system";
-			String password="oracle";
 			Class.forName("oracle.jdbc.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			con = DriverManager.getConnection(url,userName,password);
+			con = DriverManager.getConnection(url, "system", "oracle");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.getMessage();
 		} 
