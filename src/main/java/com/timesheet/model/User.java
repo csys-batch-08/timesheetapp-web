@@ -35,7 +35,6 @@ public void setPassword(String password) {
 
 public User() {
 	super();
-	// TODO Auto-generated constructor stub
 }
 public User(String firstname, String lastname, String username, String password) {
 	super();

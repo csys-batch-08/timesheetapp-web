@@ -1,27 +1,27 @@
 package com.timesheet.model;
 
 public class AdminUser {
-	private String firstname;
-	private String lastname;
-	private String username;
+	private String firstName;
+	private String lastName;
+	private String userName;
 	private String role;
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getRole() {
 		return role;
@@ -31,9 +31,9 @@ public class AdminUser {
 	}
 	public AdminUser(String firstname, String lastname, String username, String role) {
 		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.username = username;
+		this.firstName = firstname;
+		this.lastName = lastname;
+		this.userName = username;
 		this.role = role;
 	}
 	public AdminUser() {
@@ -42,7 +42,7 @@ public class AdminUser {
 	}
 	@Override
 	public String toString() {
-		return "AdminUser [firstname=" + firstname + ", lastname=" + lastname + ", username=" + username + ", role="
+		return "AdminUser [firstname=" + firstName + ", lastname=" + lastName + ", username=" + userName + ", role="
 				+ role + "]";
 	}
 }

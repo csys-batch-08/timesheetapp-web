@@ -35,8 +35,8 @@ public class AddTaskAllUsers extends HttpServlet {
 		int id=0;
 		boolean flag=false;
 		for (AdminUser viewUser: userList ) {
-		id=userdao.findUserId(viewUser.getUsername());
-		Task task=new Task(id,taskname,assdate,enddate,priority,viewUser.getUsername(),totalhrs);
+		id=userdao.findUserId(viewUser.getUserName());
+		Task task=new Task(id,taskname,assdate,enddate,priority,viewUser.getUserName(),totalhrs);
 	    flag=taskdao.insertTask(task);
 		}
 		if(flag)

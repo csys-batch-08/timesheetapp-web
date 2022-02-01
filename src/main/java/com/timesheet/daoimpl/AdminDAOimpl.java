@@ -3,10 +3,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.timesheet.dao.AdminDAO;
 import com.timesheet.model.AdminUser;
 import com.timesheet.model.User;
@@ -16,18 +14,20 @@ public class AdminDAOimpl implements AdminDAO
 {
 	public User validateAdmin(String username,String password)
 	{
-		String checkquery="select first_name,last_name,user_name,password from user_details where role='ADMIN'and user_name='"+username+"'and password='"+password+"'";
+		String checkquery="select first_name,last_name,user_name,password from user_details where role='ADMIN'and user_name=? and password=?";
 		Connection con=null;
 		 User user=null;
-		 Statement statement=null;
+		 PreparedStatement preparestatement=null;
 		 ResultSet resultset=null;
 		try {
 			con=Connectionutil.getDbConnection();
-			 statement=con.createStatement();
-			resultset=statement.executeQuery(checkquery);
+			 preparestatement=con.prepareStatement(checkquery);
+			 preparestatement.setString(1,username);
+			 preparestatement.setString(2,password);
+			resultset=preparestatement.executeQuery();
 			if(resultset.next())
 			{
-				user=new User(resultset.getString(1),resultset.getString(2), username,password);
+				user=new User(resultset.getString("First_name"),resultset.getString("Last_name"),resultset.getString("User_name"),resultset.getString("Password"));
 			}
 			
 		} catch (SQLException e) {
@@ -36,27 +36,7 @@ public class AdminDAOimpl implements AdminDAO
 		}
 		finally
 		{
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		
 	return user;
@@ -76,7 +56,7 @@ public class AdminDAOimpl implements AdminDAO
 			resultset=preparestatement.executeQuery();
 		while(resultset.next())
 		{
-			AdminUser user=new AdminUser(resultset.getString(1),resultset.getString(2),resultset.getString(3),resultset.getString(4));
+			AdminUser user=new AdminUser(resultset.getString("First_Name"),resultset.getString("Last_Name"),resultset.getString("User_Name"),resultset.getString("Role"));
 			userlist.add(user);
 		}
 		}
@@ -86,27 +66,7 @@ public class AdminDAOimpl implements AdminDAO
 		}
 		finally
 		{
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		
 		return userlist;
@@ -126,7 +86,7 @@ public class AdminDAOimpl implements AdminDAO
 			resultset=preparestatement.executeQuery();
 		while(resultset.next())
 		{
-			AdminUser user=new AdminUser(resultset.getString(1),resultset.getString(2),resultset.getString(3),resultset.getString(4));
+			AdminUser user=new AdminUser(resultset.getString("first_name"),resultset.getString("last_name"),resultset.getString("user_name"),resultset.getString("role"));
 			userlist.add(user);
 		}
 		}
@@ -136,27 +96,7 @@ public class AdminDAOimpl implements AdminDAO
 		}
 		finally
 		{
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return userlist;
 		
@@ -185,20 +125,7 @@ public class AdminDAOimpl implements AdminDAO
 		}
 		finally
 		{
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
 		
 		return flag;

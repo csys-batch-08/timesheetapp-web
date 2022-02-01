@@ -100,11 +100,11 @@
 <tbody>
  <c:forEach items="${showallusers}" var="viewUser">
 <tr>
-<td>${viewUser.firstname}</td>
-<td>${viewUser.lastname}</td>
-<td>${viewUser.username}</td>
+<td>${viewUser.firstName}</td>
+<td>${viewUser.lastName}</td>
+<td>${viewUser.userName}</td>
 <td>${viewUser.role}</td>
-<td><a href="AdminUserUpdate?username=${viewUser.username}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
+<td><a href="AdminUserUpdate?username=${viewUser.userName}"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 </c:forEach>
 </tbody>
