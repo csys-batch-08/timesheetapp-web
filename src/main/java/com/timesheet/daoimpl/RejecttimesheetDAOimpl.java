@@ -15,7 +15,7 @@ public class RejecttimesheetDAOimpl implements RejecttimesheetDAO
 	public List<Rejecttimesheet> showRejecttimesheet(String username)
 	 {
 		List<Rejecttimesheet> statuslist =new ArrayList<>();
-		String selectquery="select td.task_name,s.timesheet_id,ts.timesheet_for_date,ts.spend_time_hrs,ts.comments,s.status,s.approved_by from (status s inner join timesheets ts on s.timesheet_id=ts.timesheet_id inner join task_details td on td.task_id=ts.task_id) where status='Rejected' and td.assigned_to='"+username+"'";
+		String selectquery="select td.task_name,s.timesheet_id,ts.timesheet_for_date,ts.spend_time_hrs,ts.comments,s.status,s.approved_by from (status s inner join timesheets ts on s.timesheet_id=ts.timesheet_id inner join task_details td on td.task_id=ts.task_id) where s.status='Rejected'and ts.timesheet_status='Active' and td.assigned_to=?";
 		Connection con=null;
 		PreparedStatement preparestatement=null;
 		ResultSet resultset=null;
@@ -23,6 +23,7 @@ public class RejecttimesheetDAOimpl implements RejecttimesheetDAO
 		{
 			con=Connectionutil.getDbConnection();
 			preparestatement=con.prepareStatement(selectquery);	
+			preparestatement.setString(1,username);
 			resultset=preparestatement.executeQuery();
 		while(resultset.next())
 		{

@@ -20,9 +20,7 @@ public class Addtask extends HttpServlet {
     }
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response){
-		try {
-		PrintWriter out;
-			out = response.getWriter();
+		try(PrintWriter out = response.getWriter()) {
 		String taskname=request.getParameter("taskname");
 		String assigningdate=request.getParameter("assigningdate");
 		LocalDate assdate=LocalDate.parse(assigningdate);
