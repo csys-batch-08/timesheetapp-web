@@ -17,11 +17,6 @@ import com.timesheet.model.Rejecttimesheet;
 @WebServlet("/RejectedTimesheet")
 public class RejectedTimesheet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public RejectedTimesheet() {
-        super();
- 
-    }
-
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response){
 		try {

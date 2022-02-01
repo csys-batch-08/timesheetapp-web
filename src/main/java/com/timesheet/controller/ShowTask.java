@@ -17,10 +17,6 @@ import com.timesheet.model.Task;
 @WebServlet("/ShowTask")
 public class ShowTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ShowTask() {
-        super();
-    }
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try{

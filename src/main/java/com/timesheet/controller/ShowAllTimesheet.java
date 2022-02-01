@@ -15,12 +15,6 @@ import com.timesheet.model.ViewTimesheets;
 @WebServlet("/ShowAllTimesheet")
 public class ShowAllTimesheet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public ShowAllTimesheet() {
-        super();
-    }
-
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {

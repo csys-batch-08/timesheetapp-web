@@ -18,12 +18,9 @@ import com.timesheet.model.Task;
 
 public class AddTaskAllUsers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public AddTaskAllUsers() {
-        super();
-    }
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-		try {
+		try(PrintWriter out = response.getWriter()) {
 		String taskname=request.getParameter("taskname");
 		String assigningdate=request.getParameter("assigningdate");
 		LocalDate assdate=LocalDate.parse(assigningdate);
@@ -42,8 +39,6 @@ public class AddTaskAllUsers extends HttpServlet {
 		Task task=new Task(id,taskname,assdate,enddate,priority,viewUser.getUsername(),totalhrs);
 	    flag=taskdao.insertTask(task);
 		}
-		PrintWriter out;
-			out = response.getWriter();
 		if(flag)
 		{
 			out.println("<script type=\"text/javascript\">");

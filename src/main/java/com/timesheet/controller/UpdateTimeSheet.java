@@ -18,7 +18,7 @@ public class UpdateTimeSheet extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest request,HttpServletResponse response) {
-		try {
+		try(PrintWriter out = response.getWriter()){
 		String timedate=request.getParameter("timesheetdate");
 		LocalDate timesheetdate=LocalDate.parse(timedate);
 		int userid=Integer.parseInt(request.getParameter("userid"));
@@ -34,8 +34,6 @@ public class UpdateTimeSheet extends HttpServlet {
 		TaskDAOimpl taskdao=new TaskDAOimpl();
 		taskdao.updatehrs(hours, userid,taskId);
 		boolean flag=timesheetdao.updateTimesheet(timesheet);
-		PrintWriter out;
-			out = response.getWriter();
 		if(flag)
 		{
 			out.println("<script type=\"text/javascript\">");

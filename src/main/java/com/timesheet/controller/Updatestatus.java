@@ -12,19 +12,14 @@ import com.timesheet.model.Status;
 
 public class Updatestatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public Updatestatus() {
-        super(); 
-    }
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {	
-		try {
+		try(PrintWriter out = response.getWriter()) {
 		int timesheetid=Integer.parseInt(request.getParameter("timesheetid"));
 		String status=request.getParameter("status");
 		StatusDAOimpl statusdao=new StatusDAOimpl();
 		Status statusobj=new Status(0,timesheetid,status,null);
 		boolean flag=statusdao.updateStatus(statusobj);
-		PrintWriter out;
-			out = response.getWriter();
 		if(flag)
 		{
 			out.println("<script type=\"text/javascript\">");

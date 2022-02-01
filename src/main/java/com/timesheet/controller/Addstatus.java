@@ -15,13 +15,9 @@ import com.timesheet.model.Status;
 
 public class Addstatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public Addstatus() {
-        super(); 
-    }
-	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-	try {
+	try(PrintWriter out = response.getWriter()) {
 	  StatusDAOimpl statusdao=new StatusDAOimpl();
 	  TimesheetDAOimpl timesheetdao=new TimesheetDAOimpl();
 	  UserDAOimpl userdao=new UserDAOimpl();
@@ -34,8 +30,6 @@ public class Addstatus extends HttpServlet {
       int id1=timesheetdao.findTimesheetId(timesheetdate,id);
 		Status statusobj=new Status(id,id1,status,approvedby);
 		boolean flag=statusdao.insertStatus(statusobj);
-		PrintWriter out;
-			out = response.getWriter();
 		if(flag)
 		{
 			out.println("<script type=\"text/javascript\">");

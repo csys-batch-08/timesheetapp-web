@@ -17,10 +17,6 @@ import com.timesheet.model.User;
 
 public class Loginservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-    public Loginservlet() {
-        super();
-    }
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

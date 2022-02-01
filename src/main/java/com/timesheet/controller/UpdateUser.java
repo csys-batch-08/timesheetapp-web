@@ -13,22 +13,15 @@ import com.timesheet.model.User;
 
 public class UpdateUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public UpdateUser() {
-        super();
-    }
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-		try {
+		try(PrintWriter out = response.getWriter()) {
 		String firstname=request.getParameter("firstname");
 		String lastname=request.getParameter("lastname");
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
 		UserDAOimpl userdao=new UserDAOimpl();
 		User user=new User(firstname,lastname,username,password);
-		PrintWriter out;
-			out = response.getWriter();
 		boolean flag=userdao.updateUser(user);
 		if(flag)
 		{

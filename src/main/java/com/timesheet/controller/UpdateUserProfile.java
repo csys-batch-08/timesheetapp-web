@@ -13,9 +13,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/UpdateUserProfile")
 public class UpdateUserProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public UpdateUserProfile() {
-        super();
-    }
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{

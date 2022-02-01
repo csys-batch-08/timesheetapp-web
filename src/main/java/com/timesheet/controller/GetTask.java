@@ -13,9 +13,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/GetTask")
 public class GetTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public GetTask() {
-        super();
-    }
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();

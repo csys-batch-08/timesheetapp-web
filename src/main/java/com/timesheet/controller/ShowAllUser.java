@@ -16,9 +16,6 @@ import com.timesheet.model.AdminUser;
 @WebServlet("/ShowAllUser")
 public class ShowAllUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public ShowAllUser() {
-        super();
-    }
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {

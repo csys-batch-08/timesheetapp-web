@@ -11,20 +11,13 @@ import com.timesheet.daoimpl.AdminDAOimpl;
 
 public class UpdateUserAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public UpdateUserAdmin() {
-        super();
-        
-    }
-	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response){
-		try {
+		try(PrintWriter out = response.getWriter()) {
 		String username=request.getParameter("username");
 		String role=request.getParameter("role");
 		AdminDAOimpl admindao=new AdminDAOimpl();
 		boolean flag=admindao.removeUser(username, role);
-		PrintWriter out;
-			out = response.getWriter();
 		if(flag)
 		{
 			out.println("<script type=\"text/javascript\">");

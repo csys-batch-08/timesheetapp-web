@@ -17,9 +17,6 @@ import com.timesheet.model.ViewTimesheets;
 @WebServlet("/ShowUserStatus")
 public class ShowUserStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public ShowUserStatus() {
-        super();
-    }
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {

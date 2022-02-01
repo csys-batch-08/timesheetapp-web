@@ -14,9 +14,6 @@ import com.timesheet.model.Status;
 @WebServlet("/SearchStatus")
 public class SearchStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public SearchStatus() {
-        super();
-    }
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {

@@ -15,9 +15,6 @@ import com.timesheet.model.Task;
 
 public class Addtask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public Addtask() {
-        super();
-    }
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		try(PrintWriter out = response.getWriter()) {

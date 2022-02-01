@@ -15,12 +15,6 @@ import com.timesheet.daoimpl.UserDAOimpl;
 @WebServlet("/TimesheetMain")
 public class TimesheetMain extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-    public TimesheetMain() {
-        super();
-    }
-
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();

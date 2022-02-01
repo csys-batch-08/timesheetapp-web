@@ -14,9 +14,6 @@ import com.timesheet.model.Task;
 @WebServlet("/SearchTask")
 public class SearchTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public SearchTask() {
-        super();
-    }
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response){
 		 try {
@@ -29,7 +26,5 @@ public class SearchTask extends HttpServlet {
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

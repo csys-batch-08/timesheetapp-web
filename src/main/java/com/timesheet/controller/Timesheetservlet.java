@@ -19,7 +19,7 @@ public class Timesheetservlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-		try {
+		try(PrintWriter out = response.getWriter()) {
 		TimesheetDAOimpl timesheetdao = new TimesheetDAOimpl();
 		int id = Integer.parseInt(request.getParameter("userid"));
 		String timedate = request.getParameter("timesheetdate");
@@ -31,8 +31,6 @@ public class Timesheetservlet extends HttpServlet {
 		String comments = request.getParameter("comments");
 		int hours = taskdao.getTotalhrs(id, taskname);
 		int result = 0;
-		PrintWriter out;
-			out = response.getWriter();
 		if (hours > spendinghrs) {
 			Timesheet timesheet = new Timesheet(id, id1, spendinghrs, comments, timesheetdate);
 			boolean flag1 = timesheetdao.checkDate(id, timesheetdate);

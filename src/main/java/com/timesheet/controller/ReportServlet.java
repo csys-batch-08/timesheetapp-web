@@ -16,10 +16,6 @@ import com.timesheet.model.Report;
 @WebServlet("/Report")
 public class ReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
-    public ReportServlet() {
-        super();
-    }
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try{

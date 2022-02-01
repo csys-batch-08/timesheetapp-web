@@ -18,11 +18,6 @@ import com.timesheet.model.Timesheet;
 @WebServlet("/ViewTimesheet")
 public class ViewTimesheet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ViewTimesheet() {
-        super();
-    }
-	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {
