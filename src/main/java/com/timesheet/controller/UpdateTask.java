@@ -19,7 +19,6 @@ public class UpdateTask extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response){
-		try(PrintWriter out = response.getWriter()) {
 		String taskname=request.getParameter("taskname");
 		String assigningdate=request.getParameter("assigningdate");
 		LocalDate assdate=LocalDate.parse(assigningdate);
@@ -31,9 +30,9 @@ public class UpdateTask extends HttpServlet {
 		UserDAOimpl userdao=new UserDAOimpl();
 		TaskDAOimpl taskdao=new TaskDAOimpl();
 		int id=userdao.findUserId(username);
-
 		Task task=new Task(id,taskname,assdate,enddate,priority,username,totalhrs);
 		boolean flag=taskdao.updateTask(task);
+		try(PrintWriter out = response.getWriter()) {
 		if(flag)
 		{
 			out.println("<script type=\"text/javascript\">");

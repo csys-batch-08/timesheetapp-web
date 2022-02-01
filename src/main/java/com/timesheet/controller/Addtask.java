@@ -17,7 +17,6 @@ public class Addtask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response){
-		try(PrintWriter out = response.getWriter()) {
 		String taskname=request.getParameter("taskname");
 		String assigningdate=request.getParameter("assigningdate");
 		LocalDate assdate=LocalDate.parse(assigningdate);
@@ -31,6 +30,7 @@ public class Addtask extends HttpServlet {
 		int id=userdao.findUserId(username);
 		Task task=new Task(id,taskname,assdate,enddate,priority,username,totalhrs);
 		boolean flag1=taskdao.validateTask(taskname, username);
+		try(PrintWriter out = response.getWriter()) {
 		if(!flag1)
 		{
 		boolean flag=taskdao.insertTask(task);
