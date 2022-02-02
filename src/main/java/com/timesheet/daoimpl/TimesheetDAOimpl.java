@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +38,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		return flag;
 	}
 
-	public boolean updateTimesheet(Timesheet timesheet) {
+	public boolean updateTimesheet(Timesheet timeheets) {
 		boolean flag = false;
 		String updatequery = "update timesheets set user_id=?,spend_time_hrs=?,comments=? where timesheet_for_date=?";
 		Connection con = null;
@@ -47,10 +46,10 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(updatequery);
-			preparestatement.setInt(1, timesheet.getUserid());
-			preparestatement.setInt(2, timesheet.getSpendtime());
-			preparestatement.setString(3, timesheet.getComments());
-			preparestatement.setDate(4, java.sql.Date.valueOf(timesheet.getTimesheetfordate()));
+			preparestatement.setInt(1, timeheets.getUserid());
+			preparestatement.setInt(2, timeheets.getSpendtime());
+			preparestatement.setString(3, timeheets.getComments());
+			preparestatement.setDate(4, java.sql.Date.valueOf(timeheets.getTimesheetfordate()));
 			if (preparestatement.executeUpdate() > 0) {
 				flag = true;
 			}
