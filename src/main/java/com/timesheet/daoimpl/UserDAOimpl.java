@@ -33,64 +33,32 @@ public class UserDAOimpl implements UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
 		return flag;
 	}
 
 	public User validateUser(String username, String password) {
-		String validatequery = "select first_name,last_name,user_name,password from user_details where role='TEAM MEMBER'and user_name='"
-				+ username + "'and password='" + password + "'";
+		String validatequery = "select first_name,last_name,user_name,password from user_details where role='TEAM MEMBER'and user_name=? and password=?";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
 		User user = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset = statement.executeQuery(validatequery);
+			preparestatement = con.prepareStatement(validatequery);
+			preparestatement.setString(1, username);
+			preparestatement.setString(2, password);
+			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
-				user = new User(resultset.getString(1), resultset.getString(2), username, password);
+				user = new User(resultset.getString("first_name"), resultset.getString("last_name"), resultset.getString("user_name"), resultset.getString("password"));
 			}
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return user;
 
@@ -114,108 +82,55 @@ public class UserDAOimpl implements UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
 		return flag;
 	}
 
 	public List<User> showuser(String username) {
 		List<User> userlist = new ArrayList<>();
-		String selectquery = "select first_name,last_name,user_name,password from user_details where user_name='"
-				+ username + "'";
-
+		String selectquery = "select first_name,last_name,user_name,password from user_details where user_name=?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectquery);
+			preparestatement.setString(1, username);
 			resultset = preparestatement.executeQuery();
-			while (resultset.next()) {
-				User user = new User(resultset.getString(1), resultset.getString(2), resultset.getString(3),
-						resultset.getString(4));
+			if (resultset.next()) {
+				User user = new User(resultset.getString("first_name"), resultset.getString("last_name"), resultset.getString("user_name"),
+						resultset.getString("password"));
 				userlist.add(user);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return userlist;
 
 	}
 
 	public int findUserId(String username) {
-		String findUser = "select user_id from user_details where user_name= '" + username + "'";
+		String findUser = "select user_id from user_details where user_name=?";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
 		int userId = 0;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset = statement.executeQuery(findUser);
+			preparestatement = con.prepareStatement(findUser);
+			preparestatement.setString(1, username);
+			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
-				userId = resultset.getInt(1);
+				userId = resultset.getInt("user_id");
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return userId;
 	}

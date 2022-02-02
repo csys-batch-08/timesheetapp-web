@@ -34,20 +34,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
 		return flag;
 	}
@@ -55,7 +42,6 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 	public boolean updateTimesheet(Timesheet timesheet) {
 		boolean flag = false;
 		String updatequery = "update timesheets set user_id=?,spend_time_hrs=?,comments=? where timesheet_for_date=?";
-
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		try {
@@ -71,151 +57,79 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
 		return flag;
 	}
 
 	public boolean checkDate(int userid, LocalDate timesheetdate) {
-		String query = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where user_id='"
-				+ userid + "' and to_char(Timesheet_for_date,'yyyy-MM-dd')='" + timesheetdate + "'";
+		String checkDateQuery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where user_id=? and Timesheet_for_date=?";
 		Connection con = null;
 		boolean flag = true;
-		Statement statement = null;
+		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset = statement.executeQuery(query);
+			preparestatement = con.prepareStatement(checkDateQuery);
+			preparestatement.setInt(1, userid);
+			preparestatement.setDate(2, java.sql.Date.valueOf(timesheetdate));
+			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
-				Timesheet timesheet = new Timesheet(resultset.getInt(1), resultset.getInt(2), resultset.getInt(3),
-						resultset.getString(4), resultset.getDate(5).toLocalDate());
+				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"), resultset.getInt("spend_time_hrs"),
+						resultset.getString("comments"), resultset.getDate("timesheet_for_date").toLocalDate());
 			} else {
 				flag = false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return flag;
 	}
 
 	public List<Timesheet> showTimesheet(int userid) {
 		List<Timesheet> timesheetlist = new ArrayList<>();
-		String selectquery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where user_id='"
-				+ userid + "'";
+		String selectquery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where user_id=?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectquery);
+			preparestatement.setInt(1, userid);
 			resultset = preparestatement.executeQuery();
 			while (resultset.next()) {
-				Timesheet timesheet = new Timesheet(resultset.getInt(1), resultset.getInt(2), resultset.getInt(3),
-						resultset.getString(4), resultset.getDate(5).toLocalDate());
+				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"), resultset.getInt("spend_time_hrs"),
+						resultset.getString("comments"), resultset.getDate("timesheet_for_date").toLocalDate());
 				timesheetlist.add(timesheet);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return timesheetlist;
 	}
 
 	public int getSpendhrs(LocalDate timesheetdate) {
 		Connection con = null;
-		String query = "select spend_time_hrs from timesheets where timesheet_for_date=?";
+		String getHrsQuery = "select spend_time_hrs from timesheets where timesheet_for_date=?";
 		int result = 0;
 		ResultSet resultset = null;
 		PreparedStatement preparestatement = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			preparestatement = con.prepareStatement(query);
+			preparestatement = con.prepareStatement(getHrsQuery);
 			preparestatement.setDate(1, java.sql.Date.valueOf(timesheetdate));
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
-				result = resultset.getInt(1);
+				result = resultset.getInt("spend_time_hrs");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return result;
 	}
@@ -258,118 +172,59 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 			preparestatement.setInt(2, userid);
 			resultset = preparestatement.executeQuery();
 			while (resultset.next()) {
-				Timesheet timesheet = new Timesheet(resultset.getInt(1), resultset.getInt(2), resultset.getInt(3),
-						resultset.getString(4), resultset.getDate(5).toLocalDate());
+				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"), resultset.getInt("spend_time_hrs"),
+						resultset.getString("comments"), resultset.getDate("timesheet_for_date").toLocalDate());
 				timesheets.add(timesheet);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return timesheets;
 	}
 
 	public int findTimesheetId(LocalDate timesheetfordate, int userid) {
-		String findUser = "select timesheet_id from timesheets where to_char(timesheet_for_date,'yyyy-MM-dd')='"
-				+ timesheetfordate + "' and user_id='" + userid + "'";
+		String findUser = "select timesheet_id from timesheets where timesheet_for_date=? and user_id=?";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
 		int timesheetId = 0;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset = statement.executeQuery(findUser);
+			preparestatement = con.prepareStatement(findUser);
+			preparestatement.setDate(1, java.sql.Date.valueOf(timesheetfordate));
+			preparestatement.setInt(2, userid);
+			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
-				timesheetId = resultset.getInt(1);
+				timesheetId = resultset.getInt("timesheet_id");
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return timesheetId;
 	}
 
 	public String getDate() {
-		String query = "select to_char(sysdate,'yyyy-MM-dd') from dual";
+		String getDateQuery = "select to_char(sysdate,'yyyy-MM-dd') from dual";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
 		String date = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset = statement.executeQuery(query);
+			preparestatement = con.prepareStatement(getDateQuery);
+			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
-				date = resultset.getString(1);
+				date = resultset.getString("to_char(sysdate,'yyyy-MM-dd')");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return date;
 

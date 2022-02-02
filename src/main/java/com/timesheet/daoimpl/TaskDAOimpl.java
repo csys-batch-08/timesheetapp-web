@@ -34,20 +34,7 @@ public class TaskDAOimpl implements TaskDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
 		return flag;
 	}
@@ -74,20 +61,7 @@ public class TaskDAOimpl implements TaskDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
 		return flag;
 	}
@@ -103,80 +77,42 @@ public class TaskDAOimpl implements TaskDAO {
 			preparestatement = con.prepareStatement(selectquery);
 			resultset = preparestatement.executeQuery();
 			while (resultset.next()) {
-				Task task = new Task(resultset.getInt(1), resultset.getString(2), resultset.getDate(3).toLocalDate(),
-						resultset.getDate(4).toLocalDate(), resultset.getString(5), resultset.getString(6),
-						resultset.getLong(7));
+				Task task = new Task(resultset.getInt("user_id"), resultset.getString("task_name"),
+						resultset.getDate("assigned_to_date").toLocalDate(),
+						resultset.getDate("end_date").toLocalDate(), resultset.getString("task_priority"),
+						resultset.getString("assigned_to"), resultset.getLong("total_hours"));
 				tasklist.add(task);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return tasklist;
 	}
 
 	public List<Task> showTask(String username) {
 		List<Task> tasklist = new ArrayList<>();
-		String selectquery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where assigned_to='"
-				+ username + "' and total_hours>0";
+		String selectquery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where assigned_to=? and total_hours>0";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectquery);
+			preparestatement.setString(1, username);
 			resultset = preparestatement.executeQuery();
 			while (resultset.next()) {
-				Task task = new Task(resultset.getInt(1), resultset.getString(2), resultset.getDate(3).toLocalDate(),
-						resultset.getDate(4).toLocalDate(), resultset.getString(5), resultset.getString(6),
-						resultset.getLong(7));
+				Task task = new Task(resultset.getInt("user_id"), resultset.getString("task_name"),
+						resultset.getDate("assigned_to_date").toLocalDate(),
+						resultset.getDate("end_date").toLocalDate(), resultset.getString("task_priority"),
+						resultset.getString("assigned_to"), resultset.getLong("total_hours"));
 				tasklist.add(task);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return tasklist;
 	}
@@ -193,49 +129,31 @@ public class TaskDAOimpl implements TaskDAO {
 			preparestatement.setString(1, taskname);
 			resultset = preparestatement.executeQuery();
 			while (resultset.next()) {
-				Task task = new Task(resultset.getInt(1), resultset.getString(2), resultset.getDate(3).toLocalDate(),
-						resultset.getDate(4).toLocalDate(), resultset.getString(5), resultset.getString(6),
-						resultset.getLong(7));
+				Task task = new Task(resultset.getInt("user_id"), resultset.getString("task_name"),
+						resultset.getDate("assigned_to_date").toLocalDate(),
+						resultset.getDate("end_date").toLocalDate(), resultset.getString("task_priority"),
+						resultset.getString("assigned_to"), resultset.getLong("total_hours"));
 				tasklist.add(task);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return tasklist;
 	}
 
 	public int findtaskId(String task) {
-		String findtask = "select task_id from task_details where task_name= '" + task + "'";
+		String findtask = "select task_id from task_details where task_name=?";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
 		int taskId = 0;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset = statement.executeQuery(findtask);
+			preparestatement = con.prepareStatement(findtask);
+			preparestatement.setString(1, task);
+			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
 				taskId = resultset.getInt(1);
 			}
@@ -243,86 +161,48 @@ public class TaskDAOimpl implements TaskDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return taskId;
 	}
 
 	public boolean validateTask(String taskname, String username) {
-		String query = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where Assigned_to='"
-				+ username + "' and task_name='" + taskname + "'";
+		String selectQuery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where Assigned_to=? and task_name=?";
 		Connection con = null;
 		boolean flag = true;
 		ResultSet resultset = null;
-		Statement statement = null;
+		PreparedStatement preparestatement = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			statement = con.createStatement();
-			resultset = statement.executeQuery(query);
+			preparestatement = con.prepareStatement(selectQuery);
+			preparestatement.setString(1, username);
+			preparestatement.setString(2, taskname);
+			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
-				Task task = new Task(resultset.getInt(1), resultset.getString(2), resultset.getDate(3).toLocalDate(),
-						resultset.getDate(4).toLocalDate(), resultset.getString(5), resultset.getString(6),
-						resultset.getLong(7));
+				Task task = new Task(resultset.getInt("user_id"), resultset.getString("task_name"),
+						resultset.getDate("assigned_to_date").toLocalDate(),
+						resultset.getDate("end_date").toLocalDate(), resultset.getString("task_priority"),
+						resultset.getString("assigned_to"), resultset.getLong("total_hours"));
 			} else {
 				flag = false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return flag;
 	}
 
 	public int getTotalhrs(int userid, String taskname) {
 		Connection con = null;
-		String query = "select total_hours from task_details where task_name=? and user_id=?";
+		String selectstatement = "select total_hours from task_details where task_name=? and user_id=?";
 		int result = 0;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
 		try {
 			con = Connectionutil.getDbConnection();
-			preparestatement = con.prepareStatement(query);
+			preparestatement = con.prepareStatement(selectstatement);
 			preparestatement.setString(1, taskname);
 			preparestatement.setInt(2, userid);
 			resultset = preparestatement.executeQuery();
@@ -332,39 +212,19 @@ public class TaskDAOimpl implements TaskDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return result;
 	}
 
 	public int updatehrs(int spendhrs, int userid, int taskId) {
 		Connection con = null;
-		String query = "update task_details set total_hours =total_hours-? where task_id=? and user_id=?";
+		String selectquery = "update task_details set total_hours =total_hours-? where task_id=? and user_id=?";
 		PreparedStatement preparestatement = null;
 		int result = 0;
 		try {
 			con = Connectionutil.getDbConnection();
-			preparestatement = con.prepareStatement(query);
+			preparestatement = con.prepareStatement(selectquery);
 			preparestatement.setInt(1, spendhrs);
 			preparestatement.setInt(2, taskId);
 			preparestatement.setInt(3, userid);
@@ -373,20 +233,7 @@ public class TaskDAOimpl implements TaskDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
 		return result;
 	}
