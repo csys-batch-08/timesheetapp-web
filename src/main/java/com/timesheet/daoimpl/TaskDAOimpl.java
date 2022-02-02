@@ -91,7 +91,7 @@ public class TaskDAOimpl implements TaskDAO {
 		return tasklist;
 	}
 
-	public List<Task> showTask(String username) {
+	public List<Task> showTask(String userName) {
 		List<Task> tasklist = new ArrayList<>();
 		String selectquery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where assigned_to=? and total_hours>0";
 		Connection con = null;
@@ -100,7 +100,7 @@ public class TaskDAOimpl implements TaskDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectquery);
-			preparestatement.setString(1, username);
+			preparestatement.setString(1, userName);
 			resultset = preparestatement.executeQuery();
 			while (resultset.next()) {
 				Task task = new Task(resultset.getInt("user_id"), resultset.getString("task_name"),
