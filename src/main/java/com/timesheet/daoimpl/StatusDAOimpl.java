@@ -37,20 +37,7 @@ public class StatusDAOimpl implements StatusDAO
 			}
 			finally
 			{
-				if (preparestatement != null) {
-					try {
-						preparestatement.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				if (con != null) {
-					try {
-						con.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
+				Connectionutil.closePreparedstatement(con, preparestatement);
 			}
 			return flag;
 	 }
@@ -77,20 +64,7 @@ public class StatusDAOimpl implements StatusDAO
 			}
 			finally
 			{
-				if (preparestatement != null) {
-					try {
-						preparestatement.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				if (con != null) {
-					try {
-						con.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
+				Connectionutil.closePreparedstatement(con, preparestatement);	
 			}
 			return flag;
     }
@@ -107,9 +81,9 @@ public class StatusDAOimpl implements StatusDAO
 			preparestatement=con.prepareStatement(selectquery);	
 			preparestatement.setInt(1,timesheetid);
 			resultset=preparestatement.executeQuery();
-		while(resultset.next())
+		if(resultset.next())
 		{
-			Status status=new Status(resultset.getInt(1),resultset.getInt(2),resultset.getString(3),resultset.getString(4));
+			Status status=new Status(resultset.getInt("user_id"),resultset.getInt("timesheet_id"),resultset.getString("status"),resultset.getString("approved_by"));
 			statuslist.add(status);
 		}
 		}
@@ -119,33 +93,13 @@ public class StatusDAOimpl implements StatusDAO
 		}
 		finally
 		{
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return statuslist; 
 	 }
 	 public List<Status> showallStatus()
 	 {
-		List<Status> statuslist =new ArrayList<>();
+		List<Status> statusList =new ArrayList<>();
 		String selectquery="select user_id,timesheet_id,status,approved_by from status";
 		Connection con=null;
 		PreparedStatement preparestatement=null;
@@ -157,8 +111,8 @@ public class StatusDAOimpl implements StatusDAO
 			resultset=preparestatement.executeQuery();
 		while(resultset.next())
 		{
-			Status status=new Status(resultset.getInt(1),resultset.getInt(2),resultset.getString(3),resultset.getString(4));
-			statuslist.add(status);
+			Status status1=new Status(resultset.getInt("user_id"),resultset.getInt("timesheet_id"),resultset.getString("status"),resultset.getString("approved_by"));
+			statusList.add(status1);
 		}
 		}
 		catch(SQLException e)
@@ -167,29 +121,9 @@ public class StatusDAOimpl implements StatusDAO
 		}
 		finally
 		{
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
-		return statuslist; 
+		return statusList; 
 	 }
 
 }

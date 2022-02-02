@@ -27,7 +27,7 @@ public class RejecttimesheetDAOimpl implements RejecttimesheetDAO
 			resultset=preparestatement.executeQuery();
 		while(resultset.next())
 		{
-			Rejecttimesheet rejectTimesheet=new Rejecttimesheet(resultset.getString(1),resultset.getInt(2),resultset.getDate(3),resultset.getInt(4),resultset.getString(5),resultset.getString(7),resultset.getString(6));
+			Rejecttimesheet rejectTimesheet=new Rejecttimesheet(resultset.getString("task_name"),resultset.getInt("timesheet_id"),resultset.getDate("timesheet_for_date"),resultset.getInt("spend_time_hrs"),resultset.getString("comments"),resultset.getString("approved_by"),resultset.getString("status"));
 			statuslist.add(rejectTimesheet);
 		}
 		}
@@ -37,27 +37,7 @@ public class RejecttimesheetDAOimpl implements RejecttimesheetDAO
 		}
 		finally
 		{
-			if (resultset != null) {
-				try {
-					resultset.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparestatement != null) {
-				try {
-					preparestatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		return statuslist; 
 	 }
