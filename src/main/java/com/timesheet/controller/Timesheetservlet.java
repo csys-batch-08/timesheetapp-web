@@ -22,7 +22,7 @@ public class Timesheetservlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-		try {
+		try (PrintWriter out = response.getWriter()) {
 			TimesheetDAOimpl timesheetdao = new TimesheetDAOimpl();
 			int id = Integer.parseInt(request.getParameter("userid"));
 			String timedate = request.getParameter("timesheetdate");
@@ -43,20 +43,17 @@ public class Timesheetservlet extends HttpServlet {
 
 						boolean flag = timesheetdao.insertTimesheet(timesheet);
 						if (flag) {
-							PrintWriter out = response.getWriter();
 							out.println(SCRIPT);
 							out.println("alert('Timesheet Added Successfully');");
 							out.println(LOCATION);
 							out.println(SCRIPTEND);
 						} else {
-							PrintWriter out = response.getWriter();
 							out.println(SCRIPT);
 							out.println("alert('Timesheet Not Added');");
 							out.println(LOCATION);
 							out.println(SCRIPTEND);
 						}
 					} else {
-						PrintWriter out = response.getWriter();
 						out.println(SCRIPT);
 						out.println("alert('Not updated');");
 						out.println(LOCATION);
@@ -65,14 +62,12 @@ public class Timesheetservlet extends HttpServlet {
 					}
 
 				} else {
-					PrintWriter out = response.getWriter();
 					out.println(SCRIPT);
 					out.println("alert('Timesheet already Exist');");
 					out.println(LOCATION);
 					out.println(SCRIPTEND);
 				}
 			} else {
-				PrintWriter out = response.getWriter();
 				out.println(SCRIPT);
 				out.println("alert('Timesheet Hrs Not Available');");
 				out.println(LOCATION);

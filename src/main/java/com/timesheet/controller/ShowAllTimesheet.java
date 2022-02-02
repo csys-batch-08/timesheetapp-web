@@ -19,9 +19,9 @@ public class ShowAllTimesheet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			ViewTimesheetsDAOimpl viewtimesheetdao = new ViewTimesheetsDAOimpl();
-			List<ViewTimesheets> timesheetlist = viewtimesheetdao.showAllTimesheet();
-			request.setAttribute("showalltimesheet", timesheetlist);
+			ViewTimesheetsDAOimpl viewTimesheetdao = new ViewTimesheetsDAOimpl();
+			List<ViewTimesheets> timesheetList = viewTimesheetdao.showAllTimesheet();
+			request.setAttribute("showalltimesheet", timesheetList);
 
 			RequestDispatcher rd = request.getRequestDispatcher("viewAllTimesheet.jsp");
 			rd.forward(request, response);
