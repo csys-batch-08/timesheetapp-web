@@ -38,7 +38,7 @@ public class UserDAOimpl implements UserDAO {
 		return flag;
 	}
 
-	public User validateUser(String username, String password) {
+	public User validateUser(String userName, String userPassword) {
 		String validatequery = "select first_name,last_name,user_name,password from user_details where role='TEAM MEMBER'and user_name=? and password=?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
@@ -47,8 +47,8 @@ public class UserDAOimpl implements UserDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(validatequery);
-			preparestatement.setString(1, username);
-			preparestatement.setString(2, password);
+			preparestatement.setString(1, userName);
+			preparestatement.setString(2, userPassword);
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
 				user = new User(resultset.getString("first_name"), resultset.getString("last_name"), resultset.getString("user_name"), resultset.getString("password"));
