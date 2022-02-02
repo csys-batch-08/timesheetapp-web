@@ -13,13 +13,15 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/GetTask")
 public class GetTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String taskname=(request.getParameter("taskname"));
+		String taskname = (request.getParameter("taskname"));
 		session.setAttribute("taskname", taskname);
-		 RequestDispatcher rd=request.getRequestDispatcher("updateTask.jsp");
-		    rd.forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("updateTask.jsp");
+		rd.forward(request, response);
 	}
 
 }

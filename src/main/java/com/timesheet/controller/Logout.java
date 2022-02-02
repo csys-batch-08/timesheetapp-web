@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 @WebServlet("/Logout")
 
 public class Logout extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void service(HttpServletRequest request,HttpServletResponse response)
-	{
-		HttpSession session=request.getSession();
+	public void service(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
 		session.invalidate();
 		try {
-			RequestDispatcher reqdis=request.getRequestDispatcher("index.jsp");
+			RequestDispatcher reqdis = request.getRequestDispatcher("index.jsp");
 			reqdis.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();

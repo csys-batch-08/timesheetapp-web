@@ -1,5 +1,7 @@
 package com.timesheet.model;
+
 import java.time.LocalDate;
+
 public class Task {
 	private int userid;
 	private String task;
@@ -8,8 +10,7 @@ public class Task {
 	private String taskpriority;
 	private String assignedto;
 	private long totalhrs;
-	
-    
+
 	public long getTotalhrs() {
 		return totalhrs;
 	}
@@ -41,6 +42,7 @@ public class Task {
 	public void setDateassigned(LocalDate dateassigned) {
 		this.dateassigned = dateassigned;
 	}
+
 	public LocalDate getEnddate() {
 		return enddate;
 	}
@@ -64,10 +66,13 @@ public class Task {
 	public void setAssignedto(String assignedto) {
 		this.assignedto = assignedto;
 	}
+
 	public Task() {
 		super();
 	}
-	public Task(int userid, String task, LocalDate dateassigned, LocalDate enddate, String taskpriority, String assignedto,long totalhrs) {
+
+	public Task(int userid, String task, LocalDate dateassigned, LocalDate enddate, String taskpriority,
+			String assignedto, long totalhrs) {
 		super();
 		this.userid = userid;
 		this.task = task;
@@ -75,8 +80,8 @@ public class Task {
 		this.enddate = enddate;
 		this.taskpriority = taskpriority;
 		this.assignedto = assignedto;
-		this.totalhrs=totalhrs;
-		
+		this.totalhrs = totalhrs;
+
 	}
 
 	@Override
@@ -84,4 +89,4 @@ public class Task {
 		return "Task [userid=" + userid + ", task=" + task + ", dateassigned=" + dateassigned + ", enddate=" + enddate
 				+ ", taskpriority=" + taskpriority + ", assignedto=" + assignedto + ", totalhrs=" + totalhrs + "]";
 	}
-	}
+}

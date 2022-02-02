@@ -17,24 +17,25 @@ import com.timesheet.model.ViewTimesheets;
 @WebServlet("/ShowUserStatus")
 public class ShowUserStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			HttpSession session = request.getSession();
-		   ViewTimesheetsDAOimpl viewtimesheetdao=new ViewTimesheetsDAOimpl();
-		   String username=(String)session.getAttribute("username");
-		   String startdate=request.getParameter("startdate");
-		   String enddate=request.getParameter("enddate");
-		   List<ViewTimesheets> timesheetlist=viewtimesheetdao.showTimesheet(username,startdate,enddate);
-		   request.setAttribute("showuserstatus", timesheetlist);
-		   
-			RequestDispatcher rd=request.getRequestDispatcher("showUserStatus.jsp");
-		    rd.forward(request, response);
-		    
-				} catch (ServletException | IOException e) {
-			
-					e.printStackTrace();
-				}
+			ViewTimesheetsDAOimpl viewtimesheetdao = new ViewTimesheetsDAOimpl();
+			String username = (String) session.getAttribute("username");
+			String startdate = request.getParameter("startdate");
+			String enddate = request.getParameter("enddate");
+			List<ViewTimesheets> timesheetlist = viewtimesheetdao.showTimesheet(username, startdate, enddate);
+			request.setAttribute("showuserstatus", timesheetlist);
+
+			RequestDispatcher rd = request.getRequestDispatcher("showUserStatus.jsp");
+			rd.forward(request, response);
+
+		} catch (ServletException | IOException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 }

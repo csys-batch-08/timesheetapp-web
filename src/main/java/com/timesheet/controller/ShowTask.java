@@ -13,25 +13,25 @@ import javax.servlet.http.HttpSession;
 import com.timesheet.daoimpl.TaskDAOimpl;
 import com.timesheet.model.Task;
 
-
 @WebServlet("/ShowTask")
 public class ShowTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
-		try{
+		try {
 			HttpSession session = request.getSession();
-			 String username=(String)session.getAttribute("username");
+			String username = (String) session.getAttribute("username");
 			TaskDAOimpl taskdao = new TaskDAOimpl();
-			   List<Task> taskList = taskdao.showTask(username);
-			   request.setAttribute("showtask", taskList);
-				RequestDispatcher rd=request.getRequestDispatcher("showTask.jsp");
-			    rd.forward(request, response);
-			    
-					} catch (ServletException | IOException e) {
-				
-						e.printStackTrace();
-					}
+			List<Task> taskList = taskdao.showTask(username);
+			request.setAttribute("showtask", taskList);
+			RequestDispatcher rd = request.getRequestDispatcher("showTask.jsp");
+			rd.forward(request, response);
+
+		} catch (ServletException | IOException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 }

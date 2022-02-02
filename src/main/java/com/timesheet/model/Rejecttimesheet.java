@@ -10,7 +10,7 @@ public class Rejecttimesheet {
 	private String comments;
 	private String approvedby;
 	private String status;
-	
+
 	public String getTask() {
 		return task;
 	}
@@ -66,6 +66,7 @@ public class Rejecttimesheet {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public Rejecttimesheet() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -85,9 +86,9 @@ public class Rejecttimesheet {
 
 	@Override
 	public String toString() {
-		return "Rejected Timesheet \n task Name : " + task + "\n Timesheet Id : " + timesheetid + "\n Timesheet Date=" + timesheetdate
-				+ "\n spend Time HRS : " + spendtimehrs + "\n Comments :" + comments + "\n Approved by : " + approvedby
-				+ "\n Status : " + status + "\n";
+		return "Rejected Timesheet \n task Name : " + task + "\n Timesheet Id : " + timesheetid + "\n Timesheet Date="
+				+ timesheetdate + "\n spend Time HRS : " + spendtimehrs + "\n Comments :" + comments
+				+ "\n Approved by : " + approvedby + "\n Status : " + status + "\n";
 	}
-	
+
 }

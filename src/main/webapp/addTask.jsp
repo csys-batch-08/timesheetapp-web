@@ -4,7 +4,8 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<meta name="keywords" content="timesheetapplication,timesheet,trackyourtime">
+<meta name="keywords"
+	content="timesheetapplication,timesheet,trackyourtime">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link
@@ -103,10 +104,8 @@ ul li:hover a {
 	</nav>
 	<div class="sidebar">
 		<ul>
-			<li><a href="addTaskMain.jsp">Add Task</a><br>
-			<br></li>
-			<li><a href="Showalltask">View &amp; Edit Task</a><br>
-			<br></li>
+			<li><a href="addTaskMain.jsp">Add Task</a><br> <br></li>
+			<li><a href="Showalltask">View &amp; Edit Task</a><br> <br></li>
 		</ul>
 	</div>
 </body>

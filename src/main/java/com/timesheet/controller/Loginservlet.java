@@ -12,49 +12,42 @@ import com.timesheet.daoimpl.AdminDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
 import com.timesheet.exception.InvalidUserException;
 import com.timesheet.model.User;
-@WebServlet("/log")
 
+@WebServlet("/log")
 
 public class Loginservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		String username=request.getParameter("username");
-		String password=request.getParameter("password");
-		UserDAOimpl userdao=new UserDAOimpl();
-		AdminDAOimpl admindao=new AdminDAOimpl();
-		User validuser=userdao.validateUser(username, password);
-		User validadmin=admindao.validateAdmin(username, password);
-		if(validuser!=null)
-		{
-			session.setAttribute("username",validuser.getUsername());
-		RequestDispatcher reqdis=request.getRequestDispatcher("userIndex.jsp");
-		reqdis.forward(request, response);
-		}
-		else if(validadmin!=null)
-		{
 
-		  session.setAttribute("adminuser",validadmin.getFirstname());
-		    RequestDispatcher reqdis=request.getRequestDispatcher("adminIndex.jsp");
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		UserDAOimpl userdao = new UserDAOimpl();
+		AdminDAOimpl admindao = new AdminDAOimpl();
+		User validuser = userdao.validateUser(username, password);
+		User validadmin = admindao.validateAdmin(username, password);
+		if (validuser != null) {
+			session.setAttribute("username", validuser.getUsername());
+			RequestDispatcher reqdis = request.getRequestDispatcher("userIndex.jsp");
 			reqdis.forward(request, response);
-		}
-		else
-		{
-			try
-			{
-			throw new InvalidUserException();
-			}
-			catch(InvalidUserException e)
-			{
+		} else if (validadmin != null) {
+
+			session.setAttribute("adminuser", validadmin.getFirstname());
+			RequestDispatcher reqdis = request.getRequestDispatcher("adminIndex.jsp");
+			reqdis.forward(request, response);
+		} else {
+			try {
+				throw new InvalidUserException();
+			} catch (InvalidUserException e) {
 				session.setAttribute("login", "! Invalid Username or Password");
-				String value=e.validateUser();
+				String value = e.validateUser();
 				response.sendRedirect(value);
 			}
 		}
-		
+
 	}
 
 }
-

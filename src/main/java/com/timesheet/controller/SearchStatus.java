@@ -14,20 +14,21 @@ import com.timesheet.model.Status;
 @WebServlet("/SearchStatus")
 public class SearchStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			int timesheetid=Integer.parseInt(request.getParameter("timesheetid"));
-			 StatusDAOimpl statusdao = new StatusDAOimpl();
-			   List<Status> statusList = statusdao.showStatus(timesheetid);
-			   request.setAttribute("viewstatus", statusList);
-			   RequestDispatcher rd=request.getRequestDispatcher("updateStatusMain.jsp");
-			    rd.forward(request, response);
-			    
-					} catch (ServletException | IOException e) {
-				
-						e.printStackTrace();
-					}
-		}
+			int timesheetid = Integer.parseInt(request.getParameter("timesheetid"));
+			StatusDAOimpl statusdao = new StatusDAOimpl();
+			List<Status> statusList = statusdao.showStatus(timesheetid);
+			request.setAttribute("viewstatus", statusList);
+			RequestDispatcher rd = request.getRequestDispatcher("updateStatusMain.jsp");
+			rd.forward(request, response);
 
+		} catch (ServletException | IOException e) {
+
+			e.printStackTrace();
+		}
 	}
+
+}

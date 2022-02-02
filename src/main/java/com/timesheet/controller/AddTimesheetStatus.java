@@ -16,20 +16,21 @@ import com.timesheet.model.ViewTimesheets;
 @WebServlet("/TimesheetStatus")
 public class AddTimesheetStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    @Override
+
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {
-		ViewTimesheetsDAOimpl viewtimesheetdao=new ViewTimesheetsDAOimpl();
-		   List<ViewTimesheets> timesheetlist=viewtimesheetdao.showAllTimesheet();
-		   request.setAttribute("viewTimesheet", timesheetlist);
-		   
-			RequestDispatcher rd=request.getRequestDispatcher("timesheetAdmin.jsp");
-		    rd.forward(request, response);
-		    
-				} catch (ServletException | IOException e) {
-			
-					e.printStackTrace();
-				}
+			ViewTimesheetsDAOimpl viewtimesheetdao = new ViewTimesheetsDAOimpl();
+			List<ViewTimesheets> timesheetlist = viewtimesheetdao.showAllTimesheet();
+			request.setAttribute("viewTimesheet", timesheetlist);
+
+			RequestDispatcher rd = request.getRequestDispatcher("timesheetAdmin.jsp");
+			rd.forward(request, response);
+
+		} catch (ServletException | IOException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 }

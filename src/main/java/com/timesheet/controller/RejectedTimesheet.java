@@ -17,24 +17,24 @@ import com.timesheet.model.Rejecttimesheet;
 @WebServlet("/RejectedTimesheet")
 public class RejectedTimesheet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response){
+	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {
-		HttpSession session = request.getSession();
-		RejecttimesheetDAOimpl rejecttimesheetdao=new RejecttimesheetDAOimpl();
-		String username=(String)session.getAttribute("username");
-		List<Rejecttimesheet> rejectlist=rejecttimesheetdao.showRejecttimesheet(username);
-		request.setAttribute("rejectedtimesheet", rejectlist);
-		   
-		RequestDispatcher rd=request.getRequestDispatcher("rejectedTimesheet.jsp");
-	    rd.forward(request, response);
-	    
-			} catch (ServletException | IOException e) {
-		
-				e.printStackTrace();
-			}
-	
-}
-		
+			HttpSession session = request.getSession();
+			RejecttimesheetDAOimpl rejecttimesheetdao = new RejecttimesheetDAOimpl();
+			String username = (String) session.getAttribute("username");
+			List<Rejecttimesheet> rejectlist = rejecttimesheetdao.showRejecttimesheet(username);
+			request.setAttribute("rejectedtimesheet", rejectlist);
+
+			RequestDispatcher rd = request.getRequestDispatcher("rejectedTimesheet.jsp");
+			rd.forward(request, response);
+
+		} catch (ServletException | IOException e) {
+
+			e.printStackTrace();
+		}
+
 	}
 
+}

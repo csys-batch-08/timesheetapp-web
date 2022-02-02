@@ -7,12 +7,19 @@ import com.timesheet.model.Timesheet;
 
 public interface TimesheetDAO {
 	public boolean insertTimesheet(Timesheet timesheet);
+
 	public boolean updateTimesheet(Timesheet timesheet);
+
 	public List<Timesheet> showTimesheet(int userid);
-	public boolean checkDate(int userid,LocalDate timesheetdate);
+
+	public boolean checkDate(int userid, LocalDate timesheetdate);
+
 	public int getSpendhrs(LocalDate timesheetdate);
+
 //	public boolean removeTimesheet(String timesheetfordate);
-	public List<Timesheet> searchTimesheet(LocalDate timesheetdate,int userid);
-	public  int findTimesheetId(LocalDate timesheetfordate,int userid);
+	public List<Timesheet> searchTimesheet(LocalDate timesheetdate, int userid);
+
+	public int findTimesheetId(LocalDate timesheetfordate, int userid);
+
 	public String getDate();
 }

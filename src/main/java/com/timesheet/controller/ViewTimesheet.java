@@ -18,24 +18,25 @@ import com.timesheet.model.Timesheet;
 @WebServlet("/ViewTimesheet")
 public class ViewTimesheet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			HttpSession session = request.getSession();
-		TimesheetDAOimpl timesheetdao=new TimesheetDAOimpl();
-		UserDAOimpl userdao = new UserDAOimpl();
-		String username=(String)session.getAttribute("username");
-		int userid=userdao.findUserId(username);
-		List<Timesheet> timesheetlist=timesheetdao.showTimesheet(userid);
-		request.setAttribute("showtimesheet", timesheetlist);
-		   
-		RequestDispatcher rd=request.getRequestDispatcher("viewTimesheet.jsp");
-	    rd.forward(request, response);
-	    
-			} catch (ServletException | IOException e) {
-		
-				e.printStackTrace();
-			}
+			TimesheetDAOimpl timesheetdao = new TimesheetDAOimpl();
+			UserDAOimpl userdao = new UserDAOimpl();
+			String username = (String) session.getAttribute("username");
+			int userid = userdao.findUserId(username);
+			List<Timesheet> timesheetlist = timesheetdao.showTimesheet(userid);
+			request.setAttribute("showtimesheet", timesheetlist);
+
+			RequestDispatcher rd = request.getRequestDispatcher("viewTimesheet.jsp");
+			rd.forward(request, response);
+
+		} catch (ServletException | IOException e) {
+
+			e.printStackTrace();
+		}
 
 	}
 

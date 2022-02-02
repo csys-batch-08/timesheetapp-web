@@ -14,21 +14,22 @@ import com.timesheet.model.Task;
 @WebServlet("/Showalltask")
 public class ShowAllTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			TaskDAOimpl taskdao = new TaskDAOimpl();
-			   List<Task> taskList = taskdao.showallTask();
-			   request.setAttribute("showalltask", taskList);
-			   
-				RequestDispatcher rd=request.getRequestDispatcher("showAllTask.jsp");
-			    rd.forward(request, response);
-			    
-					} catch (ServletException | IOException e) {
-				
-						e.printStackTrace();
-					}
-			
+			List<Task> taskList = taskdao.showallTask();
+			request.setAttribute("showalltask", taskList);
+
+			RequestDispatcher rd = request.getRequestDispatcher("showAllTask.jsp");
+			rd.forward(request, response);
+
+		} catch (ServletException | IOException e) {
+
+			e.printStackTrace();
 		}
+
+	}
 
 }

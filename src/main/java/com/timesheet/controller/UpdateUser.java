@@ -9,34 +9,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.timesheet.daoimpl.UserDAOimpl;
 import com.timesheet.model.User;
+
 @WebServlet("/updateuser")
 
 public class UpdateUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-		try(PrintWriter out = response.getWriter()) {
-		String firstname=request.getParameter("firstname");
-		String lastname=request.getParameter("lastname");
-		String username=request.getParameter("username");
-		String password=request.getParameter("password");
-		UserDAOimpl userdao=new UserDAOimpl();
-		User user=new User(firstname,lastname,username,password);
-		boolean flag=userdao.updateUser(user);
-		if(flag)
-		{
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('User Details Updated Successfully');");
-			out.println("location='ShowUser';");
-			out.println("</script>");
-		}
-		else
-		{
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('User Details not Updated');");
-			out.println("location='ShowUser';");
-			out.println("</script>");
-		}
+		try (PrintWriter out = response.getWriter()) {
+			String firstname = request.getParameter("firstname");
+			String lastname = request.getParameter("lastname");
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			UserDAOimpl userdao = new UserDAOimpl();
+			User user = new User(firstname, lastname, username, password);
+			boolean flag = userdao.updateUser(user);
+			if (flag) {
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('User Details Updated Successfully');");
+				out.println("location='ShowUser';");
+				out.println("</script>");
+			} else {
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('User Details not Updated');");
+				out.println("location='ShowUser';");
+				out.println("</script>");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

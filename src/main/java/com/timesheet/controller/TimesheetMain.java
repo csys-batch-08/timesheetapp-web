@@ -15,23 +15,25 @@ import com.timesheet.daoimpl.UserDAOimpl;
 @WebServlet("/TimesheetMain")
 public class TimesheetMain extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		UserDAOimpl userdao = new UserDAOimpl();
-		TimesheetDAOimpl timesheetdao=new TimesheetDAOimpl();
-		String sysDate=timesheetdao.getDate();
-		   String username=(String)session.getAttribute("username");
-		   int uid=userdao.findUserId(username);
-		   String taskname=request.getParameter("taskName");
-		   String taskdate=request.getParameter("taskDate");
-		   session.setAttribute("taskname", taskname);
-		   session.setAttribute("userid", uid);
-		   session.setAttribute("taskdate", taskdate);
-		   session.setAttribute("sysdate", sysDate);
-			 RequestDispatcher rd=request.getRequestDispatcher("timesheetMain.jsp");
-			    rd.forward(request, response);
-		   
+		TimesheetDAOimpl timesheetdao = new TimesheetDAOimpl();
+		String sysDate = timesheetdao.getDate();
+		String username = (String) session.getAttribute("username");
+		int uid = userdao.findUserId(username);
+		String taskname = request.getParameter("taskName");
+		String taskdate = request.getParameter("taskDate");
+		session.setAttribute("taskname", taskname);
+		session.setAttribute("userid", uid);
+		session.setAttribute("taskdate", taskdate);
+		session.setAttribute("sysdate", sysDate);
+		RequestDispatcher rd = request.getRequestDispatcher("timesheetMain.jsp");
+		rd.forward(request, response);
+
 	}
 
 }

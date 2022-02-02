@@ -16,19 +16,20 @@ import com.timesheet.model.AdminUser;
 @WebServlet("/ShowAllUser")
 public class ShowAllUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 		try {
-		AdminDAOimpl admindao = new AdminDAOimpl();
-		   List<AdminUser> userList = admindao.showalluser();
-		request.setAttribute("showallusers", userList);
-		RequestDispatcher rd=request.getRequestDispatcher("showAllUser.jsp");
-		
+			AdminDAOimpl admindao = new AdminDAOimpl();
+			List<AdminUser> userList = admindao.showalluser();
+			request.setAttribute("showallusers", userList);
+			RequestDispatcher rd = request.getRequestDispatcher("showAllUser.jsp");
+
 			rd.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
-		
- }
+
+	}
 
 }

@@ -16,25 +16,25 @@ import com.timesheet.model.Report;
 @WebServlet("/Report")
 public class ReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
-		try{
+		try {
 			HttpSession session = request.getSession();
-			String timedate=request.getParameter("timesheetdate");
-			LocalDate timesheetdate=LocalDate.parse(timedate);
-			String username=(String)session.getAttribute("username");
-			ReportDAOimpl reportdao=new ReportDAOimpl();
-			List<Report> showReport=reportdao.findreport(timesheetdate, username);
+			String timedate = request.getParameter("timesheetdate");
+			LocalDate timesheetdate = LocalDate.parse(timedate);
+			String username = (String) session.getAttribute("username");
+			ReportDAOimpl reportdao = new ReportDAOimpl();
+			List<Report> showReport = reportdao.findreport(timesheetdate, username);
 			request.setAttribute("report", showReport);
-			   
-			RequestDispatcher rd=request.getRequestDispatcher("reportMain.jsp");
-		    rd.forward(request, response);
-		    
-				} catch (ServletException | IOException e) {
-			
-					e.printStackTrace();
-				}
-			
+
+			RequestDispatcher rd = request.getRequestDispatcher("reportMain.jsp");
+			rd.forward(request, response);
+
+		} catch (ServletException | IOException e) {
+
+			e.printStackTrace();
 		}
+
 	}
-	
+}

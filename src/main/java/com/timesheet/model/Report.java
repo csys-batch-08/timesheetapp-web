@@ -12,7 +12,7 @@ public class Report {
 	private String status;
 	private String approvedby;
 	private LocalDate approvedon;
-    
+
 	public String getUsername() {
 		return username;
 	}
@@ -85,7 +85,6 @@ public class Report {
 		this.approvedon = approvedon;
 	}
 
-	
 	public Report(String username, String role, String task, int timesheetid, int spendhrs, LocalDate timesheetdate,
 			String status, String approvedby, LocalDate approvedon) {
 		super();
@@ -99,7 +98,6 @@ public class Report {
 		this.approvedby = approvedby;
 		this.approvedon = approvedon;
 	}
-	
 
 	public Report() {
 		super();
@@ -108,9 +106,9 @@ public class Report {
 
 	@Override
 	public String toString() {
-		return " User Name : " + username + "\n Role : " + role + "\n Task Name : " + task + "\nTimesheet Id : " + timesheetid
-				+ "\n Spend HRS : " + spendhrs + "\n Timesheet Date : " + timesheetdate + "\n Status : " + status + "\n Approved by : "
-				+ approvedby + "\n Approved On : " + approvedon + "\n";
+		return " User Name : " + username + "\n Role : " + role + "\n Task Name : " + task + "\nTimesheet Id : "
+				+ timesheetid + "\n Spend HRS : " + spendhrs + "\n Timesheet Date : " + timesheetdate + "\n Status : "
+				+ status + "\n Approved by : " + approvedby + "\n Approved On : " + approvedon + "\n";
 	}
-	
+
 }

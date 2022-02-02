@@ -11,51 +11,47 @@ import javax.servlet.http.HttpServletResponse;
 import com.timesheet.daoimpl.TaskDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
 import com.timesheet.model.Task;
+
 @WebServlet("/addtask")
 
 public class Addtask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response){
-		String taskname=request.getParameter("taskname");
-		String assigningdate=request.getParameter("assigningdate");
-		LocalDate assdate=LocalDate.parse(assigningdate);
-		String endingdate=request.getParameter("endingdate");
-		LocalDate enddate=LocalDate.parse(endingdate);
-		long totalhrs = ChronoUnit.DAYS.between(assdate,enddate)*8;
-		String priority=request.getParameter("priority");
-		String username=request.getParameter("username");
-		UserDAOimpl userdao=new UserDAOimpl();
-		TaskDAOimpl taskdao=new TaskDAOimpl();
-		int id=userdao.findUserId(username);
-		Task task=new Task(id,taskname,assdate,enddate,priority,username,totalhrs);
-		boolean flag1=taskdao.validateTask(taskname, username);
-		try(PrintWriter out = response.getWriter()) {
-		if(!flag1)
-		{
-		boolean flag=taskdao.insertTask(task);
-		if(flag)
-		{
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Task Added Successfully');");
-			out.println("location='addTaskMain.jsp';");
-			out.println("</script>");
-		}
-		else
-		{
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Task Not Added');");
-			out.println("location='addTaskMain.jsp';");
-			out.println("</script>");
-		}
-		}
-		else
-		{
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Task Already Exist');");
-			out.println("location='addTaskMain.jsp';");
-			out.println("</script>");	
-		}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+		String taskName = request.getParameter("taskname");
+		String assigningDate = request.getParameter("assigningdate");
+		LocalDate assignDate = LocalDate.parse(assigningDate);
+		String endingDate = request.getParameter("endingdate");
+		LocalDate endDate = LocalDate.parse(endingDate);
+		long totalhrs = ChronoUnit.DAYS.between(assignDate, endDate) * 8;
+		String priority = request.getParameter("priority");
+		String username = request.getParameter("username");
+		UserDAOimpl userdao = new UserDAOimpl();
+		TaskDAOimpl taskdao = new TaskDAOimpl();
+		int id = userdao.findUserId(username);
+		Task task = new Task(id, taskName, assignDate, endDate, priority, username, totalhrs);
+		boolean flag1 = taskdao.validateTask(taskName, username);
+		try (PrintWriter out = response.getWriter()) {
+			if (!flag1) {
+				boolean flag = taskdao.insertTask(task);
+				if (flag) {
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('Task Added Successfully');");
+					out.println("location='addTaskMain.jsp';");
+					out.println("</script>");
+				} else {
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('Task Not Added');");
+					out.println("location='addTaskMain.jsp';");
+					out.println("</script>");
+				}
+			} else {
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Task Already Exist');");
+				out.println("location='addTaskMain.jsp';");
+				out.println("</script>");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
