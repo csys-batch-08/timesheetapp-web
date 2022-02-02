@@ -2,17 +2,17 @@ package com.timesheet.util;
 
 public class EncryptAndDecrypt {
 	private  String pass;
-	private  char[] passwordChars;
+	private  char[] passChars;
 	private char[] let;
 	private String encryptedPassword;
 	
 	EncryptAndDecrypt() {
 		pass="oracle";
-		passwordChars=pass.toCharArray();
-		let=new char[passwordChars.length];
+		passChars=pass.toCharArray();
+		let=new char[passChars.length];
 		
 		int i=0;
-		for(char c : passwordChars) {
+		for(char c : passChars) {
 			c+=5;
 			let[i]=c;
 			i++;
@@ -22,10 +22,10 @@ public class EncryptAndDecrypt {
 	}
 	public  String decryt() {
 		
-		passwordChars=encryptedPassword.toCharArray();
-		let=new char[passwordChars.length];
+		passChars=encryptedPassword.toCharArray();
+		let=new char[passChars.length];
 		int i=0;
-		for(char c : passwordChars) {
+		for(char c : passChars) {
 			c-=5;
 			let[i]=c;
 			i++;
