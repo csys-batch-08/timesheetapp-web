@@ -44,20 +44,20 @@ public class AdminDAOimpl implements AdminDAO
 	}
 	public List<AdminUser> showalluser()
 	{
-		List<AdminUser> userlist=new ArrayList<>();
-		String selectquery="select first_name,last_name,user_name,role from user_details where role not in('ADMIN')";
+		List<AdminUser> userslist=new ArrayList<>();
+		String selectquery1="select first_name,last_name,user_name,role from user_details where role not in('ADMIN')";
 		Connection con=null;
 		PreparedStatement preparestatement=null;
 		ResultSet resultset=null;
 		try
 		{
 			con=Connectionutil.getDbConnection();
-			preparestatement=con.prepareStatement(selectquery);	
+			preparestatement=con.prepareStatement(selectquery1);	
 			resultset=preparestatement.executeQuery();
 		while(resultset.next())
 		{
-			AdminUser user=new AdminUser(resultset.getString("First_Name"),resultset.getString("Last_Name"),resultset.getString("User_Name"),resultset.getString("Role"));
-			userlist.add(user);
+			AdminUser users=new AdminUser(resultset.getString("First_Name"),resultset.getString("Last_Name"),resultset.getString("User_Name"),resultset.getString("Role"));
+			userslist.add(users);
 		}
 		}
 		catch(SQLException e)
@@ -69,7 +69,7 @@ public class AdminDAOimpl implements AdminDAO
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
 		
-		return userlist;
+		return userslist;
 		
 	}
 	public List<AdminUser> showusers()
@@ -86,8 +86,8 @@ public class AdminDAOimpl implements AdminDAO
 			resultset=preparestatement.executeQuery();
 		while(resultset.next())
 		{
-			AdminUser user=new AdminUser(resultset.getString("first_name"),resultset.getString("last_name"),resultset.getString("user_name"),resultset.getString("role"));
-			userlist.add(user);
+			AdminUser user1=new AdminUser(resultset.getString("first_name"),resultset.getString("last_name"),resultset.getString("user_name"),resultset.getString("role"));
+			userlist.add(user1);
 		}
 		}
 		catch(SQLException e)

@@ -67,7 +67,7 @@
        }
         .center
      {
-      width: 90%;
+      width: 95%;
       padding:20px;
       margin-left:50px;
      } 
@@ -85,11 +85,12 @@
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
     <div class="center">
-    <h2><strong>Rejected Timesheets</strong></h2>
+    <h2><strong>Rejected Timesheets</strong></h2><br/>
 <table class="table table-hover table-striped">
 	<caption></caption>
 	<thead>
 	<tr>
+	    <th id="tblhead">S.No</th>
 		<th id="tblhead">Timesheet Id</th>
 		<th id="tblhead">Task Name</th>
 		<th id="tblhead">Timesheet Date</th>
@@ -102,7 +103,9 @@
 	</thead>
 <tbody>
 <c:forEach items="${rejectedtimesheet}" var="reject">
+<c:set var="i" value="${i+1}"/>
 <tr>
+<td>${i}</td>
 <td>${reject.timesheetid}</td>
 <td>${reject.task}</td>
 <td><fmt:parseDate value="${reject.timesheetdate}" pattern="yyyy-MM-dd" var="timesheetDate" type="date"/>
