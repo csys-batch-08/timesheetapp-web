@@ -115,26 +115,26 @@ fieldset {
 				<tbody>
 					<tr>
 						<th id="tblhd"><strong>First Name</strong></th>
-						<td>${viewUser.getFirstname()}</td>
+						<td>${viewUser.firstname}</td>
 					</tr>
 					<tr>
 						<th id="tblhd"><strong>Last Name</strong></th>
-						<td>${viewUser.getLastname()}</td>
+						<td>${viewUser.lastname}</td>
 					</tr>
 					<tr>
 						<th id="tblhd"><strong>User Name</strong></th>
-						<td>${viewUser.getUsername()}</td>
+						<td>${viewUser.username}</td>
 					</tr>
 					<tr>
-						<th id="tblhd"><strong>Password</strong></th>
-						<td>${viewUser.getPassword()}</td>
+						<th id="tblhd" hidden="passwordName"><strong>Password</strong></th>
+						<td hidden="password">${viewUser.password}</td>
 					</tr>
 				</tbody>
 			</table>
 			<p>
 				<a
-					href="UpdateUserProfile?firstname=${viewUser.getFirstname()}&lastname=${viewUser.getLastname()}&username=${viewUser.getUsername()}"><button
-						type="button" class="btn btn-primary btn-lg">Edit</button></a>
+					href="UpdateUserProfile?firstname=${viewUser.firstname}&lastname=${viewUser.lastname}&username=${viewUser.username}"><button
+						type="button" class="btn btn-primary btn-lg">Reset Password</button></a>
 			</p>
 		</c:forEach>
 	</fieldset>

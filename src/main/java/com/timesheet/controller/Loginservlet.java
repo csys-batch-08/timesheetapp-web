@@ -31,6 +31,7 @@ public class Loginservlet extends HttpServlet {
 		User validadmin = admindao.validateAdmin(username, password);
 		if (validuser != null) {
 			session.setAttribute("username", validuser.getUsername());
+			session.setAttribute("userPassword", validuser.getPassword());
 			RequestDispatcher reqdis = request.getRequestDispatcher("userIndex.jsp");
 			reqdis.forward(request, response);
 		} else if (validadmin != null) {

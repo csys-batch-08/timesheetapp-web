@@ -1,7 +1,6 @@
 package com.timesheet.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import javax.servlet.annotation.WebServlet;
@@ -32,25 +31,16 @@ public class Addtask extends HttpServlet {
 		int id = userdao.findUserId(username);
 		Task task = new Task(id, taskName, assignDate, endDate, priority, username, totalhrs);
 		boolean flag1 = taskdao.validateTask(taskName, username);
-		try (PrintWriter out = response.getWriter()) {
+		try{
 			if (!flag1) {
 				boolean flag = taskdao.insertTask(task);
 				if (flag) {
-					out.println("<script type=\"text/javascript\">");
-					out.println("alert('Task Added Successfully');");
-					out.println("location='addTaskMain.jsp';");
-					out.println("</script>");
+					response.sendRedirect("addTaskMain.jsp?infomsg=Task Added Successfully");
 				} else {
-					out.println("<script type=\"text/javascript\">");
-					out.println("alert('Task Not Added');");
-					out.println("location='addTaskMain.jsp';");
-					out.println("</script>");
+					response.sendRedirect("addTaskMain.jsp?errormsg=Task Not Added");
 				}
 			} else {
-				out.println("<script type=\"text/javascript\">");
-				out.println("alert('Task Already Exist');");
-				out.println("location='addTaskMain.jsp';");
-				out.println("</script>");
+				response.sendRedirect("addTaskMain.jsp?warningmsg=Task Already Exist");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

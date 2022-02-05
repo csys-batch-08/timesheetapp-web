@@ -39,16 +39,21 @@ button {
 	function myfunction() {
 		var pswd = document.getElementById("password");
 		var cpswd = document.getElementById("Confirm_password");
-		if (pswd != cpswd) {
+		if (pswd.value != cpswd.value) {
 			document.getElementById("password").style.borderColor = "#E34234";
 			document.getElementById("Confirm_password").style.borderColor = "#E34234";
+			document.getElementById("message").innerHTML="Password must be same";
+			return false;
+		}
+		else{
+			return true;
 		}
 	}
 </script>
 
 </head>
 <body style="background-image: url(images/Time1.jpg)">
-	<form action="Registerservlet" method="post" id="regForm">
+	<form action="Registerservlet" method="post" onsubmit="return myfunction()" id="regForm">
 		<fieldset>
 			<legend>
 				<strong>Sign Up</strong>
@@ -71,8 +76,8 @@ button {
 				type="password" id="Confirm_password" name="Confirm_password"
 				pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
 				title="Enter confirm password same as password " required><br>
-			<br> &nbsp;&nbsp;
-			<button type="submit" onclick="myfunction()">Submit</button>
+			<br><p style="color:red;" id="message"></p> &nbsp;&nbsp;
+			<button type="submit" >Submit</button>
 			&nbsp; &nbsp; <input type="reset" value="Reset"><br>
 			<br> Have already an account?<a href="index.jsp">Login here</a>
 		</fieldset>

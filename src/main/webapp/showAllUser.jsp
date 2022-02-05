@@ -102,6 +102,7 @@ body {
 			<caption></caption>
 			<thead>
 				<tr>
+				    <th id="tblhead">S.No</th>
 					<th id="tblhead">First Name</th>
 					<th id="tblhead">Last Name</th>
 					<th id="tblhead">User Name</th>
@@ -111,7 +112,9 @@ body {
 			</thead>
 			<tbody>
 				<c:forEach items="${showallusers}" var="viewUser">
+				<c:set var="i" value="${i+1}" />
 					<tr>
+					    <td>${i}</td>
 						<td>${viewUser.firstName}</td>
 						<td>${viewUser.lastName}</td>
 						<td>${viewUser.userName}</td>

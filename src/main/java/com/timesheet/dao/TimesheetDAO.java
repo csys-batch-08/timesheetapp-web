@@ -16,7 +16,8 @@ public interface TimesheetDAO {
 
 	public int getSpendhrs(LocalDate timesheetdate);
 
-//	public boolean removeTimesheet(String timesheetfordate);
+    public boolean removeTimesheet(String timesheetfordate,String timesheetStatus);
+	
 	public List<Timesheet> searchTimesheet(LocalDate timesheetdate, int userid);
 
 	public int findTimesheetId(LocalDate timesheetfordate, int userid);

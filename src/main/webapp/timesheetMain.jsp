@@ -167,7 +167,7 @@ ul li:hover a {
 				<tr>
 					<th id="tblhead"><label for="spendinghrs">Enter
 							Spending Hrs</label></th>
-					<td><input type="number" pattern="[1-9]{1+}" maxlength="2"
+					<td><input type="number" pattern="[1-9]{1+}" min="1" maxlength="2"
 						name="spendinghrs" required></td>
 				</tr>
 				<tr>

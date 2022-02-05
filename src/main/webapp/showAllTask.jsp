@@ -116,6 +116,7 @@ body {
 			<caption></caption>
 			<thead>
 				<tr>
+				    <th id="tblhead">S.No</th>
 					<th id="tblhead">Task Name</th>
 					<th id="tblhead">Priority</th>
 					<th id="tblhead">Task Starting Date</th>
@@ -127,7 +128,9 @@ body {
 			</thead>
 			<tbody>
 				<c:forEach items="${showalltask}" var="viewtask">
+				<c:set var="i" value="${i+1}" />
 					<tr>
+					    <td>${i}</td>
 						<td>${viewtask.task}</td>
 						<td>${viewtask.taskpriority}</td>
 						<td><fmt:parseDate value="${viewtask.dateassigned}"

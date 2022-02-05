@@ -40,7 +40,7 @@ public class TaskDAOimpl implements TaskDAO {
 
 	public boolean updateTask(Task task) {
 		boolean flag = false;
-		String updatequery = "update task_details set user_id=?,assigned_to_date=?,end_date=?,task_priority=?,assigned_to=?,total_hours=? where task_name=?";
+		String updatequery = "update task_details set user_id=?,assigned_to_date=?,end_date=?,task_priority=?,assigned_to=?,total_hours=? where task_status='Active' and task_name=?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		try {
@@ -67,7 +67,7 @@ public class TaskDAOimpl implements TaskDAO {
 
 	public List<Task> showallTask() {
 		List<Task> tasklist = new ArrayList<>();
-		String selectquery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details order by assigned_to_date desc";
+		String selectquery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where task_status='Active' order by assigned_to_date desc";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
@@ -92,7 +92,7 @@ public class TaskDAOimpl implements TaskDAO {
 
 	public List<Task> showTask(String userName) {
 		List<Task> tasklist = new ArrayList<>();
-		String selectquery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where assigned_to=? and total_hours>0";
+		String selectquery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where task_status='Active' and assigned_to=? and total_hours>0";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
@@ -118,7 +118,7 @@ public class TaskDAOimpl implements TaskDAO {
 
 	public List<Task> searchTask(String taskname) {
 		List<Task> tasklist = new ArrayList<>();
-		String selectquery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where task_name=? and total_hours>0";
+		String selectquery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where task_status='Active' and task_name=? and total_hours>0";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
@@ -143,7 +143,7 @@ public class TaskDAOimpl implements TaskDAO {
 	}
 
 	public int findtaskId(String task) {
-		String findtask = "select task_id from task_details where task_name=?";
+		String findtask = "select task_id from task_details where task_status='Active' and task_name=?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
@@ -166,7 +166,7 @@ public class TaskDAOimpl implements TaskDAO {
 	}
 
 	public boolean validateTask(String taskname, String username) {
-		String selectQuery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where Assigned_to=? and task_name=?";
+		String selectQuery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where task_status='Active' and Assigned_to=? and task_name=?";
 		Connection con = null;
 		boolean flag = true;
 		ResultSet resultset = null;
@@ -195,7 +195,7 @@ public class TaskDAOimpl implements TaskDAO {
 
 	public int getTotalhrs(int userid, String taskname) {
 		Connection con = null;
-		String selectstatement = "select total_hours from task_details where task_name=? and user_id=?";
+		String selectstatement = "select total_hours from task_details where task_status='Active' and task_name=? and user_id=?";
 		int result = 0;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
@@ -218,7 +218,7 @@ public class TaskDAOimpl implements TaskDAO {
 
 	public int updatehrs(int spendhrs, int userid, int taskId) {
 		Connection con = null;
-		String selectquery = "update task_details set total_hours =total_hours-? where task_id=? and user_id=?";
+		String selectquery = "update task_details set total_hours =total_hours-? where task_status='Active' and task_id=? and user_id=?";
 		PreparedStatement preparestatement = null;
 		int result = 0;
 		try {
@@ -237,29 +237,28 @@ public class TaskDAOimpl implements TaskDAO {
 		return result;
 	}
 
-//	public boolean removeTask(String task)
-//	{
-//		boolean flag=false;
-//		String removequery="delete from task_details where task_name=?";
-//		Connection con=Connectionutil.getDbConnection();
-//		PreparedStatement pstmt=null;
-//		try
-//		{
-//			pstmt=con.prepareStatement(removequery);
-//			pstmt.setString(1,task);
-//			if(pstmt.executeUpdate()>0)
-//			{
-//				flag=true;
-//			}
-//			int i=pstmt.executeUpdate();
-//			System.out.println(i+" Task Remove successfully");
-//			
-//		}
-//		catch(SQLException e)
-//		{
-//			e.printStackTrace();
-//			System.out.println("Task not Removed");
-//		}
-//		return flag;
-//	}
+	public boolean removeTask(String task,String taskStatus)
+	{
+		boolean flag=false;
+		String inactivequery="update task_details set task_status=? where task_name=?";
+		Connection con=Connectionutil.getDbConnection();
+		PreparedStatement preparestatement=null;
+		try
+		{
+			preparestatement=con.prepareStatement(inactivequery);
+			preparestatement.setString(1,taskStatus);
+        preparestatement.setString(2,task);
+			if(preparestatement.executeUpdate()>0)
+		{
+			flag=true;
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}finally {
+	    Connectionutil.closePreparedstatement(con, preparestatement);
+        }
+		return flag;
+	}
 }

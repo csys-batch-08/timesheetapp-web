@@ -124,6 +124,7 @@ body {
 			<caption></caption>
 			<thead>
 				<tr>
+				    <th id="tblhead">S.No</th>
 					<th id="tblhead">User Name</th>
 					<th id="tblhead">Comments</th>
 					<th id="tblhead">Spending Time Hrs</th>
@@ -136,8 +137,9 @@ body {
 			</thead>
 			<tbody>
 				<c:forEach items="${showalltimesheet}" var="viewtimesheet">
+				<c:set var="i" value="${i+1}" />
 					<tr>
-
+                        <td>${i}</td>
 						<td>${viewtimesheet.username}</td>
 						<td>${viewtimesheet.comments}</td>
 						<td>${viewtimesheet.spendtimehrs}</td>

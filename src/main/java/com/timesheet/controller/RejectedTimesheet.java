@@ -25,10 +25,19 @@ public class RejectedTimesheet extends HttpServlet {
 			RejecttimesheetDAOimpl rejecttimesheetdao = new RejecttimesheetDAOimpl();
 			String username = (String) session.getAttribute("username");
 			List<Rejecttimesheet> rejectlist = rejecttimesheetdao.showRejecttimesheet(username);
-			request.setAttribute("rejectedtimesheet", rejectlist);
-
-			RequestDispatcher rd = request.getRequestDispatcher("rejectedTimesheet.jsp");
-			rd.forward(request, response);
+			boolean flag=rejectlist.isEmpty();
+			if(!flag)
+			{
+				request.setAttribute("rejectedtimesheet", rejectlist);
+				RequestDispatcher rd = request.getRequestDispatcher("rejectedTimesheet.jsp");
+				rd.forward(request, response);	
+			}
+			else
+			{
+			 session.setAttribute("message", "No Rejected Timesheet To View");
+			 response.sendRedirect("timesheet.jsp");
+			}
+			
 
 		} catch (ServletException | IOException e) {
 

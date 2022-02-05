@@ -55,7 +55,12 @@ h4 {
 			<br> Password<br> <input type="password" id="password"
 				name="password"
 				pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
-				placeholder="Enter valid password" title="Sample Xyz12@" required><br>
+				placeholder="Enter valid password" 
+				title="The password length must be greater than or equal to 8 
+			           and it must contain one or more uppercase characters
+                       and it must contain one or more lowercase characters
+                       and it must contain one or more numeric values
+                       and it must contain one or more special characters Sample Xyz12@" required><br>
 			<br> &nbsp;&nbsp;<input type="submit" name="submit">
 			&nbsp; <a href="register.jsp"><input type="button"
 				value="Sign Up"></a>&nbsp; <input type="reset" value="Reset"><br>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,6 +85,15 @@ a {
 	box-sizing: border-box;
 	color: white;
 }
+.box {
+	width: 380px;
+	height: 200px;
+	position: relative;
+	margin: 6% auto;
+	background: transparent;
+	padding: 5px;
+	color: #070202;
+}
 
 ul {
 	list-style-type: none;
@@ -125,6 +135,12 @@ ul li:hover a {
 			<li><a href="ViewTimesheet">View Timesheet</a><br>
 			<br></li>
 		</ul>
+	</div>
+	<div class="box">
+	<c:if test="${sessionScope.message!=null}">
+	<h4>${sessionScope.message}</h4>
+	</c:if>
+	<c:remove var="message" scope="session"/>
 	</div>
 </body>
 </html>

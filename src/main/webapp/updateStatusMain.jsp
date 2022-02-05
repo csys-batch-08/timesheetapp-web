@@ -155,9 +155,10 @@ ul li:hover a {
 					<tr>
 						<th id="tblhead"><label for="status">Enter Status</label></th>
 						<td><select name="status" required>
-								<option>Approved</option>
-								<option>Rejected</option>
-								<option>Not Approved</option>
+						        <option value="Select" disabled>--Select--</option>
+								<option value="Approved">Approved</option>
+								<option value="Rejected">Rejected</option>
+								<option value="NotApproved">Not Approved</option>
 						</select></td>
 					</tr>
 					<tr>

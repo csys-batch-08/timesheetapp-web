@@ -13,7 +13,7 @@ import com.timesheet.util.Connectionutil;
 public class ViewTimesheetsDAOimpl implements ViewTimesheetsDAO {
 	public List<ViewTimesheets> showAllTimesheet() {
 		List<ViewTimesheets> timesheetlist = new ArrayList<>();
-		String selectQuery = "select distinct ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id,NVL(s.status,'Not Yet Approved')as status from status s right join timesheets ts on s.timesheet_id=ts.timesheet_id inner join user_details ud on ud.user_id=ts.user_id";
+		String selectQuery = "select distinct ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id,NVL(s.status,'Not Yet Approved')as status from status s right join timesheets ts on s.timesheet_id=ts.timesheet_id inner join user_details ud on ud.user_id=ts.user_id where ts.timesheet_status='Active'";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
@@ -37,7 +37,7 @@ public class ViewTimesheetsDAOimpl implements ViewTimesheetsDAO {
 
 	public List<ViewTimesheets> showTimesheet(String username, String startdate, String enddate) {
 		List<ViewTimesheets> timesheetlist = new ArrayList<>();
-		String selectquery = "select ud.user_name,ts.timesheet_for_date,ts.spend_time_hrs,NVL(s.status,'Not Approved')as status from (status s right join timesheets ts on s.timesheet_id=ts.timesheet_id inner join user_details ud on ud.user_id=ts.user_id) where user_name=? and to_char(timesheet_for_date,'yyyy-MM-dd') between ? and ?";
+		String selectquery = "select ud.user_name,ts.timesheet_for_date,ts.spend_time_hrs,NVL(s.status,'Not Approved')as status from (status s right join timesheets ts on s.timesheet_id=ts.timesheet_id inner join user_details ud on ud.user_id=ts.user_id) where ts.timesheet_status='Active' and user_name=? and to_char(timesheet_for_date,'yyyy-MM-dd') between ? and ?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;

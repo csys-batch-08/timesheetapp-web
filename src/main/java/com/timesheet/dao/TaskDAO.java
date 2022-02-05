@@ -22,6 +22,7 @@ public interface TaskDAO {
 	public int getTotalhrs(int userid, String taskname);
 
 	public int updatehrs(int spendhrs, int userid, int taskId);
-//	public boolean removeTask(String task);
+	
+	public boolean removeTask(String task,String taskStatus);
 
 }

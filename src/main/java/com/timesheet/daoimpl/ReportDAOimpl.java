@@ -15,7 +15,7 @@ public class ReportDAOimpl implements ReportDAO {
 
 	public List<Report> findreport(LocalDate timesheetdate, String username) {
 		List<Report> reportlist = new ArrayList<>();
-		String reportQuery = "select u.user_name,u.role,td.task_name,ts.timesheet_id,ts.spend_time_hrs,trunc(ts.timesheet_for_date),s.status,s.approved_by,trunc(s.status_update_date) from (user_details u inner join task_details td on u.user_id=td.user_id inner join timesheets ts on td.task_id=ts.task_id  inner join status s on ts.timesheet_id=s.timesheet_id) where ts.timesheet_for_date=? and u.user_name=?";
+		String reportQuery = "select u.user_name,u.role,td.task_name,ts.timesheet_id,ts.spend_time_hrs,trunc(ts.timesheet_for_date),s.status,s.approved_by,trunc(s.status_update_date) from (user_details u inner join task_details td on u.user_id=td.user_id inner join timesheets ts on td.task_id=ts.task_id  inner join status s on ts.timesheet_id=s.timesheet_id) where ts.timesheet_status='Active' and ts.timesheet_for_date=? and u.user_name=?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;

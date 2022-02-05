@@ -40,7 +40,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 
 	public boolean updateTimesheet(Timesheet timeheets) {
 		boolean flag = false;
-		String updatequery = "update timesheets set user_id=?,spend_time_hrs=?,comments=? where timesheet_for_date=?";
+		String updatequery = "update timesheets set user_id=?,spend_time_hrs=?,comments=? where timesheet_status='Active' and timesheet_for_date=?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		try {
@@ -62,7 +62,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 	}
 
 	public boolean checkDate(int userid, LocalDate timesheetdate) {
-		String checkDateQuery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where user_id=? and Timesheet_for_date=?";
+		String checkDateQuery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where timesheet_status='Active' and user_id=? and Timesheet_for_date=?";
 		Connection con = null;
 		boolean flag = true;
 		PreparedStatement preparestatement = null;
@@ -74,8 +74,9 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 			preparestatement.setDate(2, java.sql.Date.valueOf(timesheetdate));
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
-				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"), resultset.getInt("spend_time_hrs"),
-						resultset.getString("comments"), resultset.getDate("timesheet_for_date").toLocalDate());
+				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"),
+						resultset.getInt("spend_time_hrs"), resultset.getString("comments"),
+						resultset.getDate("timesheet_for_date").toLocalDate());
 			} else {
 				flag = false;
 			}
@@ -89,7 +90,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 
 	public List<Timesheet> showTimesheet(int userid) {
 		List<Timesheet> timesheetlist = new ArrayList<>();
-		String selectquery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where user_id=?";
+		String selectquery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where timesheet_status='Active' and user_id=? order by timesheet_for_date desc";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
@@ -99,8 +100,9 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 			preparestatement.setInt(1, userid);
 			resultset = preparestatement.executeQuery();
 			while (resultset.next()) {
-				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"), resultset.getInt("spend_time_hrs"),
-						resultset.getString("comments"), resultset.getDate("timesheet_for_date").toLocalDate());
+				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"),
+						resultset.getInt("spend_time_hrs"), resultset.getString("comments"),
+						resultset.getDate("timesheet_for_date").toLocalDate());
 				timesheetlist.add(timesheet);
 			}
 		} catch (SQLException e) {
@@ -113,7 +115,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 
 	public int getSpendhrs(LocalDate timesheetdate) {
 		Connection con = null;
-		String getHrsQuery = "select spend_time_hrs from timesheets where timesheet_for_date=?";
+		String getHrsQuery = "select spend_time_hrs from timesheets where timesheet_status='Active' and timesheet_for_date=?";
 		int result = 0;
 		ResultSet resultset = null;
 		PreparedStatement preparestatement = null;
@@ -133,34 +135,29 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		return result;
 	}
 
-//	public boolean removeTimesheet(String timesheetfordate)
-//	{
-//	     boolean flag=false;
-//		String removequery="delete from timesheets where timesheet_for_date=?";
-//		Connection con=Connectionutil.getDbConnection();
-//		PreparedStatement pstmt=null;
-//		try
-//		{
-//			pstmt=con.prepareStatement(removequery);
-//		    pstmt.setString(1,timesheetfordate);
-//	    if(pstmt.executeUpdate()>0)
-//	     {
-//		  flag=true;
-//	      }
-//		    int i=pstmt.executeUpdate();
-//            System.out.println(i+" Timesheet Remove ");
-//			
-//		}
-//		catch(SQLException e)
-//		{
-//			e.printStackTrace();
-//			System.out.println("something went wrong");
-//		}
-//	    return flag;
-//		}
+	public boolean removeTimesheet(String timesheetfordate, String timesheetStatus) {
+		boolean flag = false;
+		String removequery = "update timesheets set timesheet_status=? where to_char(timesheet_for_date,'yyyy-MM-dd')=?";
+		Connection con = Connectionutil.getDbConnection();
+		PreparedStatement preparestatement = null;
+		try {
+			preparestatement = con.prepareStatement(removequery);
+			preparestatement.setString(1, timesheetStatus);
+			preparestatement.setString(2, timesheetfordate);
+			if (preparestatement.executeUpdate() > 0) {
+				flag = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Connectionutil.closePreparedstatement(con, preparestatement);
+		}
+		return flag;
+	}
+
 	public List<Timesheet> searchTimesheet(LocalDate timesheetdate, int userid) {
 		List<Timesheet> timesheets = new ArrayList<>();
-		String selectquery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where timesheet_for_date=? and user_id=?";
+		String selectquery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where timesheet_status='Active' and timesheet_for_date=? and user_id=?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;
@@ -171,8 +168,9 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 			preparestatement.setInt(2, userid);
 			resultset = preparestatement.executeQuery();
 			while (resultset.next()) {
-				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"), resultset.getInt("spend_time_hrs"),
-						resultset.getString("comments"), resultset.getDate("timesheet_for_date").toLocalDate());
+				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"),
+						resultset.getInt("spend_time_hrs"), resultset.getString("comments"),
+						resultset.getDate("timesheet_for_date").toLocalDate());
 				timesheets.add(timesheet);
 			}
 		} catch (SQLException e) {
@@ -184,7 +182,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 	}
 
 	public int findTimesheetId(LocalDate timesheetfordate, int userid) {
-		String findUser = "select timesheet_id from timesheets where timesheet_for_date=? and user_id=?";
+		String findUser = "select timesheet_id from timesheets where timesheet_status='Active' and timesheet_for_date=? and user_id=?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
 		ResultSet resultset = null;

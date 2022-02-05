@@ -101,21 +101,27 @@ body {
 			<caption></caption>
 			<thead>
 				<tr>
+				    <th id="tblhead">S.No</th>
 					<th id="tblhead">User Id</th>
 					<th id="tblhead">Task Id</th>
 					<th id="tblhead">Spending Hrs</th>
 					<th id="tblhead">Timesheet Date</th>
+					<th id="tblhead">In Active Timesheet</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${showtimesheet}" var="timesheet">
+				<c:set var="i" value="${i+1}" />
+				<c:set var="inactive" value="InActive" scope="page" />
 					<tr>
+					    <td>${i}</td>
 						<td>${timesheet.userid}</td>
 						<td>${timesheet.taskid}</td>
 						<td>${timesheet.spendtime}</td>
 						<td><fmt:parseDate value="${timesheet.timesheetfordate}"
 								pattern="yyyy-MM-dd" var="timesheetDate" type="date" /> <fmt:formatDate
 								pattern="dd-MM-yyyy" value="${timesheetDate}" /></td>
+						<td><a href="InActiveTimesheet?timesheetDate=${timesheet.timesheetfordate}&timesheetStatus=${inactive}"><button type="button" class="btn btn-secondary btn-sm">In Active</button></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
