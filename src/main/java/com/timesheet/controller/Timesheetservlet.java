@@ -1,7 +1,6 @@
 package com.timesheet.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,13 +15,9 @@ import com.timesheet.model.Timesheet;
 public class Timesheetservlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final String SCRIPT = "<script type=\"text/javascript\">";
-	private static final String LOCATION = "location='ShowTask';";
-	private static final String SCRIPTEND = "</script>";
-
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-		try (PrintWriter out = response.getWriter()) {
+		try{
 			TimesheetDAOimpl timesheetdao = new TimesheetDAOimpl();
 			int id = Integer.parseInt(request.getParameter("userid"));
 			String timedate = request.getParameter("timesheetdate");
@@ -43,36 +38,19 @@ public class Timesheetservlet extends HttpServlet {
 
 						boolean flag = timesheetdao.insertTimesheet(timesheet);
 						if (flag) {
-							out.println(SCRIPT);
-							out.println("alert('Timesheet Added Successfully');");
-							out.println(LOCATION);
-							out.println(SCRIPTEND);
+							response.sendRedirect("ShowTask?infoMsg=Timesheet Added Successfully");
 						} else {
-							out.println(SCRIPT);
-							out.println("alert('Timesheet Not Added');");
-							out.println(LOCATION);
-							out.println(SCRIPTEND);
+							response.sendRedirect("ShowTask?errorMsg1=Timesheet Not Added");
 						}
 					} else {
-						out.println(SCRIPT);
-						out.println("alert('Not updated');");
-						out.println(LOCATION);
-						out.println(SCRIPTEND);
-
+						response.sendRedirect("ShowTask?errorMsg2=Not updated");
 					}
 
 				} else {
-					out.println(SCRIPT);
-					out.println("alert('Timesheet already Exist');");
-					out.println(LOCATION);
-					out.println(SCRIPTEND);
+					response.sendRedirect("ShowTask?warningMsg1=Timesheet already Exist");
 				}
 			} else {
-				out.println(SCRIPT);
-				out.println("alert('Timesheet Hrs Not Available');");
-				out.println(LOCATION);
-				out.println(SCRIPTEND);
-
+				response.sendRedirect("ShowTask?warningMsg2=Timesheet Hrs Not Available");
 			}
 		} catch (IOException | NumberFormatException e) {
 			e.printStackTrace();

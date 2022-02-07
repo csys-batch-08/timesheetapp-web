@@ -23,6 +23,12 @@ public class ShowTask extends HttpServlet {
 			HttpSession session = request.getSession();
 			String username = (String) session.getAttribute("username");
 			TaskDAOimpl taskdao = new TaskDAOimpl();
+			String informMsg=request.getParameter("infoMsg");
+			session.setAttribute("infoMessage",informMsg);
+			String errMsg1=request.getParameter("errorMsg1");
+			session.setAttribute("errorMessage1", errMsg1);
+			String errMsg2=request.getParameter("errorMsg1");
+			session.setAttribute("errorMessage2", errMsg2);
 			List<Task> taskList = taskdao.showTask(username);
 			request.setAttribute("showtask", taskList);
 			RequestDispatcher rd = request.getRequestDispatcher("showTask.jsp");
