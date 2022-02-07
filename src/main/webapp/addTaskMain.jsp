@@ -144,22 +144,22 @@ ul li:hover a {
 				<caption></caption>
 				<tr>
 					<th id="tblhead"><label for="taskname">Enter Task Name</label></th>
-					<td><input type="text" name="taskname" required></td>
+					<td><input id="taskname" type="text" name="taskname" required></td>
 				</tr>
 				<tr>
 					<th id="tblhead"><label for="assigningdate">Enter Task
 							Assigning Date</label></th>
-					<td><input type="date" name="assigningdate" required></td>
+					<td><input id="assigningdate" type="date" name="assigningdate" required></td>
 				</tr>
 				<tr>
 					<th id="tblhead"><label for="endingdate">Enter Task
 							Ending Date</label></th>
-					<td><input type="date" name="endingdate" required></td>
+					<td><input id="endingdate" type="date" name="endingdate" required></td>
 				</tr>
 				<tr>
 					<th id="tblhead"><label for="priority">Enter Task
 							Priority</label></th>
-					<td><select name="priority" required>
+					<td><select id="priority" name="priority" required>
 							<option>Low</option>
 							<option>Medium</option>
 							<option>High</option>
@@ -168,7 +168,7 @@ ul li:hover a {
 				<tr>
 					<th id="tblhead"><label for="assignedto">Task Assigned
 							To</label></th>
-					<td><input type="email" name="username" required></td>
+					<td><input id="assignedto" type="email" name="username" required></td>
 				</tr>
 			</table>
 			<br> <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
