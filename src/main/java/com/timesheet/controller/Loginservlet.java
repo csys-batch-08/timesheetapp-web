@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.timesheet.daoimpl.AdminDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
-import com.timesheet.exception.InvalidUserException;
 import com.timesheet.model.User;
 
 @WebServlet("/log")
@@ -20,7 +19,8 @@ public class Loginservlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+		 {
+		try {
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -32,22 +32,19 @@ public class Loginservlet extends HttpServlet {
 			session.setAttribute("username", validuser.getUsername());
 			session.setAttribute("userPassword", validuser.getPassword());
 			RequestDispatcher reqdis = request.getRequestDispatcher("userIndex.jsp");
-			reqdis.forward(request, response);
+				reqdis.forward(request, response);
 		} else if (validadmin != null) {
 
 			session.setAttribute("adminuser", validadmin.getFirstname());
 			RequestDispatcher reqdis = request.getRequestDispatcher("adminIndex.jsp");
 			reqdis.forward(request, response);
 		} else {
-			try {
-				throw new InvalidUserException();
-			} catch (InvalidUserException e) {
 				session.setAttribute("login", "! Invalid Username or Password");
-				String value = e.validateUser();
-				response.sendRedirect(value);
-			}
+				response.sendRedirect("index.jsp");
 		}
-
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -133,7 +133,7 @@ ul li:hover a {
 	<div class="sidebar">
 		<ul>
 			<li><a href="TimesheetStatus">Add Timesheet status</a><br>
-			<br></li>
+				<br></li>
 		</ul>
 	</div>
 	<div class="box">
@@ -144,18 +144,18 @@ ul li:hover a {
 					<tr>
 						<th id="tblhead"><label for="timesheetid">Enter
 								Timesheet Id</label></th>
-						<td><input type="number" name="timesheetid"
+						<td><input id="timesheetid" type="number" name="timesheetid"
 							value="${viewStatus.timesheetid}" readonly required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="userid">User Id</label></th>
-						<td><input type="number" name="userid"
+						<td><input id="userid" type="number" name="userid"
 							value="${viewStatus.userid}" readonly required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="status">Enter Status</label></th>
-						<td><select name="status" required>
-						        <option value="Select" disabled>--Select--</option>
+						<td><select id="status" name="status" required>
+								<option value="Select" disabled>--Select--</option>
 								<option value="Approved">Approved</option>
 								<option value="Rejected">Rejected</option>
 								<option value="NotApproved">Not Approved</option>
@@ -163,14 +163,14 @@ ul li:hover a {
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="approvedby">Approvedb By</label></th>
-						<td><input type="text" name="approvedby"
+						<td><input id="approvedby" type="text" name="approvedby"
 							value="${viewStatus.approvedby}" readonly required></td>
 					</tr>
 				</c:forEach>
 			</table>
-			<br>
-			<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-			&nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" value="Submit">
+			<br> <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label for="Submit"></label> <input
+				id="Submit" type="submit" value="Submit">
 
 
 

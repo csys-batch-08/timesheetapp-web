@@ -80,10 +80,9 @@ body {
 		if (pswd.value != cpswd.value) {
 			document.getElementById("newPassword").style.borderColor = "#E34234";
 			document.getElementById("confirmPassword").style.borderColor = "#E34234";
-			document.getElementById("message").innerHTML="Password must be same";
+			document.getElementById("message").innerHTML = "Password must be same";
 			return false;
-		}
-		else{
+		} else {
 			return true;
 		}
 	}
@@ -111,39 +110,44 @@ body {
 	<form action="updateuser" method="post" onsubmit="return myfunction()">
 		<fieldset>
 			<legend></legend>
-			<label for="firstname">First Name</label><br> <input type="text"
-				id="First_Name" name="firstname" value="${firstname}"
-				pattern="[A-Za-z]{3,}" required autofocus><br>
-			<br> <label for="lastname">Last Name</label><br> <input
-				type="text" id="Last_Name" name="lastname" value="${lastname}"
-				pattern="[A-Za-z]{3,}" required><br>
-			<br> <label for="username">User Name</label><br> <input
-				type="email" id="User_Name" name="username" value="${username}"
+			<label for="First_Name">First Name</label><br> <input
+				type="text" id="First_Name" name="firstname" value="${firstname}"
+				pattern="[A-Za-z]{3,}" required autofocus><br> <br>
+			<label for="Last_Name">Last Name</label><br> <input type="text"
+				id="Last_Name" name="lastname" value="${lastname}"
+				pattern="[A-Za-z]{3,}" required><br> <br> <label
+				for="User_Name">User Name</label><br> <input type="email"
+				id="User_Name" name="username" value="${username}"
 				pattern="[a-z][a-z0-9_.]+@[a-z0-9.]+[.][a-z]+"
-				title="Sample xyz12@gmail.com" readonly required><br>
-			<br><label for="oldPassword">Old Password</label><br> <input
+				title="Sample xyz12@gmail.com" readonly required><br> <br>
+			<label for="oldPassword">Old Password</label><br> <input
 				type="password" id="oldPassword" name="oldPassword"
 				pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
 				title="The password length must be greater than or equal to 8 
 				       and it must contain one or more uppercase characters
                        and it must contain one or more lowercase characters
                        and it must contain one or more numeric values
-                       and it must contain one or more special characters Sample Xyz12@" required><br>	
-			<br> <label for="password">New Password</label><br> <input
-				type="password" id="newPassword" name="newPassword"
+                       and it must contain one or more special characters Sample Xyz12@"
+				required><br> <br> <label for="newPassword">New
+				Password</label><br> <input type="password" id="newPassword"
+				name="newPassword"
 				pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
 				title="The password length must be greater than or equal to 8 
 				       and it must contain one or more uppercase characters
                        and it must contain one or more lowercase characters
                        and it must contain one or more numeric values
-                       and it must contain one or more special characters Sample Xyz12@" required><br>
-			<br> <label for="confirmPassword">Confirm Password</label><br> <input
-				type="password" id="confirmPassword" name="confirmPassword"
+                       and it must contain one or more special characters Sample Xyz12@"
+				required><br> <br> <label for="confirmPassword">Confirm
+				Password</label><br> <input type="password" id="confirmPassword"
+				name="confirmPassword"
 				pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}"
 				title="Enter confirm password same as password " required><br>
-			<br><p style="color:red;" id="message"></p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<br>
+			<p style="color: red;" id="message"></p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<button type="submit">Submit</button>
-			&nbsp; &nbsp;<input type="reset" value="clear">
+			&nbsp; &nbsp;<label for="clear"></label><input id="clear"
+				type="reset" value="clear">
 		</fieldset>
 	</form>
 

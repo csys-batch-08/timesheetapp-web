@@ -126,10 +126,8 @@ ul li:hover a {
 	</nav>
 	<div class="sidebar">
 		<ul>
-			<li><a href="addTaskMain.jsp">Add Task</a><br>
-			<br></li>
-			<li><a href="Showalltask">View &amp; Edit Task</a><br>
-			<br></li>
+			<li><a href="addTaskMain.jsp">Add Task</a><br> <br></li>
+			<li><a href="Showalltask">View &amp; Edit Task</a><br> <br></li>
 		</ul>
 	</div>
 	<div class="box">
@@ -138,33 +136,35 @@ ul li:hover a {
 				<caption></caption>
 				<tr>
 					<th id="tblhead"><label for="taskname">Enter Task Name</label></th>
-					<td><input type="text" name="taskname" required></td>
+					<td><input id="taskname" type="text" name="taskname" required></td>
 				</tr>
 				<tr>
 					<th id="tblhead"><label for="assigningdate">Enter Task
 							Assigning Date</label></th>
-					<td><input type="date" name="assigningdate" required></td>
+					<td><input id="assigningdate" type="date" name="assigningdate"
+						required></td>
 				</tr>
 				<tr>
 					<th id="tblhead"><label for="endingdate">Enter Task
 							Ending Date</label></th>
-					<td><input type="date" name="endingdate" required></td>
+					<td><input id="endingdate" type="date" name="endingdate"
+						required></td>
 				</tr>
 				<tr>
 					<th id="tblhead"><label for="priority">Enter Task
 							Priority</label></th>
-					<td><select name="priority" required>
+					<td><select id="priority" name="priority" required>
 							<option>Low</option>
 							<option>Medium</option>
 							<option>High</option>
 					</select></td>
 				</tr>
 			</table>
-			<br>
-			<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-			&nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"
+			<br> <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"
 				class="btn btn-primary btn-sm" value="Submit"> &nbsp; &nbsp;
-			<input type="reset" class="btn btn-primary btn-sm" value="Clear">
+			<label for="clear"></label> <input id="clear" type="reset"
+				class="btn btn-primary btn-sm" value="Clear">
 		</form>
 
 	</div>

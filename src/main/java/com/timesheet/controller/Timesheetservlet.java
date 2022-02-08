@@ -38,19 +38,19 @@ public class Timesheetservlet extends HttpServlet {
 
 						boolean flag = timesheetdao.insertTimesheet(timesheet);
 						if (flag) {
-							response.sendRedirect("ShowTask?infoMsg=Timesheet Added Successfully");
+							response.sendRedirect("timesheetMain.jsp?infoMsg=Timesheet Added Successfully");
 						} else {
-							response.sendRedirect("ShowTask?errorMsg1=Timesheet Not Added");
+							response.sendRedirect("timesheetMain.jsp?errorMsg1=Timesheet Not Added");
 						}
 					} else {
-						response.sendRedirect("ShowTask?errorMsg2=Not updated");
+						response.sendRedirect("timesheetMain.jsp?errorMsg2=Not updated");
 					}
 
 				} else {
-					response.sendRedirect("ShowTask?warningMsg1=Timesheet already Exist");
+					response.sendRedirect("timesheetMain.jsp?warningMsg1=Timesheet already Exist");
 				}
 			} else {
-				response.sendRedirect("ShowTask?warningMsg2=Timesheet Hrs Not Available");
+				response.sendRedirect("timesheetMain.jsp?warningMsg2=Timesheet Hrs Not Available");
 			}
 		} catch (IOException | NumberFormatException e) {
 			e.printStackTrace();

@@ -130,7 +130,7 @@ ul li:hover a {
 	<div class="sidebar">
 		<ul>
 			<li><a href="ShowAllTimesheet">Add Timesheet status</a><br>
-			<br></li>
+				<br></li>
 		</ul>
 	</div>
 
@@ -140,9 +140,10 @@ ul li:hover a {
 				<caption></caption>
 				<tr>
 					<th id="tblhead"><label for="timesheetid">Timesheet Id</label></th>
-					<td><input type="number" name="timesheetid"
+					<td><input id="timesheetid" type="number" name="timesheetid"
 						value="${timesheetid}" required></td>
-					<td><input type="submit" value="Search"></td>
+					<td><label for="search"></label><input id="search"
+						type="submit" value="Search"></td>
 				</tr>
 			</table>
 		</form>

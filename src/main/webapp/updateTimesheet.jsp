@@ -125,16 +125,13 @@ ul li:hover a {
 	</nav>
 	<div class="sidebar">
 		<ul>
-			<li><a href="ShowTask">Add Timesheet</a><br>
-			<br></li>
-			<li><a href="updateTimesheet.jsp">Edit Timesheet</a><br>
-			<br></li>
+			<li><a href="ShowTask">Add Timesheet</a><br> <br></li>
+			<li><a href="updateTimesheet.jsp">Edit Timesheet</a><br> <br></li>
 			<li><a href="RejectedTimesheet">Rejected Timesheet</a><br>
-			<br></li>
+				<br></li>
 			<li><a href="showUserStatusMain.jsp">View Timesheet Status</a><br>
-			<br></li>
-			<li><a href="ViewTimesheet">View Timesheet</a><br>
-			<br></li>
+				<br></li>
+			<li><a href="ViewTimesheet">View Timesheet</a><br> <br></li>
 		</ul>
 	</div>
 	<div class="box">
@@ -144,8 +141,10 @@ ul li:hover a {
 				<tr>
 					<th id="tblhead"><label for="timesheetdate">Enter
 							Timesheet Date</label></th>
-					<td><input type="date" name="timesheetdate" required></td>
-					<td><input type="submit" value="Search"></td>
+					<td><input id="timesheetdate" type="date" name="timesheetdate"
+						required></td>
+					<td><label for="search"></label><input id="search"
+						type="submit" value="Search"></td>
 				</tr>
 			</table>
 		</form>

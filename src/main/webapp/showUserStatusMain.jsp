@@ -124,26 +124,24 @@ ul li:hover a {
 	</nav>
 	<div class="sidebar">
 		<ul>
-			<li><a href="ShowTask">Add Timesheet</a><br>
-			<br></li>
-			<li><a href="updateTimesheet.jsp">Edit Timesheet</a><br>
-			<br></li>
+			<li><a href="ShowTask">Add Timesheet</a><br> <br></li>
+			<li><a href="updateTimesheet.jsp">Edit Timesheet</a><br> <br></li>
 			<li><a href="RejectedTimesheet">Rejected Timesheet</a><br>
-			<br></li>
+				<br></li>
 			<li><a href="showUserStatusMain.jsp">View Timesheet Status</a><br>
-			<br></li>
-			<li><a href="ViewTimesheet">View Timesheet</a><br>
-			<br></li>
+				<br></li>
+			<li><a href="ViewTimesheet">View Timesheet</a><br> <br></li>
 		</ul>
 	</div>
 	<div class="box">
 		<form action="ShowUserStatus">
-			<label for="startdate">Start Date</label> <input type="date"
-				name="startdate" required><br>
-			<br> <label for="startdate">End Date</label> &nbsp;<input
-				type="date" name="enddate" required><br>
-			<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input
-				type="submit" class="btn btn-primary btn-sm" value="Search">
+			<label for="startdate">Start Date</label> <input id="startdate"
+				type="date" name="startdate" required><br> <br> <label
+				for="enddate">End Date</label> &nbsp;<input type="date" id="enddate"
+				name="enddate" required><br> <br> &nbsp; &nbsp;
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label for="search"></label>
+			<input id="search" type="submit" class="btn btn-primary btn-sm"
+				value="Search">
 		</form>
 	</div>
 </body>

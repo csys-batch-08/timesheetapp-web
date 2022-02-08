@@ -125,8 +125,7 @@ table {
 	</nav>
 	<div class="sidebar">
 		<ul>
-			<li><a href="ShowAllUser">View Users</a><br>
-			<br></li>
+			<li><a href="ShowAllUser">View Users</a><br> <br></li>
 		</ul>
 	</div>
 	<div class="box">
@@ -135,20 +134,20 @@ table {
 				<caption></caption>
 				<tr>
 					<th id="tblhead"><label for="username">User Name</label></th>
-					<td><input type="text" name="username" value="${username}"
-						required readonly></td>
+					<td><input id="username" type="text" name="username"
+						value="${username}" required readonly></td>
 				</tr>
 				<tr>
 					<th id="tblhead"><label for="role">Role</label></th>
-					<td><select name="role" required>
+					<td><select id="role" name="role" required>
 							<option>TEAM MEMBER</option>
 							<option>IN ACTIVE</option>
 					</select></td>
 				</tr>
 			</table>
-			<br>
-			<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-			&nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" value="Submit">
+			<br> <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label for="Submit"></label> <input
+				id="Submit" type="submit" value="Submit">
 		</form>
 		<br>
 	</div>

@@ -84,8 +84,9 @@ body {
 	<br>
 	<div>
 		<form action="Report">
-			<label style="font-size: 20px;"><strong>Enter Date</strong></label> <input
-				type="date" name="timesheetdate" required> <input
+			<label for="timesheetdate" style="font-size: 20px;"><strong>Enter
+					Date</strong></label> <input type="date" id="timesheetdate" name="timesheetdate"
+				required><label for="search"></label> <input id="search"
 				type="submit" class="btn btn-primary btn-sm" value="search">
 		</form>
 	</div>

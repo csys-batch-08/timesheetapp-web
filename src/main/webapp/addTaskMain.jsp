@@ -149,12 +149,14 @@ ul li:hover a {
 				<tr>
 					<th id="tblhead"><label for="assigningdate">Enter Task
 							Assigning Date</label></th>
-					<td><input id="assigningdate" type="date" name="assigningdate" required></td>
+					<td><input id="assigningdate" type="date" name="assigningdate"
+						required></td>
 				</tr>
 				<tr>
 					<th id="tblhead"><label for="endingdate">Enter Task
 							Ending Date</label></th>
-					<td><input id="endingdate" type="date" name="endingdate" required></td>
+					<td><input id="endingdate" type="date" name="endingdate"
+						required></td>
 				</tr>
 				<tr>
 					<th id="tblhead"><label for="priority">Enter Task
@@ -168,13 +170,15 @@ ul li:hover a {
 				<tr>
 					<th id="tblhead"><label for="assignedto">Task Assigned
 							To</label></th>
-					<td><input id="assignedto" type="email" name="username" required></td>
+					<td><input id="assignedto" type="email" name="username"
+						required></td>
 				</tr>
 			</table>
 			<br> <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input id="submit" type="submit"
 				class="btn btn-primary btn-sm" value="Submit"> &nbsp; &nbsp;
-			<input type="reset" class="btn btn-primary btn-sm" value="Clear">
+			<label for="clear"></label> <input id="clear" type="reset"
+				class="btn btn-primary btn-sm" value="Clear">
 		</form>
 		<script src="assets/js/script.js"></script>
 	</div>

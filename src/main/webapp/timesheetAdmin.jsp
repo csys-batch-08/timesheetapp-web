@@ -165,16 +165,18 @@ body {
 					<caption></caption>
 					<tr>
 						<th id="tblhd"><label for="username">Enter User Name</label></th>
-						<td><input type="email" name="username" required></td>
+						<td><input id="username" type="email" name="username"
+							required></td>
 					</tr>
 					<tr>
 						<th id="tblhd"><label for="timesheetdate">Enter
 								Timesheet Date</label></th>
-						<td><input type="date" name="timesheetdate" required></td>
+						<td><input id="timesheetdate" type="date"
+							name="timesheetdate" required></td>
 					</tr>
 					<tr>
 						<th id="tblhd"><label for="status">Enter Status</label></th>
-						<td><select name="status" required>
+						<td><select id="status" name="status" required>
 								<option>Approved</option>
 								<option>Rejected</option>
 								<option>Not Approved</option>
@@ -182,14 +184,15 @@ body {
 					</tr>
 					<tr>
 						<th id="tblhd"><label for="approvedby">Approved By</label></th>
-						<td><input type="text" name="approvedby"
+						<td><input id="approvedby" type="text" name="approvedby"
 							value="${sessionScope.adminuser}" readonly required></td>
 					</tr>
 				</table>
 				<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-				&nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"
-					class="btn btn-primary btn-sm" value="Submit"> &nbsp;
-				&nbsp; <input type="reset" class="btn btn-secondary btn-sm"
+				&nbsp; &nbsp; &nbsp; &nbsp;<label for="submit"></label> <input
+					id="submit" type="submit" class="btn btn-primary btn-sm"
+					value="Submit"> &nbsp; &nbsp;<label for="clear"></label> <input
+					id="clear" type="reset" class="btn btn-secondary btn-sm"
 					value="Clear">
 			</form>
 		</fieldset>

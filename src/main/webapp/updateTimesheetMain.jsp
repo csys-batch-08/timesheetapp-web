@@ -126,16 +126,13 @@ ul li:hover a {
 	</nav>
 	<div class="sidebar">
 		<ul>
-			<li><a href="ShowTask">Add Timesheet</a><br>
-			<br></li>
-			<li><a href="updateTimesheet.jsp">Edit Timesheet</a><br>
-			<br></li>
+			<li><a href="ShowTask">Add Timesheet</a><br> <br></li>
+			<li><a href="updateTimesheet.jsp">Edit Timesheet</a><br> <br></li>
 			<li><a href="RejectedTimesheet">Rejected Timesheet</a><br>
-			<br></li>
+				<br></li>
 			<li><a href="showUserStatusMain.jsp">View Timesheet Status</a><br>
-			<br></li>
-			<li><a href="ViewTimesheet">View Timesheet</a><br>
-			<br></li>
+				<br></li>
+			<li><a href="ViewTimesheet">View Timesheet</a><br> <br></li>
 		</ul>
 	</div>
 	<div class="box">
@@ -146,40 +143,43 @@ ul li:hover a {
 					<tr>
 						<th id="tblhead"><label for="timesheetdate">Enter
 								Timesheet Date</label></th>
-						<td><input type="date" min="" max="" name="timesheetdate"
-							value="${showtimesheet.timesheetfordate}" readonly required></td>
+						<td><input id="timesheetdate" type="date" min="" max=""
+							name="timesheetdate" value="${showtimesheet.timesheetfordate}"
+							readonly required></td>
 					</tr>
 					<tr>
-						<th id="tblhead"><label for="spendinghrs">User Id</label></th>
-						<td><input type="number" name="userid"
+						<th id="tblhead"><label for="userid">User Id</label></th>
+						<td><input id="userid" type="number" name="userid"
 							value="${showtimesheet.userid}" readonly></td>
 					</tr>
 					<tr>
-						<th id="tblhead"><label for="spendinghrs">Task Id</label></th>
-						<td><input type="number" name="taskid"
+						<th id="tblhead"><label for="taskid">Task Id</label></th>
+						<td><input id="taskid" type="number" name="taskid"
 							value="${showtimesheet.taskid}" readonly></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="spendinghrs">Enter
 								Spending Hrs</label></th>
-						<td><input type="number" pattern="[1-9]{1+}" maxlength="2"
-							name="spendinghrs" value="${showtimesheet.spendtime}" required></td>
+						<td><input id="spendinghrs" type="number" pattern="[1-9]{1+}"
+							maxlength="2" name="spendinghrs"
+							value="${showtimesheet.spendtime}" required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="comments">Enter Comments</label></th>
-						<td><input type="text" name="comments"
+						<td><input id="comments" type="text" name="comments"
 							value="${showtimesheet.comments}" required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="status">Status</label></th>
-						<td><input type="text" name="status"
+						<td><input id="status" type="text" name="status"
 							placeholder="not approved" readonly></td>
 					</tr>
 				</table>
 				<br>
 				<br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input
-					type="submit" value="Submit">
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label
+					for="Submit"></label>
+				<input id="Submit" type="submit" value="Submit">
 			</c:forEach>
 		</form>
 	</div>

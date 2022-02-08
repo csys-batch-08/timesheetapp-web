@@ -129,10 +129,8 @@ ul li:hover a {
 	</nav>
 	<div class="sidebar">
 		<ul>
-			<li><a href="addTaskMain.jsp">Add Task</a><br>
-			<br></li>
-			<li><a href="Showalltask">View &amp; Edit Task</a><br>
-			<br></li>
+			<li><a href="addTaskMain.jsp">Add Task</a><br> <br></li>
+			<li><a href="Showalltask">View &amp; Edit Task</a><br> <br></li>
 		</ul>
 	</div>
 	<div class="box">
@@ -141,9 +139,10 @@ ul li:hover a {
 				<caption></caption>
 				<tr>
 					<th id="tblhead"><label for="taskname">Task Name</label></th>
-					<td><input type="text" name="taskname" value="${taskname}"
-						required></td>
-					<td><input type="submit" value="Search"></td>
+					<td><input id="taskname" type="text" name="taskname"
+						value="${taskname}" required></td>
+					<td><label for="search"></label><input id="search"
+						type="submit" value="Search"></td>
 				</tr>
 			</table>
 		</form>

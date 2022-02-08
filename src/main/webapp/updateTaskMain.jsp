@@ -127,10 +127,8 @@ ul li:hover a {
 	</nav>
 	<div class="sidebar">
 		<ul>
-			<li><a href="addTaskMain.jsp">Add Task</a><br>
-			<br></li>
-			<li><a href="Showalltask">View &amp; Edit Task</a><br>
-			<br></li>
+			<li><a href="addTaskMain.jsp">Add Task</a><br> <br></li>
+			<li><a href="Showalltask">View &amp; Edit Task</a><br> <br></li>
 		</ul>
 	</div>
 	<div class="box">
@@ -141,40 +139,40 @@ ul li:hover a {
 					<tr>
 						<th id="tblhead"><label for="taskname">Enter Task
 								Name</label></th>
-						<td><input type="text" name="taskname"
+						<td><input id="taskname" type="text" name="taskname"
 							value="${showtask.task}" readonly required></td>
 					</tr>
 
 					<tr>
 						<th id="tblhead"><label for="assigningdate">Enter
 								Task Assigning Date</label></th>
-						<td><input type="date" name="assigningdate"
-							value="${showtask.dateassigned}" required></td>
+						<td><input id="assigningdate" type="date"
+							name="assigningdate" value="${showtask.dateassigned}" required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="endingdate">Enter Task
 								Ending Date</label></th>
-						<td><input type="date" name="endingdate"
+						<td><input id="endingdate" type="date" name="endingdate"
 							value="${showtask.enddate}" required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="priority">Enter Task
 								Priority</label></th>
-						<td><input type="text" name="priority"
+						<td><input id="priority" type="text" name="priority"
 							value="${showtask.taskpriority}" required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="assignedto">Task
 								Assigned To</label></th>
-						<td><input type="email" name="username"
+						<td><input id="assignedto" type="email" name="username"
 							value="${showtask.assignedto}" required></td>
 					</tr>
 				</c:forEach>
 			</table>
-			<br>
-			<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-			&nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"
-				class="btn btn-primary btn-sm" value="Submit">
+			<br> <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label for="Submit"></label> <input
+				id="Submit" type="submit" class="btn btn-primary btn-sm"
+				value="Submit">
 		</form>
 	</div>
 </body>

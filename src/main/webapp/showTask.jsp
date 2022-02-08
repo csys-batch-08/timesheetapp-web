@@ -13,6 +13,11 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"></script>
+<link rel='stylesheet'
+	href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <title>View Task</title>
 <style>
 * {
@@ -130,16 +135,13 @@ ul li:hover a {
 	</nav>
 	<div class="sidebar">
 		<ul>
-			<li><a href="ShowTask">Add Timesheet</a><br>
-			<br></li>
-			<li><a href="updateTimesheet.jsp">Edit Timesheet</a><br>
-			<br></li>
+			<li><a href="ShowTask">Add Timesheet</a><br> <br></li>
+			<li><a href="updateTimesheet.jsp">Edit Timesheet</a><br> <br></li>
 			<li><a href="RejectedTimesheet">Rejected Timesheet</a><br>
-			<br></li>
+				<br></li>
 			<li><a href="showUserStatusMain.jsp">View Timesheet Status</a><br>
-			<br></li>
-			<li><a href="ViewTimesheet">View Timesheet</a><br>
-			<br></li>
+				<br></li>
+			<li><a href="ViewTimesheet">View Timesheet</a><br> <br></li>
 		</ul>
 	</div>
 	<div class="box">
