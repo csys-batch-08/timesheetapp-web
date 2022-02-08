@@ -1,10 +1,10 @@
-
 function messages(infoMsg) {
+	const swal = Swal;
 	const msg = infoMsg;
 	switch (msg) {
 
-		case "Successfully Added":
-			var toastMixin1 = Swal.mixin({
+		case 'Successfully Added':
+			var toastMixin1 = swal.mixin({
 				toast: true,
 				icon: 'success',
 				title: 'General Title',
@@ -26,9 +26,9 @@ function messages(infoMsg) {
 			});
 			break;
 
-		case "Not Added":
+		case 'Not Added':
 
-			var toastMixin2 = Swal.mixin({
+			var toastMixin2 = swal.mixin({
 				toast: true,
 				icon: 'warning',
 				title: 'General Title',
@@ -49,8 +49,8 @@ function messages(infoMsg) {
 				title: 'Task Not Added'
 			});
 			break;
-		case "Already Exist":
-			var toastMixin3 = Swal.mixin({
+		case 'Already Exist':
+			var toastMixin3 = swal.mixin({
 				toast: true,
 				icon: 'warning',
 				title: 'General Title',
@@ -71,76 +71,6 @@ function messages(infoMsg) {
 				title: 'Task Already Assigned'
 			});
 			break;
-			
-		case "Timesheet Added":
-			var toastMixin4 = Swal.mixin({
-				toast: true,
-				icon: 'success',
-				title: 'General Title',
-				animation: false,
-				position: 'top-right',
-				showConfirmButton: false,
-				timer: 2500,
-				timerProgressBar: true,
-				didOpen: (toast) => {
-					toast.addEventListener('mouseenter', Swal.stopTimer)
-					toast.addEventListener('mouseleave', Swal.resumeTimer)
-				}
-			});
-
-
-			toastMixin4.fire({
-				animation: true,
-				title: 'Timesheet Added Successfully'
-			});
-			break;
-
-		case "Timesheet Not Added":
-
-			var toastMixin5 = Swal.mixin({
-				toast: true,
-				icon: 'warning',
-				title: 'General Title',
-				animation: false,
-				position: 'top-right',
-				showConfirmButton: false,
-				timer: 2500,
-				timerProgressBar: true,
-				didOpen: (toast) => {
-					toast.addEventListener('mouseenter', Swal.stopTimer)
-					toast.addEventListener('mouseleave', Swal.resumeTimer)
-				}
-			});
-
-
-			toastMixin5.fire({
-				animation: true,
-				title: 'Timesheet Not Added'
-			});
-			break;
-		case "Timesheeet Already Exist":
-			var toastMixin6 = Swal.mixin({
-				toast: true,
-				icon: 'warning',
-				title: 'General Title',
-				animation: false,
-				position: 'top-right',
-				showConfirmButton: false,
-				timer: 2500,
-				timerProgressBar: true,
-				didOpen: (toast) => {
-					toast.addEventListener('mouseenter', Swal.stopTimer)
-					toast.addEventListener('mouseleave', Swal.resumeTimer)
-				}
-			});
-
-
-			toastMixin6.fire({
-				animation: true,
-				title: 'Timesheet Already Entered'
-			});
-			break;
-
 	}
 
 }
