@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.timesheet.dao.UserDAO;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.User;
 import com.timesheet.util.Connectionutil;
 
@@ -30,7 +31,8 @@ public class UserDAOimpl implements UserDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
@@ -55,7 +57,8 @@ public class UserDAOimpl implements UserDAO {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -79,7 +82,8 @@ public class UserDAOimpl implements UserDAO {
 				flag = true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
@@ -103,7 +107,8 @@ public class UserDAOimpl implements UserDAO {
 				userlist.add(user);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -127,7 +132,8 @@ public class UserDAOimpl implements UserDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.timesheet.dao.TaskDAO;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.Task;
 import com.timesheet.util.Connectionutil;
 
@@ -31,7 +32,8 @@ public class TaskDAOimpl implements TaskDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
@@ -58,7 +60,8 @@ public class TaskDAOimpl implements TaskDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
@@ -83,7 +86,8 @@ public class TaskDAOimpl implements TaskDAO {
 				tasklist.add(task);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -109,7 +113,8 @@ public class TaskDAOimpl implements TaskDAO {
 				tasklist.add(task);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -135,7 +140,8 @@ public class TaskDAOimpl implements TaskDAO {
 				tasklist.add(task);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -158,7 +164,8 @@ public class TaskDAOimpl implements TaskDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -186,7 +193,8 @@ public class TaskDAOimpl implements TaskDAO {
 				flag = false;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -209,7 +217,8 @@ public class TaskDAOimpl implements TaskDAO {
 				result = resultset.getInt(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -230,7 +239,8 @@ public class TaskDAOimpl implements TaskDAO {
 			result = preparestatement.executeUpdate();
 			preparestatement.executeUpdate("commit");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
@@ -255,7 +265,8 @@ public class TaskDAOimpl implements TaskDAO {
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}finally {
 	    Connectionutil.closePreparedstatement(con, preparestatement);
         }

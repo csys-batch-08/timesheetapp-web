@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import com.timesheet.dao.ReportDAO;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.Report;
 import com.timesheet.util.Connectionutil;
 
@@ -34,7 +35,8 @@ public class ReportDAOimpl implements ReportDAO {
 				reportlist.add(report);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}

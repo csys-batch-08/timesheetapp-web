@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.timesheet.dao.AdminDAO;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.AdminUser;
 import com.timesheet.model.User;
 import com.timesheet.util.Connectionutil;
@@ -31,7 +32,8 @@ public class AdminDAOimpl implements AdminDAO {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -56,7 +58,8 @@ public class AdminDAOimpl implements AdminDAO {
 				userslist.add(users);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -81,7 +84,8 @@ public class AdminDAOimpl implements AdminDAO {
 				userlist.add(user1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -104,7 +108,8 @@ public class AdminDAOimpl implements AdminDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closePreparedstatement(con, preparestatement);
 		}

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.timesheet.dao.TimesheetDAO;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.Timesheet;
 import com.timesheet.util.Connectionutil;
 
@@ -31,7 +32,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
@@ -54,7 +56,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 				flag = true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
@@ -81,7 +84,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 				flag = false;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -106,7 +110,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 				timesheetlist.add(timesheet);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -128,7 +133,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 				result = resultset.getInt("spend_time_hrs");
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -148,7 +154,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 				flag = true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}finally {
 			Connectionutil.closePreparedstatement(con, preparestatement);
 		}
@@ -174,7 +181,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 				timesheets.add(timesheet);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -198,7 +206,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -219,7 +228,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 				date = resultset.getString("to_char(sysdate,'yyyy-MM-dd')");
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}

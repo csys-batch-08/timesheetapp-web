@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.timesheet.dao.ViewTimesheetsDAO;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.ViewTimesheets;
 import com.timesheet.util.Connectionutil;
 
@@ -28,7 +29,8 @@ public class ViewTimesheetsDAOimpl implements ViewTimesheetsDAO {
 				timesheetlist.add(timesheet);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
@@ -54,7 +56,8 @@ public class ViewTimesheetsDAOimpl implements ViewTimesheetsDAO {
 				timesheetlist.add(timesheet);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}

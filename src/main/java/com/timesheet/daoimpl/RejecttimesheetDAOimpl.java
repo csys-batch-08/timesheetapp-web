@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.timesheet.dao.RejecttimesheetDAO;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.Rejecttimesheet;
 import com.timesheet.util.Connectionutil;
 
@@ -31,7 +32,8 @@ public class RejecttimesheetDAOimpl implements RejecttimesheetDAO {
 				statuslist.add(rejectTimesheet);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			Connectionutil.closeResultSet(resultset, con, preparestatement);
 		}
