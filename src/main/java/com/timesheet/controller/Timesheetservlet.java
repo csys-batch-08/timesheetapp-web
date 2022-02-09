@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.timesheet.daoimpl.TaskDAOimpl;
 import java.io.PrintWriter;
 import com.timesheet.daoimpl.TimesheetDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.Timesheet;
 
 @WebServlet("/timesheet")
@@ -71,7 +72,8 @@ public class Timesheetservlet extends HttpServlet {
 				out.println(SCRIPTEND);
 			}
 		} catch (IOException | NumberFormatException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 }

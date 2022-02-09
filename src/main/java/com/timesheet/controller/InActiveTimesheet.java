@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.timesheet.daoimpl.TimesheetDAOimpl;
+import com.timesheet.logger.Logger;
 
 @WebServlet("/InActiveTimesheet")
 public class InActiveTimesheet extends HttpServlet {
@@ -32,7 +33,8 @@ public class InActiveTimesheet extends HttpServlet {
 				out.println("</script>");
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

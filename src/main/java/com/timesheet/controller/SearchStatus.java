@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.timesheet.daoimpl.StatusDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.Status;
 
 @WebServlet("/SearchStatus")
@@ -27,7 +28,8 @@ public class SearchStatus extends HttpServlet {
 
 		} catch (ServletException | IOException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

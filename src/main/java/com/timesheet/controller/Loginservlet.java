@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.timesheet.daoimpl.AdminDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.User;
 
 @WebServlet("/log")
@@ -43,7 +44,8 @@ public class Loginservlet extends HttpServlet {
 				response.sendRedirect("index.jsp");
 		}
 		} catch (ServletException | IOException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

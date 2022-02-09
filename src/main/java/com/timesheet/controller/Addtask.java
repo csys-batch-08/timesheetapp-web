@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.timesheet.daoimpl.TaskDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.Task;
 
 @WebServlet("/addtask")
@@ -43,7 +44,8 @@ public class Addtask extends HttpServlet {
 				response.sendRedirect("addTaskMain.jsp?warningmsg=Task Already Exist");
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

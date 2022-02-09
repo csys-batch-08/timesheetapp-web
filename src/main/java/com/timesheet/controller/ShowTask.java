@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.timesheet.daoimpl.TaskDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.Task;
 
 @WebServlet("/ShowTask")
@@ -29,7 +30,8 @@ public class ShowTask extends HttpServlet {
 			rd.forward(request, response);
 		} catch (ServletException | IOException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

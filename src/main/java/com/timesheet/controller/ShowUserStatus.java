@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.timesheet.daoimpl.ViewTimesheetsDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.ViewTimesheets;
 
 @WebServlet("/ShowUserStatus")
@@ -34,7 +35,8 @@ public class ShowUserStatus extends HttpServlet {
 
 		} catch (ServletException | IOException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

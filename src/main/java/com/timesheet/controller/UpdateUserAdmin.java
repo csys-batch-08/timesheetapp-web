@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.timesheet.daoimpl.AdminDAOimpl;
+import com.timesheet.logger.Logger;
 
 @WebServlet("/updateuseradmin")
 
@@ -32,7 +33,8 @@ public class UpdateUserAdmin extends HttpServlet {
 				out.println("</script>");
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

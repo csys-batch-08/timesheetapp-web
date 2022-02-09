@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.timesheet.daoimpl.StatusDAOimpl;
 import com.timesheet.daoimpl.TimesheetDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.Status;
 
 @WebServlet("/addstatus")
@@ -46,8 +47,8 @@ public class Addstatus extends HttpServlet {
 
 			}
 		} catch (IOException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

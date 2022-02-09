@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.timesheet.daoimpl.UserDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.User;
 
 @WebServlet("/Registerservlet")
@@ -28,7 +29,8 @@ public class Registerservlet extends HttpServlet {
 			RequestDispatcher reqdis = request.getRequestDispatcher("index.jsp");
 			reqdis.forward(request, response);
 		} catch (ServletException | IOException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

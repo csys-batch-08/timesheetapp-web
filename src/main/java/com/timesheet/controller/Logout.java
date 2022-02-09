@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.timesheet.logger.Logger;
+
 @WebServlet("/Logout")
 
 public class Logout extends HttpServlet {
@@ -24,7 +26,8 @@ public class Logout extends HttpServlet {
 			RequestDispatcher reqdis = request.getRequestDispatcher("index.jsp");
 			reqdis.forward(request, response);
 		} catch (ServletException | IOException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

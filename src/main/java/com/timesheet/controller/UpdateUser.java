@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.timesheet.daoimpl.UserDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.User;
 
 @WebServlet("/updateuser")
@@ -51,7 +52,8 @@ public class UpdateUser extends HttpServlet {
 				out.println("</script>");
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

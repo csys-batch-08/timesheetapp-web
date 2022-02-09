@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.timesheet.daoimpl.AdminDAOimpl;
 import com.timesheet.daoimpl.TaskDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.AdminUser;
 import com.timesheet.model.Task;
 
@@ -53,7 +54,8 @@ public class AddTaskAllUsers extends HttpServlet {
 				out.println("</script>");
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

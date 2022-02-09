@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.timesheet.daoimpl.AdminDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.AdminUser;
 
 @WebServlet("/ShowAllUser")
@@ -27,7 +28,8 @@ public class ShowAllUser extends HttpServlet {
 
 			rd.forward(request, response);
 		} catch (ServletException | IOException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

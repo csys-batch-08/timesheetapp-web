@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.timesheet.daoimpl.RejecttimesheetDAOimpl;
+import com.timesheet.logger.Logger;
 import com.timesheet.model.Rejecttimesheet;
 
 @WebServlet("/RejectedTimesheet")
@@ -41,7 +42,8 @@ public class RejectedTimesheet extends HttpServlet {
 
 		} catch (ServletException | IOException e) {
 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}
