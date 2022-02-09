@@ -133,7 +133,7 @@ fieldset {
 			</table>
 			<p>
 				<a
-					href="UpdateUserProfile?firstname=${viewUser.firstname}&lastname=${viewUser.lastname}&username=${viewUser.username}"><button
+					href="UpdateUserProfile?userFirstName=${viewUser.firstname}&userLastName=${viewUser.lastname}&userEmail=${viewUser.username}"><button
 						type="button" class="btn btn-primary btn-lg">Reset Password</button></a>
 			</p>
 		</c:forEach>
