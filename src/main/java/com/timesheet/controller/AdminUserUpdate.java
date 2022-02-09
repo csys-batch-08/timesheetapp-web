@@ -18,8 +18,8 @@ public class AdminUserUpdate extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String username = request.getParameter("username");
-		session.setAttribute("username", username);
+		String adminUserName = request.getParameter("username");
+		session.setAttribute("userNameValue", adminUserName);
 		RequestDispatcher rd = request.getRequestDispatcher("updateUserAdmin.jsp");
 		rd.forward(request, response);
 	}

@@ -18,12 +18,12 @@ public class UpdateUserProfile extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String firstname = request.getParameter("firstname");
-		String username = request.getParameter("username");
-		String lastname = request.getParameter("lastname");
-		session.setAttribute("firstname", firstname);
-		session.setAttribute("username", username);
-		session.setAttribute("lastname", lastname);
+		String firstName = request.getParameter("firstname");
+		String userName = request.getParameter("username");
+		String lastName = request.getParameter("lastname");
+		session.setAttribute("firstNameValue", firstName);
+		session.setAttribute("userNameValue", userName);
+		session.setAttribute("lastNameValue", lastName);
 		RequestDispatcher rd = request.getRequestDispatcher("updateUser.jsp");
 		rd.forward(request, response);
 	}

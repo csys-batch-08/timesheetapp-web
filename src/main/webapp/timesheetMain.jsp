@@ -189,11 +189,5 @@ ul li:hover a {
 				for="clear"></label> <input id="clear" type="reset" value="Reset">
 		</form>
 	</div>
-	<script src="assets/js/script.js"></script>
-	<c:if test="${param.infoMsg!=null}">
-		<script type="text/javascript">
-			messages('Timesheet Added')
-		</script>
-	</c:if>
 </body>
 </html>

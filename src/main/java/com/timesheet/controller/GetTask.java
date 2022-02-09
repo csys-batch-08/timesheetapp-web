@@ -18,8 +18,8 @@ public class GetTask extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String taskname = (request.getParameter("taskname"));
-		session.setAttribute("taskname", taskname);
+		String taskName = (request.getParameter("taskname"));
+		session.setAttribute("taskNameValue", taskName);
 		RequestDispatcher rd = request.getRequestDispatcher("updateTask.jsp");
 		rd.forward(request, response);
 	}

@@ -140,7 +140,7 @@ ul li:hover a {
 				<tr>
 					<th id="tblhead"><label for="taskname">Task Name</label></th>
 					<td><input id="taskname" type="text" name="taskname"
-						value="${taskname}" required></td>
+						value="${taskNameValue}" required></td>
 					<td><label for="search"></label><input id="search"
 						type="submit" value="Search"></td>
 				</tr>
