@@ -141,7 +141,7 @@ body {
 								pattern="dd-MM-yyyy" value="${endDate}" /></td>
 						<td>${viewtask.assignedto}</td>
 						<td>${viewtask.totalhrs}</td>
-						<td><a href="GetTask?adminTaskName=${viewtask.task}"><button
+						<td><a href="GetTask?taskname=${viewtask.task}"><button
 									type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 					</tr>
 				</c:forEach>
