@@ -17,11 +17,11 @@ public class UpdateUserProfile extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String firstName = request.getParameter("userFirstName");
-		request.setAttribute("firstNameValue", firstName);
+		request.setAttribute("profilefirstName", firstName);
 		String userName = request.getParameter("userEmail");
-		request.setAttribute("userNameValue", userName);
+		request.setAttribute("userMail", userName);
 		String lastName = request.getParameter("userLastName");
-		request.setAttribute("lastNameValue", lastName);
+		request.setAttribute("profileLastName", lastName);
 		RequestDispatcher rd = request.getRequestDispatcher("updateUser.jsp");
 		rd.forward(request, response);
 	}

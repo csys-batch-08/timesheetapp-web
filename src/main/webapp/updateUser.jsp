@@ -111,13 +111,13 @@ body {
 		<fieldset>
 			<legend></legend>
 			<label for="First_Name">First Name</label><br> <input
-				type="text" id="First_Name" name="firstname" value="${firstNameValue}"
+				type="text" id="First_Name" name="firstname" value="${profilefirstName}"
 				pattern="[A-Za-z]{3,}" required autofocus><br> <br>
 			<label for="Last_Name">Last Name</label><br> <input type="text"
-				id="Last_Name" name="lastname" value="${lastNameValue}"
+				id="Last_Name" name="lastname" value="${profileLastName}"
 				pattern="[A-Za-z]{3,}" required><br> <br> <label
 				for="User_Name">User Name</label><br> <input type="email"
-				id="User_Name" name="username" value="${userNameValue}"
+				id="User_Name" name="username" value="${userMail}"
 				pattern="[a-z][a-z0-9_.]+@[a-z0-9.]+[.][a-z]+"
 				title="Sample xyz12@gmail.com" readonly required><br> <br>
 			<label for="oldPassword">Old Password</label><br> <input
