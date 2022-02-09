@@ -121,32 +121,6 @@ public class TaskDAOimpl implements TaskDAO {
 		return tasklist;
 	}
 
-	public List<Task> searchTask(String taskname) {
-		List<Task> tasklist = new ArrayList<>();
-		String selectquery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where task_status='Active' and task_name=? and total_hours>0";
-		Connection con = null;
-		PreparedStatement preparestatement = null;
-		ResultSet resultset = null;
-		try {
-			con = Connectionutil.getDbConnection();
-			preparestatement = con.prepareStatement(selectquery);
-			preparestatement.setString(1, taskname);
-			resultset = preparestatement.executeQuery();
-			while (resultset.next()) {
-				Task task = new Task(resultset.getInt("user_id"), resultset.getString("task_name"),
-						resultset.getDate("assigned_to_date").toLocalDate(),
-						resultset.getDate("end_date").toLocalDate(), resultset.getString("task_priority"),
-						resultset.getString("assigned_to"), resultset.getLong("total_hours"));
-				tasklist.add(task);
-			}
-		} catch (SQLException e) {
-			Logger.printStackTrace(e);
-			Logger.runTimeException(e.getMessage());
-		} finally {
-			Connectionutil.closeResultSet(resultset, con, preparestatement);
-		}
-		return tasklist;
-	}
 
 	public int findtaskId(String task) {
 		String findtask = "select task_id from task_details where task_status='Active' and task_name=?";

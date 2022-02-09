@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet("/GetTask")
 public class GetTask extends HttpServlet {
@@ -17,10 +16,17 @@ public class GetTask extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String taskNameAdmin = request.getParameter("adminTaskName");
-		session.setAttribute("taskNameValue", taskNameAdmin);
-		RequestDispatcher rd = request.getRequestDispatcher("updateTask.jsp");
+		String taskName = request.getParameter("task");
+		request.setAttribute("taskNameValue", taskName);
+		String taskAssignDate=request.getParameter("taskAssignedDate");
+		request.setAttribute("taskAssignDateValue", taskAssignDate);
+		String taskEndingDate=request.getParameter("taskEndDate");
+		request.setAttribute("taskEndingDate",taskEndingDate);
+		String taskPriority= request.getParameter("priority");
+		request.setAttribute("priorityValue",taskPriority);
+		String taskAssigned= request.getParameter("taskAssignedTo");
+		request.setAttribute("assignedTo", taskAssigned);
+		RequestDispatcher rd = request.getRequestDispatcher("updateTaskMain.jsp");
 		rd.forward(request, response);
 	}
 

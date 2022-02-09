@@ -135,39 +135,37 @@ ul li:hover a {
 		<form method="post" action="UpdateTask">
 			<table>
 				<caption></caption>
-				<c:forEach items="${showTask}" var="showtask">
 					<tr>
-						<th id="tblhead"><label for="taskname">Enter Task
+						<th id="tblhead"><label for="taskname">Task
 								Name</label></th>
 						<td><input id="taskname" type="text" name="taskname"
-							value="${showtask.task}" readonly required></td>
+							value="${taskNameValue}" readonly required></td>
 					</tr>
 
 					<tr>
-						<th id="tblhead"><label for="assigningdate">Enter
+						<th id="tblhead"><label for="assigningdate">
 								Task Assigning Date</label></th>
 						<td><input id="assigningdate" type="date"
-							name="assigningdate" value="${showtask.dateassigned}" required></td>
+							name="assigningdate" value="${taskAssignDateValue}" required></td>
 					</tr>
 					<tr>
-						<th id="tblhead"><label for="endingdate">Enter Task
+						<th id="tblhead"><label for="endingdate">Task
 								Ending Date</label></th>
 						<td><input id="endingdate" type="date" name="endingdate"
-							value="${showtask.enddate}" required></td>
+							value="${taskEndingDate}" required></td>
 					</tr>
 					<tr>
-						<th id="tblhead"><label for="priority">Enter Task
+						<th id="tblhead"><label for="priority">Task
 								Priority</label></th>
 						<td><input id="priority" type="text" name="priority"
-							value="${showtask.taskpriority}" required></td>
+							value="${priorityValue}" required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="assignedto">Task
 								Assigned To</label></th>
 						<td><input id="assignedto" type="email" name="username"
-							value="${showtask.assignedto}" required></td>
+							value="${assignedTo}" required></td>
 					</tr>
-				</c:forEach>
 			</table>
 			<br> <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label for="Submit"></label> <input

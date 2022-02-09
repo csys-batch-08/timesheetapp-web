@@ -116,7 +116,7 @@ body {
 			<caption></caption>
 			<thead>
 				<tr>
-				    <th id="tblhead">S.No</th>
+					<th id="tblhead">S.No</th>
 					<th id="tblhead">Task Name</th>
 					<th id="tblhead">Priority</th>
 					<th id="tblhead">Task Starting Date</th>
@@ -128,9 +128,9 @@ body {
 			</thead>
 			<tbody>
 				<c:forEach items="${showalltask}" var="viewtask">
-				<c:set var="i" value="${i+1}" />
+					<c:set var="i" value="${i+1}" />
 					<tr>
-					    <td>${i}</td>
+						<td>${i}</td>
 						<td>${viewtask.task}</td>
 						<td>${viewtask.taskpriority}</td>
 						<td><fmt:parseDate value="${viewtask.dateassigned}"
@@ -141,7 +141,9 @@ body {
 								pattern="dd-MM-yyyy" value="${endDate}" /></td>
 						<td>${viewtask.assignedto}</td>
 						<td>${viewtask.totalhrs}</td>
-						<td><a href="GetTask?adminTaskName=${viewtask.task}"><button
+						<td><a
+							href="GetTask?task=${viewtask.task}&taskAssignedDate=${viewtask.dateassigned}
+							&taskEndDate=${viewtask.enddate}&priority=${viewtask.taskpriority}&taskAssignedTo=${viewtask.assignedto}"><button
 									type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 					</tr>
 				</c:forEach>

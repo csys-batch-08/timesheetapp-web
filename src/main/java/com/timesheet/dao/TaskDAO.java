@@ -13,8 +13,6 @@ public interface TaskDAO {
 
 	public List<Task> showTask(String username);
 
-	public List<Task> searchTask(String taskname);
-
 	public int findtaskId(String task);
 
 	public boolean validateTask(String taskname, String username);
