@@ -7,6 +7,6 @@ import com.timesheet.model.ViewTimesheets;
 public interface ViewTimesheetsDAO {
 	public List<ViewTimesheets> showAllTimesheet();
 
-	public List<ViewTimesheets> showTimesheet(String username, String startdate, String enddate);
+	public List<ViewTimesheets> showTimesheet(String userName, String startDate, String endDate);
 
 }

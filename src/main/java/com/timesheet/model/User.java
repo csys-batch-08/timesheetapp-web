@@ -3,33 +3,33 @@ package com.timesheet.model;
 import java.util.Objects;
 
 public class User {
-	private String firstname;
-	private String lastname;
-	private String username;
+	private String userFirstName;
+	private String userLastName;
+	private String userUserName;
 	private String password;
 
-	public String getFirstname() {
-		return firstname;
+	public String getUserFirstName() {
+		return userFirstName;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setUserFirstName(String userFirstName) {
+		this.userFirstName = userFirstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getUserLastName() {
+		return userLastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setUserLastName(String userLastName) {
+		this.userLastName = userLastName;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserUserName() {
+		return userUserName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserUserName(String userUserName) {
+		this.userUserName = userUserName;
 	}
 
 	public String getPassword() {
@@ -44,23 +44,23 @@ public class User {
 		super();
 	}
 
-	public User(String firstname, String lastname, String username, String password) {
+	public User(String userFirstName, String userLastName, String userUserName, String password) {
 		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.username = username;
+		this.userFirstName = userFirstName;
+		this.userLastName = userLastName;
+		this.userUserName = userUserName;
 		this.password = password;
 	}
 
 	@Override
 	public String toString() {
-		return "User firstname: " + firstname + "\n lastname: " + lastname + "\n username: " + username
+		return "User firstname: " + userFirstName + "\n lastname: " + userLastName + "\n username: " + userUserName
 				+ "\n password: " + password;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(firstname, lastname, password, username);
+		return Objects.hash(userFirstName, userLastName, password, userUserName);
 	}
 
 	@Override
@@ -72,8 +72,8 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(firstname, other.firstname) && Objects.equals(lastname, other.lastname)
-				&& Objects.equals(password, other.password) && Objects.equals(username, other.username);
+		return Objects.equals(userFirstName, other.userFirstName) && Objects.equals(userLastName, other.userLastName)
+				&& Objects.equals(password, other.password) && Objects.equals(userUserName, other.userUserName);
 	}
 
 }

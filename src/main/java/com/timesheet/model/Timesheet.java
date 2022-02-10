@@ -4,34 +4,34 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Timesheet {
-	private int userid;
-	private int taskid;
-	private int spendtime;
+	private int userId;
+	private int taskId;
+	private int spendTime;
 	private String comments;
-	private LocalDate timesheetfordate;
+	private LocalDate timesheetForDate;
 
-	public int getUserid() {
-		return userid;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public int getTaskid() {
-		return taskid;
+	public int getTaskId() {
+		return taskId;
 	}
 
-	public void setTaskid(int taskid) {
-		this.taskid = taskid;
+	public void setTaskId(int taskId) {
+		this.taskId = taskId;
 	}
 
-	public int getSpendtime() {
-		return spendtime;
+	public int getSpendTime() {
+		return spendTime;
 	}
 
-	public void setSpendtime(int spendtime) {
-		this.spendtime = spendtime;
+	public void setSpendTime(int spendTime) {
+		this.spendTime = spendTime;
 	}
 
 	public String getComments() {
@@ -42,36 +42,36 @@ public class Timesheet {
 		this.comments = comments;
 	}
 
-	public LocalDate getTimesheetfordate() {
-		return timesheetfordate;
+	public LocalDate getTimesheetForDate() {
+		return timesheetForDate;
 	}
 
-	public void setTimesheetfordate(LocalDate timesheetfordate) {
-		this.timesheetfordate = timesheetfordate;
+	public void setTimesheetForDate(LocalDate timesheetForDate) {
+		this.timesheetForDate = timesheetForDate;
 	}
 
 	public Timesheet() {
 		super();
 	}
 
-	public Timesheet(int userid, int taskid, int spendtime, String comments, LocalDate timesheetfordate) {
+	public Timesheet(int userId, int taskId, int spendTime, String comments, LocalDate timesheetForDate) {
 		super();
-		this.userid = userid;
-		this.taskid = taskid;
-		this.spendtime = spendtime;
+		this.userId = userId;
+		this.taskId = taskId;
+		this.spendTime = spendTime;
 		this.comments = comments;
-		this.timesheetfordate = timesheetfordate;
+		this.timesheetForDate = timesheetForDate;
 	}
 
 	@Override
 	public String toString() {
-		return "User Id : " + userid + "\nTask Id : " + taskid + "\nSpend Time in Hrs : " + spendtime + "\nComments : "
-				+ comments + "\nTimesheet for date : " + timesheetfordate + "\n";
+		return "User Id : " + userId + "\nTask Id : " + taskId + "\nSpend Time in Hrs : " + spendTime + "\nComments : "
+				+ comments + "\nTimesheet for date : " + timesheetForDate + "\n";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(comments, spendtime, taskid, timesheetfordate, userid);
+		return Objects.hash(comments, spendTime, taskId, timesheetForDate, userId);
 	}
 
 	@Override
@@ -83,8 +83,8 @@ public class Timesheet {
 		if (getClass() != obj.getClass())
 			return false;
 		Timesheet other = (Timesheet) obj;
-		return Objects.equals(comments, other.comments) && spendtime == other.spendtime && taskid == other.taskid
-				&& Objects.equals(timesheetfordate, other.timesheetfordate) && userid == other.userid;
+		return Objects.equals(comments, other.comments) && spendTime == other.spendTime && taskId == other.taskId
+				&& Objects.equals(timesheetForDate, other.timesheetForDate) && userId == other.userId;
 	}
 
 }

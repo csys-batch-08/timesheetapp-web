@@ -11,15 +11,15 @@ public interface TaskDAO {
 
 	public List<Task> showallTask();
 
-	public List<Task> showTask(String username);
+	public List<Task> showTask(String userName);
 
 	public int findtaskId(String task);
 
-	public boolean validateTask(String taskname, String username);
+	public boolean validateTask(String taskName, String userName);
 
-	public int getTotalhrs(int userid, String taskname);
+	public int getTotalhrs(int userId, String taskName);
 
-	public int updatehrs(int spendhrs, int userid, int taskId);
+	public int updatehrs(int spendHrs, int userId, int taskId);
 	
 	public boolean removeTask(String task,String taskStatus);
 

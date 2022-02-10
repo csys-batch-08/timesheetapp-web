@@ -115,13 +115,13 @@ body {
 				<c:set var="inactive" value="InActive" scope="page" />
 					<tr>
 					    <td>${i}</td>
-						<td>${timesheet.userid}</td>
-						<td>${timesheet.taskid}</td>
-						<td>${timesheet.spendtime}</td>
-						<td><fmt:parseDate value="${timesheet.timesheetfordate}"
+						<td>${timesheet.userId}</td>
+						<td>${timesheet.taskId}</td>
+						<td>${timesheet.spendTime}</td>
+						<td><fmt:parseDate value="${timesheet.timesheetForDate}"
 								pattern="yyyy-MM-dd" var="timesheetDate" type="date" /> <fmt:formatDate
 								pattern="dd-MM-yyyy" value="${timesheetDate}" /></td>
-						<td><a href="InActiveTimesheet?timesheetDate=${timesheet.timesheetfordate}&timesheetStatus=${inactive}"><button type="button" class="btn btn-secondary btn-sm">In Active</button></a></td>
+						<td><a href="InActiveTimesheet?timesheetDate=${timesheet.timesheetForDate}&timesheetStatus=${inactive}"><button type="button" class="btn btn-secondary btn-sm">In Active</button></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

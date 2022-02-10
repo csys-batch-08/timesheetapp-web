@@ -6,6 +6,6 @@ import java.util.List;
 import com.timesheet.model.Report;
 
 public interface ReportDAO {
-	public List<Report> findreport(LocalDate timesheetdate, String username);
+	public List<Report> findreport(LocalDate timesheetDate, String userName);
 
 }

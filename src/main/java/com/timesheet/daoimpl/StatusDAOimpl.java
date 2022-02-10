@@ -21,10 +21,10 @@ public class StatusDAOimpl implements StatusDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(insertquery);
-			preparestatement.setInt(1, status.getUserid());
-			preparestatement.setInt(2, status.getTimesheetid());
-			preparestatement.setString(3, status.getStatus());
-			preparestatement.setString(4, status.getApprovedby());
+			preparestatement.setInt(1, status.getUserId());
+			preparestatement.setInt(2, status.getTimesheetId());
+			preparestatement.setString(3, status.getTimesheetStatus());
+			preparestatement.setString(4, status.getApprovedBy());
 			if (preparestatement.executeUpdate() > 0) {
 				flag = true;
 			}
@@ -45,8 +45,8 @@ public class StatusDAOimpl implements StatusDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(updatequery);
-			preparestatement.setString(1, status.getStatus());
-			preparestatement.setInt(2, status.getTimesheetid());
+			preparestatement.setString(1, status.getTimesheetStatus());
+			preparestatement.setInt(2, status.getTimesheetId());
 			if (preparestatement.executeUpdate() > 0) {
 				flag = true;
 			}
@@ -59,7 +59,7 @@ public class StatusDAOimpl implements StatusDAO {
 		return flag;
 	}
 
-	public List<Status> showStatus(int timesheetid) {
+	public List<Status> showStatus(int timesheetId) {
 		List<Status> statuslist = new ArrayList<>();
 		String selectquery = "select user_id,timesheet_id,status,approved_by from status where timesheet_id=?";
 		Connection con = null;
@@ -68,7 +68,7 @@ public class StatusDAOimpl implements StatusDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectquery);
-			preparestatement.setInt(1, timesheetid);
+			preparestatement.setInt(1, timesheetId);
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
 				Status status = new Status(resultset.getInt("user_id"), resultset.getInt("timesheet_id"),

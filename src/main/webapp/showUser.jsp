@@ -115,15 +115,15 @@ fieldset {
 				<tbody>
 					<tr>
 						<th id="tblhd"><strong>First Name</strong></th>
-						<td>${viewUser.firstname}</td>
+						<td>${viewUser.userFirstName}</td>
 					</tr>
 					<tr>
 						<th id="tblhd"><strong>Last Name</strong></th>
-						<td>${viewUser.lastname}</td>
+						<td>${viewUser.userLastName}</td>
 					</tr>
 					<tr>
 						<th id="tblhd"><strong>User Name</strong></th>
-						<td>${viewUser.username}</td>
+						<td>${viewUser.userUserName}</td>
 					</tr>
 					<tr>
 						<th id="tblhd" hidden="passwordName"><strong>Password</strong></th>
@@ -133,7 +133,7 @@ fieldset {
 			</table>
 			<p>
 				<a
-					href="UpdateUserProfile?userFirstName=${viewUser.firstname}&userLastName=${viewUser.lastname}&userEmail=${viewUser.username}"><button
+					href="UpdateUserProfile?userFirstName=${viewUser.userFirstName}&userLastName=${viewUser.userLastName}"><button
 						type="button" class="btn btn-primary btn-lg">Reset Password</button></a>
 			</p>
 		</c:forEach>

@@ -140,17 +140,17 @@ body {
 				<c:set var="i" value="${i+1}" />
 					<tr>
                         <td>${i}</td>
-						<td>${viewtimesheet.username}</td>
+						<td>${viewtimesheet.userName}</td>
 						<td>${viewtimesheet.comments}</td>
-						<td>${viewtimesheet.spendtimehrs}</td>
-						<td>${viewtimesheet.timesheetid}</td>
-						<td><fmt:parseDate value="${viewtimesheet.timesheetdate}"
+						<td>${viewtimesheet.spendtimeHrs}</td>
+						<td>${viewtimesheet.timesheetId}</td>
+						<td><fmt:parseDate value="${viewtimesheet.timesheetDate}"
 								pattern="yyyy-MM-dd" var="timesheetDate" type="date" /> <fmt:formatDate
 								pattern="dd-MM-yyyy" value="${timesheetDate}" /></td>
-						<td>${viewtimesheet.taskid}</td>
+						<td>${viewtimesheet.taskId}</td>
 						<td>${viewtimesheet.status}</td>
 						<td><a
-							href="GetTimesheetid?timesheetid=${viewtimesheet.timesheetid}"><button
+							href="GetTimesheetid?timesheetid=${viewtimesheet.timesheetId}"><button
 									type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 					</tr>
 				</c:forEach>

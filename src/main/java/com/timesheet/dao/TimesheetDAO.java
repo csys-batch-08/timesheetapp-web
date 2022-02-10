@@ -10,17 +10,17 @@ public interface TimesheetDAO {
 
 	public boolean updateTimesheet(Timesheet timesheet);
 
-	public List<Timesheet> showTimesheet(int userid);
+	public List<Timesheet> showTimesheet(int userId);
 
-	public boolean checkDate(int userid, LocalDate timesheetdate);
+	public boolean checkDate(int userId, LocalDate timesheetDate);
 
-	public int getSpendhrs(LocalDate timesheetdate);
+	public int getSpendhrs(LocalDate timesheetDate);
 
-    public boolean removeTimesheet(String timesheetfordate,String timesheetStatus);
+    public boolean removeTimesheet(String timesheetForDate,String timesheetStatus);
 	
-	public List<Timesheet> searchTimesheet(LocalDate timesheetdate, int userid);
+	public List<Timesheet> searchTimesheet(LocalDate timesheetDate, int userId);
 
-	public int findTimesheetId(LocalDate timesheetfordate, int userid);
+	public int findTimesheetId(LocalDate timesheetForDate, int userId);
 
 	public String getDate();
 }

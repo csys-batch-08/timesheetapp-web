@@ -22,11 +22,11 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(insertquery);
-			preparestatement.setInt(1, timesheet.getUserid());
-			preparestatement.setInt(2, timesheet.getTaskid());
-			preparestatement.setInt(3, timesheet.getSpendtime());
+			preparestatement.setInt(1, timesheet.getUserId());
+			preparestatement.setInt(2, timesheet.getTaskId());
+			preparestatement.setInt(3, timesheet.getSpendTime());
 			preparestatement.setString(4, timesheet.getComments());
-			preparestatement.setDate(5, java.sql.Date.valueOf(timesheet.getTimesheetfordate()));
+			preparestatement.setDate(5, java.sql.Date.valueOf(timesheet.getTimesheetForDate()));
 			if (preparestatement.executeUpdate() > 0) {
 				flag = true;
 			}
@@ -48,10 +48,10 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(updatequery);
-			preparestatement.setInt(1, timeheets.getUserid());
-			preparestatement.setInt(2, timeheets.getSpendtime());
+			preparestatement.setInt(1, timeheets.getUserId());
+			preparestatement.setInt(2, timeheets.getSpendTime());
 			preparestatement.setString(3, timeheets.getComments());
-			preparestatement.setDate(4, java.sql.Date.valueOf(timeheets.getTimesheetfordate()));
+			preparestatement.setDate(4, java.sql.Date.valueOf(timeheets.getTimesheetForDate()));
 			if (preparestatement.executeUpdate() > 0) {
 				flag = true;
 			}
@@ -64,7 +64,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		return flag;
 	}
 
-	public boolean checkDate(int userid, LocalDate timesheetdate) {
+	public boolean checkDate(int userId, LocalDate timesheetDate) {
 		String checkDateQuery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where timesheet_status='Active' and user_id=? and Timesheet_for_date=?";
 		Connection con = null;
 		boolean flag = true;
@@ -73,8 +73,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(checkDateQuery);
-			preparestatement.setInt(1, userid);
-			preparestatement.setDate(2, java.sql.Date.valueOf(timesheetdate));
+			preparestatement.setInt(1, userId);
+			preparestatement.setDate(2, java.sql.Date.valueOf(timesheetDate));
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
 				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"),
@@ -92,7 +92,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		return flag;
 	}
 
-	public List<Timesheet> showTimesheet(int userid) {
+	public List<Timesheet> showTimesheet(int userId) {
 		List<Timesheet> timesheetlist = new ArrayList<>();
 		String selectquery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where timesheet_status='Active' and user_id=? order by timesheet_for_date desc";
 		Connection con = null;
@@ -101,7 +101,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectquery);
-			preparestatement.setInt(1, userid);
+			preparestatement.setInt(1, userId);
 			resultset = preparestatement.executeQuery();
 			while (resultset.next()) {
 				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"),
@@ -118,7 +118,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		return timesheetlist;
 	}
 
-	public int getSpendhrs(LocalDate timesheetdate) {
+	public int getSpendhrs(LocalDate timesheetDate) {
 		Connection con = null;
 		String getHrsQuery = "select spend_time_hrs from timesheets where timesheet_status='Active' and timesheet_for_date=?";
 		int result = 0;
@@ -127,7 +127,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(getHrsQuery);
-			preparestatement.setDate(1, java.sql.Date.valueOf(timesheetdate));
+			preparestatement.setDate(1, java.sql.Date.valueOf(timesheetDate));
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
 				result = resultset.getInt("spend_time_hrs");
@@ -141,7 +141,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		return result;
 	}
 
-	public boolean removeTimesheet(String timesheetfordate, String timesheetStatus) {
+	public boolean removeTimesheet(String timesheetForDate, String timesheetStatus) {
 		boolean flag = false;
 		String removequery = "update timesheets set timesheet_status=? where to_char(timesheet_for_date,'yyyy-MM-dd')=?";
 		Connection con = Connectionutil.getDbConnection();
@@ -149,7 +149,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		try {
 			preparestatement = con.prepareStatement(removequery);
 			preparestatement.setString(1, timesheetStatus);
-			preparestatement.setString(2, timesheetfordate);
+			preparestatement.setString(2, timesheetForDate);
 			if (preparestatement.executeUpdate() > 0) {
 				flag = true;
 			}
@@ -162,7 +162,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		return flag;
 	}
 
-	public List<Timesheet> searchTimesheet(LocalDate timesheetdate, int userid) {
+	public List<Timesheet> searchTimesheet(LocalDate timesheetDate, int userId) {
 		List<Timesheet> timesheets = new ArrayList<>();
 		String selectquery = "select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where timesheet_status='Active' and timesheet_for_date=? and user_id=?";
 		Connection con = null;
@@ -171,8 +171,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectquery);
-			preparestatement.setDate(1, java.sql.Date.valueOf(timesheetdate));
-			preparestatement.setInt(2, userid);
+			preparestatement.setDate(1, java.sql.Date.valueOf(timesheetDate));
+			preparestatement.setInt(2, userId);
 			resultset = preparestatement.executeQuery();
 			while (resultset.next()) {
 				Timesheet timesheet = new Timesheet(resultset.getInt("user_id"), resultset.getInt("task_id"),
@@ -189,7 +189,7 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		return timesheets;
 	}
 
-	public int findTimesheetId(LocalDate timesheetfordate, int userid) {
+	public int findTimesheetId(LocalDate timesheetForDate, int userId) {
 		String findUser = "select timesheet_id from timesheets where timesheet_status='Active' and timesheet_for_date=? and user_id=?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
@@ -198,8 +198,8 @@ public class TimesheetDAOimpl implements TimesheetDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(findUser);
-			preparestatement.setDate(1, java.sql.Date.valueOf(timesheetfordate));
-			preparestatement.setInt(2, userid);
+			preparestatement.setDate(1, java.sql.Date.valueOf(timesheetForDate));
+			preparestatement.setInt(2, userId);
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
 				timesheetId = resultset.getInt("timesheet_id");

@@ -110,17 +110,17 @@ body {
 			<c:forEach items="${report}" var="view">
 				<tr>
 					<th id="tblhd"><strong>Timesheet Date</strong></th>
-					<td><fmt:parseDate value="${view.timesheetdate}"
+					<td><fmt:parseDate value="${view.timesheetDate}"
 							pattern="yyyy-MM-dd" var="timesheetDate" type="date" /> <fmt:formatDate
 							pattern="dd-MM-yyyy" value="${timesheetDate}" /></td>
 				</tr>
 				<tr>
 					<td><strong>Timesheet Id</strong></td>
-					<td>${view.timesheetid}</td>
+					<td>${view.timesheetId}</td>
 				</tr>
 				<tr>
 					<td><strong>User Name</strong></td>
-					<td>${view.username}</td>
+					<td>${view.userName}</td>
 				</tr>
 				<tr>
 					<td><strong>User Role </strong></td>
@@ -132,7 +132,7 @@ body {
 				</tr>
 				<tr>
 					<td><strong>Spending Hrs</strong></td>
-					<td>${view.spendhrs}</td>
+					<td>${view.spendHrs}</td>
 				</tr>
 				<tr>
 					<td><strong>Timesheet Status</strong></td>
@@ -140,11 +140,11 @@ body {
 				</tr>
 				<tr>
 					<td><strong>Approved By</strong></td>
-					<td>${view.approvedby}</td>
+					<td>${view.approvedBy}</td>
 				</tr>
 				<tr>
 					<td><strong>Approved On</strong></td>
-					<td><fmt:parseDate value="${view.approvedon}"
+					<td><fmt:parseDate value="${view.approvedOn}"
 							pattern="yyyy-MM-dd" var="approveDate" type="date" /> <fmt:formatDate
 							pattern="dd-MM-yyyy" value="${approveDate}" /></td>
 				</tr>

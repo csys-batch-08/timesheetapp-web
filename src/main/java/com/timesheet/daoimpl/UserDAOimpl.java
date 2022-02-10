@@ -22,9 +22,9 @@ public class UserDAOimpl implements UserDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(insertquery);
-			preparestatement.setString(1, user.getFirstname());
-			preparestatement.setString(2, user.getLastname());
-			preparestatement.setString(3, user.getUsername());
+			preparestatement.setString(1, user.getUserFirstName());
+			preparestatement.setString(2, user.getUserLastName());
+			preparestatement.setString(3, user.getUserUserName());
 			preparestatement.setString(4, user.getPassword());
 			if (preparestatement.executeUpdate() > 0) {
 				flag = true;
@@ -74,10 +74,10 @@ public class UserDAOimpl implements UserDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(updatequery);
-			preparestatement.setString(1, user.getFirstname());
-			preparestatement.setString(2, user.getLastname());
+			preparestatement.setString(1, user.getUserFirstName());
+			preparestatement.setString(2, user.getUserLastName());
 			preparestatement.setString(3, user.getPassword());
-			preparestatement.setString(4, user.getUsername());
+			preparestatement.setString(4, user.getUserUserName());
 			if (preparestatement.executeUpdate() > 0) {
 				flag = true;
 			}
@@ -90,7 +90,7 @@ public class UserDAOimpl implements UserDAO {
 		return flag;
 	}
 
-	public List<User> showuser(String username) {
+	public List<User> showuser(String userName) {
 		List<User> userlist = new ArrayList<>();
 		String selectquery = "select first_name,last_name,user_name,password from user_details where user_name=?";
 		Connection con = null;
@@ -99,7 +99,7 @@ public class UserDAOimpl implements UserDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectquery);
-			preparestatement.setString(1, username);
+			preparestatement.setString(1, userName);
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
 				User user = new User(resultset.getString("first_name"), resultset.getString("last_name"), resultset.getString("user_name"),
@@ -116,7 +116,7 @@ public class UserDAOimpl implements UserDAO {
 
 	}
 
-	public int findUserId(String username) {
+	public int findUserId(String userName) {
 		String findUser = "select user_id from user_details where user_name=?";
 		Connection con = null;
 		PreparedStatement preparestatement = null;
@@ -125,7 +125,7 @@ public class UserDAOimpl implements UserDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(findUser);
-			preparestatement.setString(1, username);
+			preparestatement.setString(1, userName);
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
 				userId = resultset.getInt("user_id");

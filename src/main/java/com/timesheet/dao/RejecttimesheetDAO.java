@@ -5,6 +5,6 @@ import java.util.List;
 import com.timesheet.model.Rejecttimesheet;
 
 public interface RejecttimesheetDAO {
-	public List<Rejecttimesheet> showRejecttimesheet(String username);
+	public List<Rejecttimesheet> showRejecttimesheet(String userName);
 
 }

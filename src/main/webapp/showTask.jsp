@@ -164,18 +164,18 @@ ul li:hover a {
 			<tbody>
 				<c:forEach items="${showtask}" var="showtask">
 					<tr>
-						<td>${showtask.task}</td>
-						<td>${showtask.taskpriority}</td>
-						<td><fmt:parseDate value="${showtask.dateassigned}"
+						<td>${showtask.taskName}</td>
+						<td>${showtask.taskPriority}</td>
+						<td><fmt:parseDate value="${showtask.dateAssigned}"
 								pattern="yyyy-MM-dd" var="assignDate" type="date" /> <fmt:formatDate
 								pattern="dd-MM-yyyy" value="${assignDate}" /></td>
-						<td><fmt:parseDate value="${showtask.enddate}"
+						<td><fmt:parseDate value="${showtask.endDate}"
 								pattern="yyyy-MM-dd" var="endDate" type="date" /> <fmt:formatDate
 								pattern="dd-MM-yyyy" value="${endDate}" /></td>
-						<td>${showtask.assignedto}</td>
-						<td>${showtask.totalhrs}</td>
+						<td>${showtask.assignedTo}</td>
+						<td>${showtask.totalHrs}</td>
 						<td><a
-							href="TimesheetMain?taskName=${showtask.task}&taskDate=${showtask.dateassigned}"><button
+							href="TimesheetMain?taskName=${showtask.taskName}&taskDate=${showtask.dateAssigned}"><button
 									type="button" class="btn btn-primary btn-sm">ADD</button></a></td>
 					</tr>
 				</c:forEach>

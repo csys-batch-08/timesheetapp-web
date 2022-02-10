@@ -16,12 +16,10 @@ public class UpdateUserProfile extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String firstName = request.getParameter("userFirstName");
-		request.setAttribute("profilefirstName", firstName);
-		String userName = request.getParameter("userEmail");
-		request.setAttribute("userMail", userName);
-		String lastName = request.getParameter("userLastName");
-		request.setAttribute("profileLastName", lastName);
+		String userFirstName = request.getParameter("userFirstName");
+		request.setAttribute("userFirstNameValue", userFirstName);
+		String userLastName = request.getParameter("userLastName");
+		request.setAttribute("userLastNameValue", userLastName);
 		RequestDispatcher rd = request.getRequestDispatcher("updateUser.jsp");
 		rd.forward(request, response);
 	}

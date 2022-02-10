@@ -37,7 +37,7 @@ public class ViewTimesheetsDAOimpl implements ViewTimesheetsDAO {
 		return timesheetlist;
 	}
 
-	public List<ViewTimesheets> showTimesheet(String username, String startdate, String enddate) {
+	public List<ViewTimesheets> showTimesheet(String userName, String startDate, String endDate) {
 		List<ViewTimesheets> timesheetlist = new ArrayList<>();
 		String selectquery = "select ud.user_name,ts.timesheet_for_date,ts.spend_time_hrs,NVL(s.status,'Not Approved')as status from (status s right join timesheets ts on s.timesheet_id=ts.timesheet_id inner join user_details ud on ud.user_id=ts.user_id) where ts.timesheet_status='Active' and user_name=? and to_char(timesheet_for_date,'yyyy-MM-dd') between ? and ?";
 		Connection con = null;
@@ -46,9 +46,9 @@ public class ViewTimesheetsDAOimpl implements ViewTimesheetsDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectquery);
-			preparestatement.setString(1, username);
-			preparestatement.setString(2, startdate);
-			preparestatement.setString(3, enddate);
+			preparestatement.setString(1, userName);
+			preparestatement.setString(2, startDate);
+			preparestatement.setString(3, endDate);
 			resultset = preparestatement.executeQuery();
 			while (resultset.next()) {
 				ViewTimesheets timesheet = new ViewTimesheets(resultset.getString("user_name"), null, resultset.getInt("spend_time_hrs"),

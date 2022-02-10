@@ -131,19 +131,19 @@ body {
 					<c:set var="i" value="${i+1}" />
 					<tr>
 						<td>${i}</td>
-						<td>${viewtask.task}</td>
-						<td>${viewtask.taskpriority}</td>
-						<td><fmt:parseDate value="${viewtask.dateassigned}"
+						<td>${viewtask.taskName}</td>
+						<td>${viewtask.taskPriority}</td>
+						<td><fmt:parseDate value="${viewtask.dateAssigned}"
 								pattern="yyyy-MM-dd" var="assignDate" type="date" /> <fmt:formatDate
 								pattern="dd-MM-yyyy" value="${assignDate}" /></td>
-						<td><fmt:parseDate value="${viewtask.enddate}"
+						<td><fmt:parseDate value="${viewtask.endDate}"
 								pattern="yyyy-MM-dd" var="endDate" type="date" /> <fmt:formatDate
 								pattern="dd-MM-yyyy" value="${endDate}" /></td>
-						<td>${viewtask.assignedto}</td>
-						<td>${viewtask.totalhrs}</td>
+						<td>${viewtask.assignedTo}</td>
+						<td>${viewtask.totalHrs}</td>
 						<td><a
-							href="GetTask?task=${viewtask.task}&taskAssignedDate=${viewtask.dateassigned}
-							&taskEndDate=${viewtask.enddate}&priority=${viewtask.taskpriority}&taskAssignedTo=${viewtask.assignedto}"><button
+							href="GetTask?task=${viewtask.taskName}&taskAssignedDate=${viewtask.dateAssigned}
+							&taskEndDate=${viewtask.endDate}&priority=${viewtask.taskPriority}&taskAssignedTo=${viewtask.assignedTo}"><button
 									type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 					</tr>
 				</c:forEach>

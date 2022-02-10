@@ -126,7 +126,7 @@ ul li:hover a {
 			src="images/1report.jpg" alt="report" width="42px" height="42px"
 			title="Report"></a> <a class="a" href="adminUser.jsp"><img
 			src="images/user1.jpg" alt="user" width="42px" height="42px"
-			title="user"></a> <a class="a" href="login.jsp"><img
+			title="user"></a> <a class="a" href="Logout"><img
 			class="signout" src="images/signout.png" alt="signout" width="42px"
 			height="42px" title="Signout"></a>
 	</nav>
@@ -145,12 +145,12 @@ ul li:hover a {
 						<th id="tblhead"><label for="timesheetid">Enter
 								Timesheet Id</label></th>
 						<td><input id="timesheetid" type="number" name="timesheetid"
-							value="${viewStatus.timesheetid}" readonly required></td>
+							value="${viewStatus.timesheetId}" readonly required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="userid">User Id</label></th>
 						<td><input id="userid" type="number" name="userid"
-							value="${viewStatus.userid}" readonly required></td>
+							value="${viewStatus.userId}" readonly required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="status">Enter Status</label></th>
@@ -164,7 +164,7 @@ ul li:hover a {
 					<tr>
 						<th id="tblhead"><label for="approvedby">Approvedb By</label></th>
 						<td><input id="approvedby" type="text" name="approvedby"
-							value="${viewStatus.approvedby}" readonly required></td>
+							value="${viewStatus.approvedBy}" readonly required></td>
 					</tr>
 				</c:forEach>
 			</table>

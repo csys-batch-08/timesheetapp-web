@@ -124,10 +124,10 @@ body {
 			<tbody>
 				<c:forEach items="${showstatus}" var="viewstatus">
 					<tr>
-						<td>${viewstatus.userid}</td>
-						<td>${viewstatus.timesheetid}</td>
-						<td>${viewstatus.status}</td>
-						<td>${viewstatus.approvedby}</td>
+						<td>${viewstatus.userId}</td>
+						<td>${viewstatus.timesheetId}</td>
+						<td>${viewstatus.timesheetStatus}</td>
+						<td>${viewstatus.approvedBy}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

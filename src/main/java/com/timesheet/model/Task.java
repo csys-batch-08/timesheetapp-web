@@ -3,90 +3,89 @@ package com.timesheet.model;
 import java.time.LocalDate;
 
 public class Task {
-	private int userid;
-	private String task;
-	private LocalDate dateassigned;
-	private LocalDate enddate;
-	private String taskpriority;
-	private String assignedto;
-	private long totalhrs;
-
-	public long getTotalhrs() {
-		return totalhrs;
+	private int userId;
+	private String taskName;
+	private LocalDate dateAssigned;
+	private LocalDate endDate;
+	private String taskPriority;
+	private String assignedTo;
+	private long totalHrs;
+	
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setTotalhrs(long totalhrs) {
-		this.totalhrs = totalhrs;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public int getUserid() {
-		return userid;
+	public String getTaskName() {
+		return taskName;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
 	}
 
-	public String getTask() {
-		return task;
+	public LocalDate getDateAssigned() {
+		return dateAssigned;
 	}
 
-	public void setTask(String task) {
-		this.task = task;
+	public void setDateAssigned(LocalDate dateAssigned) {
+		this.dateAssigned = dateAssigned;
 	}
 
-	public LocalDate getDateassigned() {
-		return dateassigned;
+	public LocalDate getEndDate() {
+		return endDate;
 	}
 
-	public void setDateassigned(LocalDate dateassigned) {
-		this.dateassigned = dateassigned;
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 
-	public LocalDate getEnddate() {
-		return enddate;
+	public String getTaskPriority() {
+		return taskPriority;
 	}
 
-	public void setEnddate(LocalDate enddate) {
-		this.enddate = enddate;
+	public void setTaskPriority(String taskPriority) {
+		this.taskPriority = taskPriority;
 	}
 
-	public String getTaskpriority() {
-		return taskpriority;
+	public String getAssignedTo() {
+		return assignedTo;
 	}
 
-	public void setTaskpriority(String taskpriority) {
-		this.taskpriority = taskpriority;
+	public void setAssignedTo(String assignedTo) {
+		this.assignedTo = assignedTo;
 	}
 
-	public String getAssignedto() {
-		return assignedto;
+	public long getTotalHrs() {
+		return totalHrs;
 	}
 
-	public void setAssignedto(String assignedto) {
-		this.assignedto = assignedto;
+	public void setTotalHrs(long totalHrs) {
+		this.totalHrs = totalHrs;
 	}
 
 	public Task() {
 		super();
 	}
 
-	public Task(int userid, String task, LocalDate dateassigned, LocalDate enddate, String taskpriority,
-			String assignedto, long totalhrs) {
+	public Task(int userId, String taskName, LocalDate dateAssigned, LocalDate endDate, String taskPriority,
+			String assignedTo, long totalHrs) {
 		super();
-		this.userid = userid;
-		this.task = task;
-		this.dateassigned = dateassigned;
-		this.enddate = enddate;
-		this.taskpriority = taskpriority;
-		this.assignedto = assignedto;
-		this.totalhrs = totalhrs;
-
+		this.userId = userId;
+		this.taskName = taskName;
+		this.dateAssigned = dateAssigned;
+		this.endDate = endDate;
+		this.taskPriority = taskPriority;
+		this.assignedTo = assignedTo;
+		this.totalHrs = totalHrs;
 	}
 
 	@Override
 	public String toString() {
-		return "Task [userid=" + userid + ", task=" + task + ", dateassigned=" + dateassigned + ", enddate=" + enddate
-				+ ", taskpriority=" + taskpriority + ", assignedto=" + assignedto + ", totalhrs=" + totalhrs + "]";
+		return "Task [userid=" + userId + ", task=" + taskName + ", dateassigned=" + dateAssigned + ", enddate=" + endDate
+				+ ", taskpriority=" + taskPriority + ", assignedto=" + assignedTo + ", totalhrs=" + totalHrs + "]";
 	}
 }

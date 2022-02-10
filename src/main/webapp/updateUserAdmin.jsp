@@ -135,7 +135,7 @@ table {
 				<tr>
 					<th id="tblhead"><label for="username">User Name</label></th>
 					<td><input id="username" type="text" name="username"
-						value="${userNameValue}" required readonly></td>
+						value="${userEmailValue}" required readonly></td>
 				</tr>
 				<tr>
 					<th id="tblhead"><label for="role">Role</label></th>

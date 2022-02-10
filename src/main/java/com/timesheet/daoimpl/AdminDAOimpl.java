@@ -13,7 +13,7 @@ import com.timesheet.model.User;
 import com.timesheet.util.Connectionutil;
 
 public class AdminDAOimpl implements AdminDAO {
-	public User validateAdmin(String username, String password) {
+	public User validateAdmin(String userName, String password) {
 		String checkquery = "select first_name,last_name,user_name,password from user_details where role='ADMIN'and user_name=? and password=?";
 		Connection con = null;
 		User user = null;
@@ -22,7 +22,7 @@ public class AdminDAOimpl implements AdminDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(checkquery);
-			preparestatement.setString(1, username);
+			preparestatement.setString(1, userName);
 			preparestatement.setString(2, password);
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
@@ -93,7 +93,7 @@ public class AdminDAOimpl implements AdminDAO {
 
 	}
 
-	public boolean removeUser(String username, String role) {
+	public boolean removeUser(String userName, String role) {
 		boolean flag = false;
 		String removequery = "update user_details set role=? where user_name=?";
 		Connection con = null;
@@ -102,7 +102,7 @@ public class AdminDAOimpl implements AdminDAO {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(removequery);
 			preparestatement.setString(1, role);
-			preparestatement.setString(2, username);
+			preparestatement.setString(2, userName);
 			if (preparestatement.executeUpdate() > 0) {
 				flag = true;
 			}

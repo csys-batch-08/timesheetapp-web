@@ -3,36 +3,20 @@ package com.timesheet.model;
 import java.time.LocalDate;
 
 public class ViewTimesheets {
-	private String username;
+	private String userName;
 	private String comments;
-	private int spendtimehrs;
-	private LocalDate timesheetdate;
-	private int taskid;
-	private int timesheetid;
+	private int spendtimeHrs;
+	private LocalDate timesheetDate;
+	private int taskId;
+	private int timesheetId;
 	private String status;
 
-	public String getStatus() {
-		return status;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public int getTimesheetid() {
-		return timesheetid;
-	}
-
-	public void setTimesheetid(int timesheetid) {
-		this.timesheetid = timesheetid;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getComments() {
@@ -43,51 +27,66 @@ public class ViewTimesheets {
 		this.comments = comments;
 	}
 
-	public int getSpendtimehrs() {
-		return spendtimehrs;
+	public int getSpendtimeHrs() {
+		return spendtimeHrs;
 	}
 
-	public void setSpendtimehrs(int spendtimehrs) {
-		this.spendtimehrs = spendtimehrs;
+	public void setSpendtimeHrs(int spendtimeHrs) {
+		this.spendtimeHrs = spendtimeHrs;
 	}
 
-	public LocalDate getTimesheetdate() {
-		return timesheetdate;
+	public LocalDate getTimesheetDate() {
+		return timesheetDate;
 	}
 
-	public void setTimesheetdate(LocalDate timesheetdate) {
-		this.timesheetdate = timesheetdate;
+	public void setTimesheetDate(LocalDate timesheetDate) {
+		this.timesheetDate = timesheetDate;
 	}
 
-	public int getTaskid() {
-		return taskid;
+	public int getTaskId() {
+		return taskId;
 	}
 
-	public void setTaskid(int taskid) {
-		this.taskid = taskid;
+	public void setTaskId(int taskId) {
+		this.taskId = taskId;
 	}
 
-	public ViewTimesheets(String username, String comments, int spendtimehrs, LocalDate timesheetdate, int taskid,
-			int timesheetid, String status) {
+	public int getTimesheetId() {
+		return timesheetId;
+	}
+
+	public void setTimesheetId(int timesheetId) {
+		this.timesheetId = timesheetId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public ViewTimesheets(String userName, String comments, int spendtimeHrs, LocalDate timesheetDate, int taskId,
+			int timesheetId, String status) {
 		super();
-		this.username = username;
+		this.userName = userName;
 		this.comments = comments;
-		this.spendtimehrs = spendtimehrs;
-		this.timesheetdate = timesheetdate;
-		this.taskid = taskid;
-		this.timesheetid = timesheetid;
+		this.spendtimeHrs = spendtimeHrs;
+		this.timesheetDate = timesheetDate;
+		this.taskId = taskId;
+		this.timesheetId = timesheetId;
 		this.status = status;
 	}
 
 	public ViewTimesheets() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String toString() {
-		return "ViewTimesheets [username=" + username + ", comments=" + comments + ", spendtimehrs=" + spendtimehrs
-				+ ", timesheetdate=" + timesheetdate + ", taskid=" + taskid + ", timesheetid=" + timesheetid
+		return "ViewTimesheets [username=" + userName + ", comments=" + comments + ", spendtimehrs=" + spendtimeHrs
+				+ ", timesheetdate=" + timesheetDate + ", taskid=" + taskId + ", timesheetid=" + timesheetId
 				+ ", status=" + status + "]";
 	}
 

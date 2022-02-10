@@ -20,13 +20,13 @@ public class TaskDAOimpl implements TaskDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(insertquery);
-			preparestatement.setInt(1, task.getUserid());
-			preparestatement.setString(2, task.getTask());
-			preparestatement.setDate(3, java.sql.Date.valueOf(task.getDateassigned()));
-			preparestatement.setDate(4, java.sql.Date.valueOf(task.getEnddate()));
-			preparestatement.setString(5, task.getTaskpriority());
-			preparestatement.setString(6, task.getAssignedto());
-			preparestatement.setLong(7, task.getTotalhrs());
+			preparestatement.setInt(1, task.getUserId());
+			preparestatement.setString(2, task.getTaskName());
+			preparestatement.setDate(3, java.sql.Date.valueOf(task.getDateAssigned()));
+			preparestatement.setDate(4, java.sql.Date.valueOf(task.getEndDate()));
+			preparestatement.setString(5, task.getTaskPriority());
+			preparestatement.setString(6, task.getAssignedTo());
+			preparestatement.setLong(7, task.getTotalHrs());
 			if (preparestatement.executeUpdate() > 0) {
 				flag = true;
 			}
@@ -48,13 +48,13 @@ public class TaskDAOimpl implements TaskDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(updatequery);
-			preparestatement.setInt(1, task.getUserid());
-			preparestatement.setDate(2, java.sql.Date.valueOf(task.getDateassigned()));
-			preparestatement.setDate(3, java.sql.Date.valueOf(task.getEnddate()));
-			preparestatement.setString(4, task.getTaskpriority());
-			preparestatement.setString(5, task.getAssignedto());
-			preparestatement.setString(7, task.getTask());
-			preparestatement.setLong(6, task.getTotalhrs());
+			preparestatement.setInt(1, task.getUserId());
+			preparestatement.setDate(2, java.sql.Date.valueOf(task.getDateAssigned()));
+			preparestatement.setDate(3, java.sql.Date.valueOf(task.getEndDate()));
+			preparestatement.setString(4, task.getTaskPriority());
+			preparestatement.setString(5, task.getAssignedTo());
+			preparestatement.setString(7, task.getTaskName());
+			preparestatement.setLong(6, task.getTotalHrs());
 			if (preparestatement.executeUpdate() > 0) {
 				flag = true;
 			}
@@ -146,7 +146,7 @@ public class TaskDAOimpl implements TaskDAO {
 		return taskId;
 	}
 
-	public boolean validateTask(String taskname, String username) {
+	public boolean validateTask(String taskName, String userName) {
 		String selectQuery = "select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where task_status='Active' and Assigned_to=? and task_name=?";
 		Connection con = null;
 		boolean flag = true;
@@ -155,8 +155,8 @@ public class TaskDAOimpl implements TaskDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectQuery);
-			preparestatement.setString(1, username);
-			preparestatement.setString(2, taskname);
+			preparestatement.setString(1, userName);
+			preparestatement.setString(2, taskName);
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
 				Task task = new Task(resultset.getInt("user_id"), resultset.getString("task_name"),
@@ -175,7 +175,7 @@ public class TaskDAOimpl implements TaskDAO {
 		return flag;
 	}
 
-	public int getTotalhrs(int userid, String taskname) {
+	public int getTotalhrs(int userId, String taskName) {
 		Connection con = null;
 		String selectstatement = "select total_hours from task_details where task_status='Active' and task_name=? and user_id=?";
 		int result = 0;
@@ -184,8 +184,8 @@ public class TaskDAOimpl implements TaskDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectstatement);
-			preparestatement.setString(1, taskname);
-			preparestatement.setInt(2, userid);
+			preparestatement.setString(1, taskName);
+			preparestatement.setInt(2, userId);
 			resultset = preparestatement.executeQuery();
 			if (resultset.next()) {
 				result = resultset.getInt(1);
@@ -199,7 +199,7 @@ public class TaskDAOimpl implements TaskDAO {
 		return result;
 	}
 
-	public int updatehrs(int spendhrs, int userid, int taskId) {
+	public int updatehrs(int spendHrs, int userId, int taskId) {
 		Connection con = null;
 		String selectquery = "update task_details set total_hours =total_hours-? where task_status='Active' and task_id=? and user_id=?";
 		PreparedStatement preparestatement = null;
@@ -207,9 +207,9 @@ public class TaskDAOimpl implements TaskDAO {
 		try {
 			con = Connectionutil.getDbConnection();
 			preparestatement = con.prepareStatement(selectquery);
-			preparestatement.setInt(1, spendhrs);
+			preparestatement.setInt(1, spendHrs);
 			preparestatement.setInt(2, taskId);
-			preparestatement.setInt(3, userid);
+			preparestatement.setInt(3, userId);
 			result = preparestatement.executeUpdate();
 			preparestatement.executeUpdate("commit");
 		} catch (SQLException e) {

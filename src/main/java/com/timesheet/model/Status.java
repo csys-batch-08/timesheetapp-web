@@ -3,64 +3,64 @@ package com.timesheet.model;
 import java.util.Objects;
 
 public class Status {
-	private int userid;
-	private int timesheetid;
-	private String status;
-	private String approvedby;
+	private int userId;
+	private int timesheetId;
+	private String timesheetStatus;
+	private String approvedBy;
 
-	public int getUserid() {
-		return userid;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public int getTimesheetid() {
-		return timesheetid;
+	public int getTimesheetId() {
+		return timesheetId;
 	}
 
-	public void setTimesheetid(int timesheetid) {
-		this.timesheetid = timesheetid;
+	public void setTimesheetId(int timesheetId) {
+		this.timesheetId = timesheetId;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getTimesheetStatus() {
+		return timesheetStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setTimesheetStatus(String timesheetStatus) {
+		this.timesheetStatus = timesheetStatus;
 	}
 
-	public String getApprovedby() {
-		return approvedby;
+	public String getApprovedBy() {
+		return approvedBy;
 	}
 
-	public void setApprovedby(String approvedby) {
-		this.approvedby = approvedby;
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
 	}
 
 	public Status() {
 		super();
 	}
 
-	public Status(int userid, int timesheetid, String status, String approvedby) {
+	public Status(int userId, int timesheetId, String timesheetStatus, String approvedBy) {
 		super();
-		this.userid = userid;
-		this.timesheetid = timesheetid;
-		this.status = status;
-		this.approvedby = approvedby;
+		this.userId = userId;
+		this.timesheetId = timesheetId;
+		this.timesheetStatus = timesheetStatus;
+		this.approvedBy = approvedBy;
 	}
 
 	@Override
 	public String toString() {
-		return "User Id : " + userid + "\nTimesheet Id : " + timesheetid + "\nStatus : " + status + "\nApproved By : "
-				+ approvedby + "\n";
+		return "User Id : " + userId + "\nTimesheet Id : " + timesheetId + "\nStatus : " + timesheetStatus
+				+ "\nApproved By : " + approvedBy + "\n";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(approvedby, status, timesheetid, userid);
+		return Objects.hash(approvedBy, timesheetStatus, timesheetId, userId);
 	}
 
 	@Override
@@ -72,8 +72,8 @@ public class Status {
 		if (getClass() != obj.getClass())
 			return false;
 		Status other = (Status) obj;
-		return Objects.equals(approvedby, other.approvedby) && Objects.equals(status, other.status)
-				&& timesheetid == other.timesheetid && userid == other.userid;
+		return Objects.equals(approvedBy, other.approvedBy) && Objects.equals(timesheetStatus, other.timesheetStatus)
+				&& timesheetId == other.timesheetId && userId == other.userId;
 	}
 
 }

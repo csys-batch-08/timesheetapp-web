@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class Rejecttimesheet {
 	private String task;
-	private int timesheetid;
-	private Date timesheetdate;
-	private int spendtimehrs;
+	private int timesheetId;
+	private Date timesheetDate;
+	private int spendtimeHrs;
 	private String comments;
-	private String approvedby;
+	private String approvedBy;
 	private String status;
 
 	public String getTask() {
@@ -19,28 +19,28 @@ public class Rejecttimesheet {
 		this.task = task;
 	}
 
-	public int getTimesheetid() {
-		return timesheetid;
+	public int getTimesheetId() {
+		return timesheetId;
 	}
 
-	public void setTimesheetid(int timesheetid) {
-		this.timesheetid = timesheetid;
+	public void setTimesheetId(int timesheetId) {
+		this.timesheetId = timesheetId;
 	}
 
-	public Date getTimesheetdate() {
-		return timesheetdate;
+	public Date getTimesheetDate() {
+		return timesheetDate;
 	}
 
-	public void setTimesheetdate(Date timesheetdate) {
-		this.timesheetdate = timesheetdate;
+	public void setTimesheetDate(Date timesheetDate) {
+		this.timesheetDate = timesheetDate;
 	}
 
-	public int getSpendtimehrs() {
-		return spendtimehrs;
+	public int getSpendtimeHrs() {
+		return spendtimeHrs;
 	}
 
-	public void setSpendtimehrs(int spendtimehrs) {
-		this.spendtimehrs = spendtimehrs;
+	public void setSpendtimeHrs(int spendtimeHrs) {
+		this.spendtimeHrs = spendtimeHrs;
 	}
 
 	public String getComments() {
@@ -51,12 +51,12 @@ public class Rejecttimesheet {
 		this.comments = comments;
 	}
 
-	public String getApprovedby() {
-		return approvedby;
+	public String getApprovedBy() {
+		return approvedBy;
 	}
 
-	public void setApprovedby(String approvedby) {
-		this.approvedby = approvedby;
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
 	}
 
 	public String getStatus() {
@@ -69,26 +69,25 @@ public class Rejecttimesheet {
 
 	public Rejecttimesheet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Rejecttimesheet(String task, int timesheetid, Date timesheetdate, int spendtimehrs, String comments,
-			String approvedby, String status) {
+	public Rejecttimesheet(String task, int timesheetId, Date timesheetDate, int spendtimeHrs, String comments,
+			String approvedBy, String status) {
 		super();
 		this.task = task;
-		this.timesheetid = timesheetid;
-		this.timesheetdate = timesheetdate;
-		this.spendtimehrs = spendtimehrs;
+		this.timesheetId = timesheetId;
+		this.timesheetDate = timesheetDate;
+		this.spendtimeHrs = spendtimeHrs;
 		this.comments = comments;
-		this.approvedby = approvedby;
+		this.approvedBy = approvedBy;
 		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "Rejected Timesheet \n task Name : " + task + "\n Timesheet Id : " + timesheetid + "\n Timesheet Date="
-				+ timesheetdate + "\n spend Time HRS : " + spendtimehrs + "\n Comments :" + comments
-				+ "\n Approved by : " + approvedby + "\n Status : " + status + "\n";
+		return "Rejected Timesheet \n task Name : " + task + "\n Timesheet Id : " + timesheetId + "\n Timesheet Date="
+				+ timesheetDate + "\n spend Time HRS : " + spendtimeHrs + "\n Comments :" + comments
+				+ "\n Approved by : " + approvedBy + "\n Status : " + status + "\n";
 	}
 
 }

@@ -125,10 +125,10 @@ body {
 			<tbody>
 				<c:forEach items="${showuserstatus}" var="viewtimesheet">
 					<tr>
-						<td><fmt:parseDate value="${viewtimesheet.timesheetdate}"
+						<td><fmt:parseDate value="${viewtimesheet.timesheetDate}"
 								pattern="yyyy-MM-dd" var="timesheetDate" type="date" /> <fmt:formatDate
 								pattern="dd-MM-yyyy" value="${timesheetDate}" /></td>
-						<td>${viewtimesheet.spendtimehrs}</td>
+						<td>${viewtimesheet.spendtimeHrs}</td>
 						<td>${viewtimesheet.status}</td>
 					</tr>
 				</c:forEach>

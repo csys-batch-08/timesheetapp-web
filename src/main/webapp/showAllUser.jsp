@@ -119,7 +119,7 @@ body {
 						<td>${viewUser.lastName}</td>
 						<td>${viewUser.userName}</td>
 						<td>${viewUser.role}</td>
-						<td><a href="AdminUserUpdate?username=${viewUser.userName}"><button
+						<td><a href="AdminUserUpdate?userEmail=${viewUser.userName}"><button
 									type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 					</tr>
 				</c:forEach>

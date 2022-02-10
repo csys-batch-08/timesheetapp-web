@@ -144,25 +144,25 @@ ul li:hover a {
 						<th id="tblhead"><label for="timesheetdate">Enter
 								Timesheet Date</label></th>
 						<td><input id="timesheetdate" type="date" min="" max=""
-							name="timesheetdate" value="${showtimesheet.timesheetfordate}"
+							name="timesheetdate" value="${showtimesheet.timesheetForDate}"
 							readonly required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="userid">User Id</label></th>
 						<td><input id="userid" type="number" name="userid"
-							value="${showtimesheet.userid}" readonly></td>
+							value="${showtimesheet.userId}" readonly></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="taskid">Task Id</label></th>
 						<td><input id="taskid" type="number" name="taskid"
-							value="${showtimesheet.taskid}" readonly></td>
+							value="${showtimesheet.taskId}" readonly></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="spendinghrs">Enter
 								Spending Hrs</label></th>
 						<td><input id="spendinghrs" type="number" pattern="[1-9]{1+}"
 							maxlength="2" name="spendinghrs"
-							value="${showtimesheet.spendtime}" required></td>
+							value="${showtimesheet.spendTime}" required></td>
 					</tr>
 					<tr>
 						<th id="tblhead"><label for="comments">Enter Comments</label></th>

@@ -117,14 +117,14 @@ body {
 					<c:set var="i" value="${i+1}" />
 					<tr>
 						<td>${i}</td>
-						<td>${reject.timesheetid}</td>
+						<td>${reject.timesheetId}</td>
 						<td>${reject.task}</td>
-						<td><fmt:parseDate value="${reject.timesheetdate}"
+						<td><fmt:parseDate value="${reject.timesheetDate}"
 								pattern="yyyy-MM-dd" var="timesheetDate" type="date" /> <fmt:formatDate
 								pattern="dd-MM-yyyy" value="${timesheetDate}" /></td>
-						<td>${reject.spendtimehrs}</td>
+						<td>${reject.spendtimeHrs}</td>
 						<td>${reject.comments}</td>
-						<td>${reject.approvedby}</td>
+						<td>${reject.approvedBy}</td>
 						<td>${reject.status}</td>
 						<td><a href="updateTimesheet.jsp"><button type="button"
 									class="btn btn-primary btn-sm">Edit</button></a></td>

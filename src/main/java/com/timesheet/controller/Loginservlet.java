@@ -30,13 +30,13 @@ public class Loginservlet extends HttpServlet {
 		User validuser = userdao.validateUser(username, password);
 		User validadmin = admindao.validateAdmin(username, password);
 		if (validuser != null) {
-			session.setAttribute("username", validuser.getUsername());
+			session.setAttribute("username", validuser.getUserUserName());
 			session.setAttribute("userPassword", validuser.getPassword());
 			RequestDispatcher reqdis = request.getRequestDispatcher("userIndex.jsp");
 				reqdis.forward(request, response);
 		} else if (validadmin != null) {
 
-			session.setAttribute("adminuser", validadmin.getFirstname());
+			session.setAttribute("adminuser", validadmin.getUserFirstName());
 			RequestDispatcher reqdis = request.getRequestDispatcher("adminIndex.jsp");
 			reqdis.forward(request, response);
 		} else {
